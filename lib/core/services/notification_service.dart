@@ -21,6 +21,10 @@ class NotificationService {
   /// Initializes timezone data, notification settings, and Android channels.
   Future<void> initialize() async {
     if (_isInitialized) return;
+    if (kIsWeb) {
+      _isInitialized = true;
+      return;
+    }
 
     try {
       tz_data.initializeTimeZones();
@@ -109,6 +113,7 @@ class NotificationService {
     required UILocalNotificationDateInterpretation uiLocalNotificationDateInterpretation,
     DateTimeComponents? matchDateTimeComponents,
   }) async {
+    if (kIsWeb) return;
     try {
       await _notificationsPlugin.zonedSchedule(
         id,
@@ -255,6 +260,7 @@ class NotificationService {
 
   /// Cancels all scheduled alerts associated with an event ID.
   Future<void> cancelEventAlerts(String eventId) async {
+    if (kIsWeb) return;
     await initialize();
     await _notificationsPlugin.cancel(_calcId(eventId, 15));
     await _notificationsPlugin.cancel(_calcId(eventId, 2));
@@ -264,6 +270,7 @@ class NotificationService {
 
   /// Schedules daily repeating evening habit check-in at 21:00 (9:00 PM).
   Future<void> scheduleHabitDefenseAlert() async {
+    if (kIsWeb) return;
     await initialize();
 
     final now = tz.TZDateTime.now(tz.local);
@@ -370,6 +377,7 @@ class NotificationService {
     required List<AcademicEvent> events,
     required SyncSettings settings,
   }) async {
+    if (kIsWeb) return;
     await initialize();
 
     // Cancel existing class alerts
