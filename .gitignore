@@ -1,0 +1,126 @@
+# -----------------------------------------------------------------------------
+# Flutter & Dart
+# -----------------------------------------------------------------------------
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+build/
+**/build/
+/coverage/
+.kotlin/
+**/.kotlin/
+
+# Flutter web / ephemeral
+**/doc/api/
+.widget_preview/
+
+# Symbolication & Obfuscation
+app.*.symbols
+app.*.map.json
+
+# -----------------------------------------------------------------------------
+# Android
+# -----------------------------------------------------------------------------
+**/android/.gradle/
+**/android/captures/
+**/android/local.properties
+**/android/**/GeneratedPluginRegistrant.java
+**/android/app/debug/
+**/android/app/profile/
+**/android/app/release/
+.cxx/
+
+# Keystores, signing keys & sensitive credentials
+key.properties
+*.keystore
+*.jks
+google-services.json
+
+# -----------------------------------------------------------------------------
+# iOS & macOS
+# -----------------------------------------------------------------------------
+**/ios/Flutter/.last_build_id
+**/ios/Flutter/ephemeral/
+**/ios/Flutter/Generated.xcconfig
+**/ios/Flutter/flutter_export_environment.sh
+**/ios/Flutter/app.framework/
+**/ios/Flutter/flutter_assets/
+**/ios/Runner/GeneratedPluginRegistrant.*
+**/ios/Pods/
+**/ios/.symlinks/
+**/ios/**/DerivedData/
+**/ios/**/.generated/
+**/ios/**/*.mode1v3
+**/ios/**/*.mode2v3
+**/ios/**/*.moved-aside
+**/ios/**/*.pbxuser
+**/ios/**/*.perspectivev3
+**/ios/**/openradar/
+**/ios/ServiceDefinitions.json
+GoogleService-Info.plist
+
+# -----------------------------------------------------------------------------
+# IDEs & Editors
+# -----------------------------------------------------------------------------
+# IntelliJ / Android Studio
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+
+# Visual Studio Code
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# -----------------------------------------------------------------------------
+# Environment, Secrets & Local Overrides
+# -----------------------------------------------------------------------------
+.env
+.env.*
+*.env
+*.key
+*.pem
+*.cert
+*.crt
+*.p12
+*.pfx
+secrets.json
+credentials.json
+
+# -----------------------------------------------------------------------------
+# Scratch, Local Diagnostic & Temp Files
+# -----------------------------------------------------------------------------
+scratch/
+tmp/
+temp/
+*.log
+*.bak
+*.swp
+*.swo
+*~
+
+# -----------------------------------------------------------------------------
+# OS Generated Files
+# -----------------------------------------------------------------------------
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+.directory
