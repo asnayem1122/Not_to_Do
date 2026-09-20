@@ -120,12 +120,11 @@ class _RoutineImportModalState extends ConsumerState<RoutineImportModal>
         final file = result.files.first;
         Uint8List? bytes = file.bytes;
 
-        // If file.bytes is null (common on desktop/mobile when path is available), read from path
+        // If file.bytes is null (common on desktop when path is available), read using cross-platform XFile
         if (bytes == null && file.path != null) {
-          final ioFile = File(file.path!);
-          if (await ioFile.exists()) {
-            bytes = await ioFile.readAsBytes();
-          }
+          try {
+            bytes = await XFile(file.path!).readAsBytes();
+          } catch (_) {}
         }
 
         if (bytes != null) {

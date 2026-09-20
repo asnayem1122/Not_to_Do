@@ -29,7 +29,8 @@ class AppTopHeader extends ConsumerWidget implements PreferredSizeWidget {
     final theme = Theme.of(context);
     final isDark = theme.brightness == Brightness.dark;
     final syncSettings = ref.watch(syncSettingsProvider);
-    final hasApiKey = ref.watch(geminiApiKeyProvider).isNotEmpty;
+    final hasApiKey =
+        ref.watch(geminiApiKeyProvider).valueOrNull?.isNotEmpty ?? false;
 
     return SafeArea(
       bottom: false,

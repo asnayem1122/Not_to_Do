@@ -914,9 +914,11 @@ class TodayTimelineScreen extends ConsumerWidget {
                         Container(width: 4, color: domainColor),
                         Expanded(
                           child: Padding(
-                            padding: const EdgeInsets.all(14),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 14, vertical: 12),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisSize: MainAxisSize.min,
                               children: [
                                 // Top row: time + tag/badge
                                 Row(
