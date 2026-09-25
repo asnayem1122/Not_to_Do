@@ -12,10 +12,19 @@ build/
 /coverage/
 .kotlin/
 **/.kotlin/
+*.g.dart
+*.freezed.dart
 
 # Flutter web / ephemeral
 **/doc/api/
 .widget_preview/
+
+# Build artifacts & package outputs
+*.apk
+*.aab
+
+# Local Gemini & Antigravity workspace cache
+.gemini/
 
 # Symbolication & Obfuscation
 app.*.symbols
@@ -85,6 +94,7 @@ out/
 .env
 .env.*
 *.env
+!.env.example
 *.key
 *.pem
 *.cert

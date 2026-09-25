@@ -1,0 +1,63 @@
+{
+  "name": "projects/5654277763552732069",
+  "projectId": "5654277763552732069",
+  "title": "Not To Do Routine Tracker",
+  "visibility": "PRIVATE",
+  "projectType": "TEXT_TO_UI_PRO",
+  "origin": "STITCH",
+  "deviceType": "DESKTOP",
+  "designSystem": "assets/f1e18b13f675462ea721fba5979aee73",
+  "designTheme": {
+    "colorMode": "DARK",
+    "font": "GEIST",
+    "roundness": "ROUND_FOUR",
+    "customColor": "#10b981",
+    "headlineFont": "GEIST",
+    "bodyFont": "GEIST",
+    "labelFont": "JETBRAINS_MONO",
+    "namedColors": {
+      "background": "#0e1015",
+      "surface": "#0f131f",
+      "surface_card": "#161922",
+      "card_border": "#232734",
+      "primary": "#10b981",
+      "secondary": "#38bdf8",
+      "tertiary": "#f43f5e",
+      "amber": "#f59e0b",
+      "text_primary": "#f1f5f9",
+      "text_secondary": "#94a3b8"
+    }
+  },
+  "screens": {
+    "student_life_os": {
+      "id": "4a38e5483b534c65b145b452c0772f3a",
+      "sourceScreen": "projects/5654277763552732069/screens/4a38e5483b534c65b145b452c0772f3a",
+      "title": "Student Life OS - Academic Workspace Dashboard",
+      "x": 0,
+      "y": 0,
+      "width": 2560,
+      "height": 5334
+    },
+    "botanical_banner": {
+      "id": "0f589a2ae7e844e99eac46a4a8addabe",
+      "sourceScreen": "projects/5654277763552732069/screens/0f589a2ae7e844e99eac46a4a8addabe",
+      "title": "Pixel art panorama banner illustration of a botanical terrarium",
+      "x": 2600,
+      "y": 0,
+      "width": 1376,
+      "height": 768
+    },
+    "course_syllabus_drilldown": {
+      "id": "5951341fdd92460a90459ecf7ae8ed9d",
+      "sourceScreen": "projects/5654277763552732069/screens/5951341fdd92460a90459ecf7ae8ed9d",
+      "title": "CS 301 - Design & Analysis of Algorithms (Course Workstation)",
+      "x": 4000,
+      "y": 0,
+      "width": 2560,
+      "height": 4180
+    }
+  },
+  "metadata": {
+    "userRole": "OWNER"
+  }
+}

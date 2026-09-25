@@ -1,127 +1,156 @@
 import 'package:flutter/material.dart';
 
-/// Semantic Design Tokens for "Not To Do" Routine Tracker.
-/// Extracted directly from Stitch Design System: Clarity Anti-Habit & Academic Architecture.
+/// Semantic Design Tokens for "Not To Do" — Phase 1 Color System Reset.
+///
+/// Dark Mode: "Cosmic Obsidian & Wasabi Glow" — OLED-optimized, zero eye-strain,
+/// high-voltage accent for Gen Z focus-state engagement.
+///
+/// Light Mode: "Matcha Oat Latte" — warm, grounding, anti-clinical cream tones
+/// for daylight outdoor readability.
 class AppColors {
   AppColors._();
 
-  // ==========================================
-  // LIGHT MODE TOKENS
-  // ==========================================
-  static const Color lightPrimary = Color(0xFF006948);
-  static const Color lightPrimaryContainer = Color(0xFF00855D);
-  static const Color lightOnPrimary = Color(0xFFFFFFFF);
-  static const Color lightOnPrimaryContainer = Color(0xFFF5FFF7);
-  static const Color lightPrimaryFixed = Color(0xFF85F8C4);
-  static const Color lightPrimaryFixedDim = Color(0xFF68DBA9);
-  static const Color lightOnPrimaryFixed = Color(0xFF002114);
+  // ================================================================
+  // LIGHT MODE — "Matcha Oat Latte"
+  // ================================================================
 
-  // Anti-Habit / Prohibited ("Not To Do") Crimson Tokens
-  static const Color lightSecondary = Color(0xFFBA0035);
-  static const Color lightSecondaryContainer = Color(0xFFE21E49);
+  // Primary — Deep Sage (grounding, calm, focus-affirming)
+  static const Color lightPrimary = Color(0xFF2D6A4F);
+  static const Color lightPrimaryContainer = Color(0xFF95D5B2);
+  static const Color lightOnPrimary = Color(0xFFFFFFFF);
+  static const Color lightOnPrimaryContainer = Color(0xFF0A2818);
+  static const Color lightPrimaryFixed = Color(0xFFB7E4C7);
+  static const Color lightPrimaryFixedDim = Color(0xFF74C69D);
+  static const Color lightOnPrimaryFixed = Color(0xFF0A2818);
+
+  // Secondary — Alert Coral (anti-habit barriers, destructive actions)
+  static const Color lightSecondary = Color(0xFFE63946);
+  static const Color lightSecondaryContainer = Color(0xFFFFD7DA);
   static const Color lightOnSecondary = Color(0xFFFFFFFF);
-  static const Color lightOnSecondaryContainer = Color(0xFFFEF2F2);
-  static const Color lightSecondaryFixed = Color(0xFFFFDADA);
-  static const Color lightSecondaryFixedDim = Color(0xFFFFB3B6);
-  static const Color lightOnSecondaryFixed = Color(0xFF40000C);
-  static const Color lightAntiHabitRose = Color(0xFFF43F5E);
+  static const Color lightOnSecondaryContainer = Color(0xFF400010);
+  static const Color lightSecondaryFixed = Color(0xFFFFE5E8);
+  static const Color lightSecondaryFixedDim = Color(0xFFFFACB5);
+  static const Color lightOnSecondaryFixed = Color(0xFF400010);
+  static const Color lightAntiHabitRose = Color(0xFFE63946);
   static const Color lightAntiHabitBg = Color(0xFFFFF1F2);
 
-  // Academic Timetable & Scheduling Sky Blue Tokens
-  static const Color lightTertiary = Color(0xFF006194);
-  static const Color lightTertiaryContainer = Color(0xFF007BB9);
+  // Tertiary — Muted Lavender (academic tags, course badges, routine items)
+  static const Color lightTertiary = Color(0xFF7C6FBF);
+  static const Color lightTertiaryContainer = Color(0xFFE8E0FF);
   static const Color lightOnTertiary = Color(0xFFFFFFFF);
-  static const Color lightOnTertiaryContainer = Color(0xFFFDFCFF);
-  static const Color lightTertiaryFixed = Color(0xFFCCE5FF);
-  static const Color lightTertiaryFixedDim = Color(0xFF93CCFF);
-  static const Color lightOnTertiaryFixed = Color(0xFF001D31);
-  static const Color lightAcademicSky = Color(0xFF0284C7);
-  static const Color lightAcademicBg = Color(0xFFF0F9FF);
+  static const Color lightOnTertiaryContainer = Color(0xFF1A1040);
+  static const Color lightTertiaryFixed = Color(0xFFEDE6FF);
+  static const Color lightTertiaryFixedDim = Color(0xFFB8AADF);
+  static const Color lightOnTertiaryFixed = Color(0xFF1A1040);
+  static const Color lightAcademicSky = Color(0xFF7C6FBF);
+  static const Color lightAcademicBg = Color(0xFFF3EEFF);
 
-  // Surfaces & Backgrounds
-  static const Color lightBackground = Color(0xFFFAF8FF);
-  static const Color lightSurface = Color(0xFFFAF8FF);
-  static const Color lightSurfaceCanvas = Color(0xFFF4F8F5);
-  static const Color lightSurfaceContainerLowest = Color(0xFFFFFFFF); // Card white
-  static const Color lightSurfaceContainerLow = Color(0xFFF2F3FF);
-  static const Color lightSurfaceContainer = Color(0xFFEAEDFF);
-  static const Color lightSurfaceContainerHigh = Color(0xFFE2E7FF);
-  static const Color lightSurfaceContainerHighest = Color(0xFFDAE2FD);
+  // Surfaces — Warm Oat Cream (NOT sterile white)
+  static const Color lightBackground = Color(0xFFFBF9F5);
+  static const Color lightSurface = Color(0xFFFBF9F5);
+  static const Color lightSurfaceCanvas = Color(0xFFFBF9F5);
+  static const Color lightSurfaceContainerLowest = Color(0xFFFFFFFF);
+  static const Color lightSurfaceContainerLow = Color(0xFFF8F6F1);
+  static const Color lightSurfaceContainer = Color(0xFFF2F0EB);
+  static const Color lightSurfaceContainerHigh = Color(0xFFEDEAE4);
+  static const Color lightSurfaceContainerHighest = Color(0xFFE5E2DC);
 
   // Typography & Outlines
-  static const Color lightOnSurface = Color(0xFF131B2E);
-  static const Color lightOnSurfaceVariant = Color(0xFF3D4A42);
-  static const Color lightTextSecondary = Color(0xFF64748B);
+  static const Color lightOnSurface = Color(0xFF1A1D23);
+  static const Color lightOnSurfaceVariant = Color(0xFF5A6270);
+  static const Color lightTextSecondary = Color(0xFF5A6270);
   static const Color lightTextMuted = Color(0xFF94A3B8);
-  static const Color lightOutline = Color(0xFF6D7A72);
-  static const Color lightOutlineVariant = Color(0xFFBCCAC0);
-  static const Color lightCardBorder = Color(0xFFE2ECE6);
+  static const Color lightOutline = Color(0xFF8C9196);
+  static const Color lightOutlineVariant = Color(0xFFD0D3D8);
+  static const Color lightCardBorder = Color(0xFFE2E5DB);
 
-  // Error & Alerts
-  static const Color lightError = Color(0xFFBA1A1A);
+  // Error
+  static const Color lightError = Color(0xFFC62828);
   static const Color lightOnError = Color(0xFFFFFFFF);
-  static const Color lightErrorContainer = Color(0xFFFFDAD6);
-  static const Color lightOnErrorContainer = Color(0xFF93000A);
+  static const Color lightErrorContainer = Color(0xFFFFCDD2);
+  static const Color lightOnErrorContainer = Color(0xFF400010);
 
-  // ==========================================
-  // DARK MODE TOKENS
-  // ==========================================
-  static const Color darkPrimary = Color(0xFF4EDEA3);
-  static const Color darkPrimaryContainer = Color(0xFF10B981);
-  static const Color darkOnPrimary = Color(0xFF003824);
-  static const Color darkOnPrimaryContainer = Color(0xFF00422B);
-  static const Color darkPrimaryFixed = Color(0xFF6FFBBE);
-  static const Color darkPrimaryFixedDim = Color(0xFF4EDEA3);
-  static const Color darkOnPrimaryFixed = Color(0xFF002113);
+  // Accent Tokens — Warning, Success, Accent
+  static const Color lightWarning = Color(0xFFE09F3E);
+  static const Color lightWarningBg = Color(0xFFFFF8E8);
+  static const Color lightSuccess = Color(0xFF40916C);
+  static const Color lightSuccessBg = Color(0xFFE8F5EE);
+  static const Color lightAccent = Color(0xFF6366F1);
+  static const Color lightAccentBg = Color(0xFFEEF0FF);
 
-  // Anti-Habit / Crimson Rose Dark Tokens
-  static const Color darkSecondary = Color(0xFFFB7185);
-  static const Color darkSecondaryContainer = Color(0xFFF43F5E);
-  static const Color darkOnSecondary = Color(0xFF40000C);
-  static const Color darkOnSecondaryContainer = Color(0xFFFFDAD6);
-  static const Color darkSecondaryFixed = Color(0xFF690005);
-  static const Color darkSecondaryFixedDim = Color(0xFF93000A);
-  static const Color darkOnSecondaryFixed = Color(0xFFFFDAD6);
-  static const Color darkAntiHabitRose = Color(0xFFF43F5E);
-  static const Color darkAntiHabitBg = Color(0xFF2A1017);
+  // ================================================================
+  // DARK MODE — "Cosmic Obsidian & Wasabi Glow"
+  // ================================================================
 
-  // Academic Timetable Sky Blue Dark Tokens
-  static const Color darkTertiary = Color(0xFF38BDF8);
-  static const Color darkTertiaryContainer = Color(0xFF00885D);
-  static const Color darkOnTertiary = Color(0xFF00354A);
-  static const Color darkOnTertiaryContainer = Color(0xFF000703);
-  static const Color darkTertiaryFixed = Color(0xFFC4E7FF);
-  static const Color darkTertiaryFixedDim = Color(0xFF7BD0FF);
-  static const Color darkOnTertiaryFixed = Color(0xFF001E2C);
-  static const Color darkAcademicSky = Color(0xFF38BDF8);
-  static const Color darkAcademicBg = Color(0xFF0C2438);
+  // Primary — Wasabi Glow (high-voltage CTA, focus ring, active timer)
+  static const Color darkPrimary = Color(0xFFA6FF00);
+  static const Color darkPrimaryContainer = Color(0xFF3D5C00);
+  static const Color darkOnPrimary = Color(0xFF0B0C10);
+  static const Color darkOnPrimaryContainer = Color(0xFFD4FF80);
+  static const Color darkPrimaryFixed = Color(0xFFC6FF4D);
+  static const Color darkPrimaryFixedDim = Color(0xFF8CD400);
+  static const Color darkOnPrimaryFixed = Color(0xFF1A2E00);
 
-  // Surfaces & Backgrounds Dark
-  static const Color darkBackground = Color(0xFF081C15);
-  static const Color darkSurface = Color(0xFF081C15);
-  static const Color darkSurfaceCanvas = Color(0xFF041710);
-  static const Color darkSurfaceContainerLowest = Color(0xFF041710);
-  static const Color darkSurfaceContainerLow = Color(0xFF0B1F18);
-  static const Color darkSurfaceContainer = Color(0xFF0E231B); // Card dark
-  static const Color darkSurfaceContainerHigh = Color(0xFF132E24);
-  static const Color darkSurfaceContainerHighest = Color(0xFF1A2E26);
+  // Secondary — Hyper Magenta (anti-habit shields, breach alerts, urgent flags)
+  static const Color darkSecondary = Color(0xFFFF2A85);
+  static const Color darkSecondaryContainer = Color(0xFF8C0042);
+  static const Color darkOnSecondary = Color(0xFFFFFFFF);
+  static const Color darkOnSecondaryContainer = Color(0xFFFFD6E8);
+  static const Color darkSecondaryFixed = Color(0xFF4D0028);
+  static const Color darkSecondaryFixedDim = Color(0xFF800040);
+  static const Color darkOnSecondaryFixed = Color(0xFFFFD6E8);
+  static const Color darkAntiHabitRose = Color(0xFFFF2A85);
+  static const Color darkAntiHabitBg = Color(0xFF2A0E1F);
 
-  // Typography & Outlines Dark
-  static const Color darkOnSurface = Color(0xFFECFDF5);
-  static const Color darkOnSurfaceVariant = Color(0xFFA7F3D0);
-  static const Color darkTextSecondary = Color(0xFF94A3B8);
-  static const Color darkTextMuted = Color(0xFF6EE7B7);
-  static const Color darkOutline = Color(0xFF1E3D32);
-  static const Color darkOutlineVariant = Color(0xFF143328);
-  static const Color darkCardBorder = Color(0xFF1E3D32);
+  // Tertiary — Digital Lavender (academic tags, course badges, knowledge)
+  static const Color darkTertiary = Color(0xFFC8B6FF);
+  static const Color darkTertiaryContainer = Color(0xFF4A3D8F);
+  static const Color darkOnTertiary = Color(0xFF0B0C10);
+  static const Color darkOnTertiaryContainer = Color(0xFFE8E0FF);
+  static const Color darkTertiaryFixed = Color(0xFFDDD4FF);
+  static const Color darkTertiaryFixedDim = Color(0xFFB0A0E8);
+  static const Color darkOnTertiaryFixed = Color(0xFF1A1040);
+  static const Color darkAcademicSky = Color(0xFFC8B6FF);
+  static const Color darkAcademicBg = Color(0xFF1A1430);
 
-  // Error Dark
-  static const Color darkError = Color(0xFFFFB4AB);
-  static const Color darkOnError = Color(0xFF690005);
-  static const Color darkErrorContainer = Color(0xFF93000A);
-  static const Color darkOnErrorContainer = Color(0xFFFFDAD6);
+  // Surfaces — Obsidian Void (OLED-optimized, NOT pure #000000)
+  static const Color darkBackground = Color(0xFF0B0C10);
+  static const Color darkSurface = Color(0xFF0E1015);
+  static const Color darkSurfaceCanvas = Color(0xFF0B0C10);
+  static const Color darkSurfaceContainerLowest = Color(0xFF080A0E);
+  static const Color darkSurfaceContainerLow = Color(0xFF111420);
+  static const Color darkSurfaceContainer = Color(0xFF161822);
+  static const Color darkSurfaceContainerHigh = Color(0xFF1C2030);
+  static const Color darkSurfaceContainerHighest = Color(0xFF232838);
 
-  /// Helper to get custom app tokens depending on theme brightness
+  // Typography & Outlines (87% rule — soft off-white, no glare)
+  static const Color darkOnSurface = Color(0xFFE6EAF2);
+  static const Color darkOnSurfaceVariant = Color(0xFF8892A8);
+  static const Color darkTextSecondary = Color(0xFF8892A8);
+  static const Color darkTextMuted = Color(0xFF5C6378);
+  static const Color darkOutline = Color(0xFF22263A);
+  static const Color darkOutlineVariant = Color(0xFF1A1D27);
+  static const Color darkCardBorder = Color(0xFF22263A);
+
+  // Error
+  static const Color darkError = Color(0xFFFF6B8A);
+  static const Color darkOnError = Color(0xFF400020);
+  static const Color darkErrorContainer = Color(0xFF800040);
+  static const Color darkOnErrorContainer = Color(0xFFFFD6E8);
+
+  // Accent Tokens — Warning, Success, Accent
+  static const Color darkWarning = Color(0xFFFFB800);
+  static const Color darkWarningBg = Color(0xFF2A2000);
+  static const Color darkSuccess = Color(0xFF38EFC1);
+  static const Color darkSuccessBg = Color(0xFF0D2E24);
+  static const Color darkAccent = Color(0xFF818CF8);
+  static const Color darkAccentBg = Color(0xFF1A1840);
+
+  // Legacy aliases (backward compatibility for screens with direct references)
+  static const Color darkAmber = Color(0xFFFFB800);
+  static const Color darkViolet = Color(0xFF818CF8);
+
+  /// Typed access helper — resolves AppCustomColors from current theme.
   static AppCustomColors of(BuildContext context) {
     return Theme.of(context).extension<AppCustomColors>() ??
         (Theme.of(context).brightness == Brightness.dark
@@ -130,9 +159,11 @@ class AppColors {
   }
 }
 
-/// ThemeExtension to give typed access to Stitch semantic tokens.
+/// ThemeExtension providing typed semantic tokens for all UI components.
+/// 23 fields: 17 original + 6 new (warning, warningBg, success, successBg, accent, accentBg).
 @immutable
 class AppCustomColors extends ThemeExtension<AppCustomColors> {
+  // ---- Original 17 fields (preserved for backward compat) ----
   final Color primaryAccent;
   final Color primaryFixed;
   final Color onPrimaryFixed;
@@ -150,6 +181,14 @@ class AppCustomColors extends ThemeExtension<AppCustomColors> {
   final Color chipInactiveBg;
   final Color chipInactiveBorder;
   final Color chipInactiveText;
+
+  // ---- New 6 fields (Phase 1 additions) ----
+  final Color warning;
+  final Color warningBg;
+  final Color success;
+  final Color successBg;
+  final Color accent;
+  final Color accentBg;
 
   const AppCustomColors({
     required this.primaryAccent,
@@ -169,6 +208,12 @@ class AppCustomColors extends ThemeExtension<AppCustomColors> {
     required this.chipInactiveBg,
     required this.chipInactiveBorder,
     required this.chipInactiveText,
+    required this.warning,
+    required this.warningBg,
+    required this.success,
+    required this.successBg,
+    required this.accent,
+    required this.accentBg,
   });
 
   static const AppCustomColors light = AppCustomColors(
@@ -189,6 +234,12 @@ class AppCustomColors extends ThemeExtension<AppCustomColors> {
     chipInactiveBg: AppColors.lightSurfaceContainer,
     chipInactiveBorder: AppColors.lightCardBorder,
     chipInactiveText: AppColors.lightOnSurfaceVariant,
+    warning: AppColors.lightWarning,
+    warningBg: AppColors.lightWarningBg,
+    success: AppColors.lightSuccess,
+    successBg: AppColors.lightSuccessBg,
+    accent: AppColors.lightAccent,
+    accentBg: AppColors.lightAccentBg,
   );
 
   static const AppCustomColors dark = AppCustomColors(
@@ -209,6 +260,12 @@ class AppCustomColors extends ThemeExtension<AppCustomColors> {
     chipInactiveBg: AppColors.darkSurfaceContainerLow,
     chipInactiveBorder: AppColors.darkOutline,
     chipInactiveText: AppColors.darkOnSurfaceVariant,
+    warning: AppColors.darkWarning,
+    warningBg: AppColors.darkWarningBg,
+    success: AppColors.darkSuccess,
+    successBg: AppColors.darkSuccessBg,
+    accent: AppColors.darkAccent,
+    accentBg: AppColors.darkAccentBg,
   );
 
   @override
@@ -230,6 +287,12 @@ class AppCustomColors extends ThemeExtension<AppCustomColors> {
     Color? chipInactiveBg,
     Color? chipInactiveBorder,
     Color? chipInactiveText,
+    Color? warning,
+    Color? warningBg,
+    Color? success,
+    Color? successBg,
+    Color? accent,
+    Color? accentBg,
   }) {
     return AppCustomColors(
       primaryAccent: primaryAccent ?? this.primaryAccent,
@@ -249,6 +312,12 @@ class AppCustomColors extends ThemeExtension<AppCustomColors> {
       chipInactiveBg: chipInactiveBg ?? this.chipInactiveBg,
       chipInactiveBorder: chipInactiveBorder ?? this.chipInactiveBorder,
       chipInactiveText: chipInactiveText ?? this.chipInactiveText,
+      warning: warning ?? this.warning,
+      warningBg: warningBg ?? this.warningBg,
+      success: success ?? this.success,
+      successBg: successBg ?? this.successBg,
+      accent: accent ?? this.accent,
+      accentBg: accentBg ?? this.accentBg,
     );
   }
 
@@ -276,6 +345,12 @@ class AppCustomColors extends ThemeExtension<AppCustomColors> {
       chipInactiveBg: Color.lerp(chipInactiveBg, other.chipInactiveBg, t)!,
       chipInactiveBorder: Color.lerp(chipInactiveBorder, other.chipInactiveBorder, t)!,
       chipInactiveText: Color.lerp(chipInactiveText, other.chipInactiveText, t)!,
+      warning: Color.lerp(warning, other.warning, t)!,
+      warningBg: Color.lerp(warningBg, other.warningBg, t)!,
+      success: Color.lerp(success, other.success, t)!,
+      successBg: Color.lerp(successBg, other.successBg, t)!,
+      accent: Color.lerp(accent, other.accent, t)!,
+      accentBg: Color.lerp(accentBg, other.accentBg, t)!,
     );
   }
 }

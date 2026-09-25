@@ -6,8 +6,10 @@ import '../../../core/services/calendar_sync_service.dart';
 import '../../../core/services/notification_service.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/widgets/app_top_header.dart';
+import '../../../core/widgets/bento_empty_state.dart';
 import 'widgets/add_academic_event_sheet.dart';
 import 'widgets/routine_import_modal.dart';
+import '../../dashboard/presentation/course_syllabus_drilldown_screen.dart';
 
 class ClassTimetableScreen extends ConsumerStatefulWidget {
   final VoidCallback? onNavigateToVault;
@@ -78,7 +80,7 @@ class _ClassTimetableScreenState extends ConsumerState<ClassTimetableScreen> {
         foregroundColor: Colors.white,
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+        padding: const EdgeInsets.fromLTRB(16, 14, 16, 100),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -112,22 +114,24 @@ class _ClassTimetableScreenState extends ConsumerState<ClassTimetableScreen> {
                 Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    ElevatedButton.icon(
-                      onPressed: () => RoutineImportModal.show(context),
-                      icon: const Icon(Icons.document_scanner, size: 16),
-                      label: const Text('Scan Routine'),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: customColors.primaryAccent,
-                        foregroundColor: Colors.white,
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 10, vertical: 6),
-                        minimumSize: const Size(0, 36),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
+                    IconButton(
+                      tooltip: 'Scan Routine from Syllabus / Image',
+                      icon: Container(
+                        padding: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: customColors.primaryAccent
+                              .withValues(alpha: 0.15),
+                        ),
+                        child: Icon(
+                          Icons.document_scanner,
+                          size: 18,
+                          color: customColors.primaryAccent,
                         ),
                       ),
+                      onPressed: () => RoutineImportModal.show(context),
                     ),
-                    const SizedBox(width: 8),
+                    const SizedBox(width: 4),
                     IconButton(
                       tooltip: 'Export Timetable PDF',
                       icon: Container(
@@ -169,7 +173,7 @@ class _ClassTimetableScreenState extends ConsumerState<ClassTimetableScreen> {
                 border: Border.all(color: customColors.cardBorder),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.02),
+                    color: Colors.black.withValues(alpha: 0.02),
                     blurRadius: 8,
                     offset: const Offset(0, 2),
                   ),
@@ -304,7 +308,7 @@ class _ClassTimetableScreenState extends ConsumerState<ClassTimetableScreen> {
                                 height: 36,
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
-                                  color: customColors.academic.withOpacity(0.2),
+                                  color: customColors.academic.withValues(alpha: 0.2),
                                 ),
                                 child: Icon(
                                   Icons.verified,
@@ -429,7 +433,7 @@ class _ClassTimetableScreenState extends ConsumerState<ClassTimetableScreen> {
                               ? [
                                   BoxShadow(
                                     color: customColors.primaryAccent
-                                        .withOpacity(0.3),
+                                        .withValues(alpha: 0.3),
                                     blurRadius: 6,
                                     offset: const Offset(0, 2),
                                   ),
@@ -552,42 +556,21 @@ class _ClassTimetableScreenState extends ConsumerState<ClassTimetableScreen> {
             // VERTICAL CLASS CARDS FEED (TAP TO EDIT)
             // ==========================================
             if (filteredEvents.isEmpty)
-              Container(
-                padding: const EdgeInsets.all(24),
-                decoration: BoxDecoration(
-                  color: customColors.cardBackground,
-                  borderRadius: BorderRadius.circular(16),
-                  border: Border.all(color: customColors.cardBorder),
-                ),
-                child: Center(
-                  child: Column(
-                    children: [
-                      Icon(Icons.event_busy,
-                          size: 36, color: customColors.textMuted),
-                      const SizedBox(height: 8),
-                      Text(
-                        selectedDay == 'SUN'
-                            ? 'Sunday is Off! Enjoy your rest day.'
-                            : 'No lectures found matching your criteria.',
-                        style: theme.textTheme.bodyMedium,
-                      ),
-                      const SizedBox(height: 12),
-                      ElevatedButton.icon(
-                        onPressed: () {
-                          AddEditAcademicEventSheet.show(
-                            context,
-                            initialDayOfWeek: dayCodeToIndex(selectedDay),
-                          );
-                        },
-                        icon: const Icon(Icons.add, size: 16),
-                        label: const Text('Add Lecture to this Day'),
-                        style: ElevatedButton.styleFrom(
-                          minimumSize: const Size(180, 40),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+              BentoEmptyState(
+                icon: Icons.calendar_view_week_outlined,
+                title: selectedDay == 'SUN'
+                    ? 'Sunday is Off! Enjoy your rest day.'
+                    : 'No classes on this day',
+                subtitle:
+                    'Tap "Scan Routine" to import your class timetable,\n'
+                    'or manually add classes for this day.',
+                ctaLabel: 'Add Class',
+                onCtaTap: () {
+                  AddEditAcademicEventSheet.show(
+                    context,
+                    initialDayOfWeek: dayCodeToIndex(selectedDay),
+                  );
+                },
               )
             else
               ListView.builder(
@@ -786,7 +769,7 @@ class _ClassTimetableScreenState extends ConsumerState<ClassTimetableScreen> {
         border: Border.all(color: customColors.cardBorder),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.03),
+            color: Colors.black.withValues(alpha: 0.03),
             blurRadius: 8,
             offset: const Offset(0, 2),
           ),
@@ -828,7 +811,7 @@ class _ClassTimetableScreenState extends ConsumerState<ClassTimetableScreen> {
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 8, vertical: 3),
                                     decoration: BoxDecoration(
-                                      color: accentColor.withOpacity(0.12),
+                                      color: accentColor.withValues(alpha: 0.12),
                                       borderRadius: BorderRadius.circular(6),
                                     ),
                                     child: Text(
@@ -893,56 +876,89 @@ class _ClassTimetableScreenState extends ConsumerState<ClassTimetableScreen> {
                             ],
                           ),
 
-                          // Preparation Note Callout
+                          // Preparation Note Callout (Tap to open Syllabus Drilldown)
                           if (event.syllabusNotes.isNotEmpty) ...[
                             const SizedBox(height: 10),
-                            Container(
-                              padding: const EdgeInsets.all(10),
-                              decoration: BoxDecoration(
-                                color: accentColor.withOpacity(0.1),
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Icon(
-                                    Icons.priority_high,
-                                    size: 16,
-                                    color: accentColor,
-                                  ),
-                                  const SizedBox(width: 8),
-                                  Expanded(
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          event.type ==
-                                                  AcademicEventType.sessionalLab
-                                              ? 'REQUIRED LAB PREPARATION'
-                                              : 'SYLLABUS / EXAM COVERAGE',
-                                          style: theme.textTheme.labelSmall
-                                              ?.copyWith(
-                                            color: accentColor,
-                                            fontWeight: FontWeight.w800,
-                                            fontSize: 10,
-                                            letterSpacing: 0.5,
-                                          ),
-                                        ),
-                                        const SizedBox(height: 2),
-                                        Text(
-                                          event.syllabusNotes,
-                                          style: theme.textTheme.bodySmall
-                                              ?.copyWith(
-                                            color: accentColor,
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w500,
-                                          ),
-                                        ),
-                                      ],
+                            InkWell(
+                              onTap: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (_) => CourseSyllabusDrilldownScreen(
+                                      courseCode: event.courseCode,
+                                      courseTitle: event.title,
+                                      instructor: event.instructor,
+                                      room: event.room,
                                     ),
                                   ),
-                                ],
+                                );
+                              },
+                              borderRadius: BorderRadius.circular(8),
+                              child: Container(
+                                padding: const EdgeInsets.all(10),
+                                decoration: BoxDecoration(
+                                  color: accentColor.withValues(alpha: 0.1),
+                                  borderRadius: BorderRadius.circular(8),
+                                  border: Border.all(
+                                    color: accentColor.withValues(alpha: 0.25),
+                                  ),
+                                ),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Icon(
+                                      Icons.school_outlined,
+                                      size: 16,
+                                      color: accentColor,
+                                    ),
+                                    const SizedBox(width: 8),
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                event.type ==
+                                                        AcademicEventType.sessionalLab
+                                                    ? 'REQUIRED LAB PREPARATION'
+                                                    : 'SYLLABUS / EXAM COVERAGE',
+                                                style: theme.textTheme.labelSmall
+                                                    ?.copyWith(
+                                                  color: accentColor,
+                                                  fontWeight: FontWeight.w800,
+                                                  fontSize: 10,
+                                                  letterSpacing: 0.5,
+                                                ),
+                                              ),
+                                              Text(
+                                                'View Details →',
+                                                style: theme.textTheme.labelSmall
+                                                    ?.copyWith(
+                                                  color: accentColor,
+                                                  fontWeight: FontWeight.w700,
+                                                  fontSize: 9.5,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          const SizedBox(height: 2),
+                                          Text(
+                                            event.syllabusNotes,
+                                            style: theme.textTheme.bodySmall
+                                                ?.copyWith(
+                                              color: accentColor,
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ],

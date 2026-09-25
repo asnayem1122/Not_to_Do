@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CS 301: ALGORITHMS // STUDENT LIFE OS</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "tertiary-fixed": "#ffdadb",
+            "tertiary": "#ffbcbf",
+            "on-tertiary-fixed": "#40000d",
+            "on-primary-container": "#004965",
+            "on-error": "#690005",
+            "on-surface": "#e2e2e9",
+            "primary-fixed": "#c4e7ff",
+            "on-secondary-fixed": "#002113",
+            "secondary-container": "#00a572",
+            "surface-container-lowest": "#0c0e13",
+            "surface-container-highest": "#33353a",
+            "on-secondary-fixed-variant": "#005236",
+            "tertiary-container": "#ff929a",
+            "secondary-fixed": "#6ffbbe",
+            "surface-bright": "#37393f",
+            "on-tertiary-container": "#8c0028",
+            "inverse-on-surface": "#2e3036",
+            "error": "#ffb4ab",
+            "tertiary-fixed-dim": "#ffb2b7",
+            "primary-fixed-dim": "#7bd0ff",
+            "background": "#111318",
+            "surface-dim": "#111318",
+            "primary": "#8ed5ff",
+            "on-tertiary-fixed-variant": "#92002a",
+            "on-primary-fixed": "#001e2c",
+            "on-secondary": "#003824",
+            "inverse-primary": "#00668a",
+            "outline-variant": "#3e484f",
+            "surface-container-low": "#1a1b21",
+            "surface-tint": "#7bd0ff",
+            "secondary-fixed-dim": "#4edea3",
+            "on-error-container": "#ffdad6",
+            "on-primary": "#00354a",
+            "on-secondary-container": "#00311f",
+            "on-primary-fixed-variant": "#004c69",
+            "primary-container": "#38bdf8",
+            "on-tertiary": "#67001b",
+            "on-background": "#e2e2e9",
+            "on-surface-variant": "#bdc8d1",
+            "surface-variant": "#33353a",
+            "outline": "#87929a",
+            "surface-container": "#1e1f25",
+            "inverse-surface": "#e2e2e9",
+            "error-container": "#93000a",
+            "surface-container-high": "#282a2f",
+            "secondary": "#4edea3",
+            "surface": "#111318"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "gutter": "1rem",
+            "space-md": "0.75rem",
+            "space-lg": "1rem",
+            "space-sm": "0.5rem",
+            "margin-desktop": "2rem",
+            "gutter-desktop": "1.5rem",
+            "space-xl": "1.5rem",
+            "margin-tablet": "1.5rem",
+            "margin": "1rem",
+            "space-xs": "0.25rem"
+          },
+          "fontFamily": {
+            "body-md": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "headline-xl-mobile": ["Plus Jakarta Sans"],
+            "headline-xl": ["Plus Jakarta Sans"],
+            "code-md": ["JetBrains Mono"],
+            "label-tactical": ["JetBrains Mono"],
+            "code-sm": ["JetBrains Mono"],
+            "body-sm": ["Plus Jakarta Sans"]
+          },
+          "fontSize": {
+            "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+            "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+            "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+            "headline-xl-mobile": ["28px", { "lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+            "headline-xl": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+            "code-md": ["14px", { "lineHeight": "20px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+            "label-tactical": ["11px", { "lineHeight": "14px", "letterSpacing": "0.06em", "fontWeight": "600" }],
+            "code-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0em", "fontWeight": "500" }],
+            "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    /* Material icon helper */
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+      font-size: 18px;
+      line-height: 1;
+    }
+    .material-symbols-outlined.fill-icon {
+      font-variation-settings: 'FILL' 1;
+    }
+    /* Monospace tabular numeric features */
+    .font-mono-tabular {
+      font-feature-settings: "tnum" 1;
+    }
+    /* Custom scrollbars for high-density tables */
+    ::-webkit-scrollbar {
+      width: 4px;
+      height: 4px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #111318;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #3e484f;
+      border-radius: 2px;
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md antialiased min-h-screen flex flex-row overflow-x-hidden selection:bg-primary-container selection:text-on-primary-container">
+<!-- SHARED COMPONENT: SideNavBar -->
+<aside class="fixed left-0 top-0 bottom-0 w-64 flex flex-col justify-between p-4 z-40 bg-surface-container-low border-r border-outline-variant/40 select-none">
+<!-- Top Branding -->
+<div>
+<div class="flex items-center gap-3 pb-4 mb-4 border-b border-outline-variant/40">
+<div class="w-9 h-9 rounded bg-surface-container-high border border-outline-variant/60 flex items-center justify-center text-primary font-code-md font-bold">
+<span class="material-symbols-outlined text-primary">terminal</span>
+</div>
+<div>
+<div class="text-code-md font-code-md font-semibold text-primary tracking-widest leading-none">STUDENT LIFE OS</div>
+<div class="text-label-tactical font-label-tactical text-outline text-[10px] mt-1">SYS.CS.301 // SP-25</div>
+</div>
+</div>
+<!-- Quick Action CTA -->
+<button class="w-full mb-5 py-2 px-3 bg-surface-container-high hover:bg-surface-container-highest border border-outline-variant text-primary font-label-tactical text-label-tactical flex items-center justify-between transition-colors duration-150">
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[16px]">add_task</span>
+          QUICK LOG
+        </span>
+<kbd class="text-[10px] text-outline font-code-sm bg-surface-container-low px-1 rounded border border-outline-variant">⌘K</kbd>
+</button>
+<!-- Primary Navigation Links -->
+<nav class="space-y-1">
+<!-- Overview (Inactive) -->
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-label-tactical text-label-tactical hover:text-on-surface hover:bg-surface-container transition-colors duration-150" href="#overview">
+<span class="material-symbols-outlined text-outline">terminal</span>
+          Overview
+        </a>
+<!-- Syllabus Roadmap (Active) -->
+<a class="flex items-center gap-3 px-3 py-2 bg-surface-container-high text-primary border-l-2 border-primary rounded-none font-label-tactical text-label-tactical" href="#syllabus">
+<span class="material-symbols-outlined text-primary">account_tree</span>
+          Syllabus Roadmap
+        </a>
+<!-- Problem Sets & Labs (Inactive) -->
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-label-tactical text-label-tactical hover:text-on-surface hover:bg-surface-container transition-colors duration-150" href="#deliverables">
+<span class="material-symbols-outlined text-outline">task_alt</span>
+          Problem Sets &amp; Labs
+        </a>
+<!-- Exam Vault (Inactive) -->
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-label-tactical text-label-tactical hover:text-on-surface hover:bg-surface-container transition-colors duration-150" href="#vault">
+<span class="material-symbols-outlined text-outline">lock_open</span>
+          Exam Vault
+        </a>
+<!-- Telemetry (Inactive) -->
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-label-tactical text-label-tactical hover:text-on-surface hover:bg-surface-container transition-colors duration-150" href="#telemetry">
+<span class="material-symbols-outlined text-outline">monitoring</span>
+          Telemetry
+        </a>
+<!-- Resources (Inactive) -->
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-label-tactical text-label-tactical hover:text-on-surface hover:bg-surface-container transition-colors duration-150" href="#resources">
+<span class="material-symbols-outlined text-outline">menu_book</span>
+          Resources
+        </a>
+</nav>
+</div>
+<!-- Bottom Section -->
+<div class="pt-4 border-t border-outline-variant/40 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-label-tactical text-label-tactical hover:text-on-surface hover:bg-surface-container transition-colors duration-150" href="#settings">
+<span class="material-symbols-outlined text-outline">tune</span>
+        Settings
+      </a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant font-label-tactical text-label-tactical hover:text-on-surface hover:bg-surface-container transition-colors duration-150" href="#terminal">
+<span class="material-symbols-outlined text-outline">code</span>
+        Command Terminal
+      </a>
+<!-- Academic Avatar Status Chip -->
+<div class="mt-3 p-2 bg-surface-container rounded border border-outline-variant/30 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded bg-primary/20 border border-primary/40 flex items-center justify-center text-primary text-[10px] font-code-sm font-bold">
+            VS
+          </div>
+<div class="truncate">
+<div class="text-[11px] font-code-sm text-on-surface font-semibold leading-none">Vance Scholar</div>
+<div class="text-[9px] font-code-sm text-secondary leading-tight mt-0.5">● SYNCED</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline text-[16px]">verified_user</span>
+</div>
+</div>
+</aside>
+<!-- MAIN VIEWPORT CANVAS (Offset for 64px = 16rem = 256px docked sidebar) -->
+<div class="flex-1 ml-64 flex flex-col min-h-screen bg-surface-dim">
+<!-- SHARED COMPONENT: TopNavBar -->
+<header class="sticky top-0 right-0 z-30 w-full flex items-center justify-between px-6 py-2 bg-surface border-b border-outline-variant/40">
+<!-- Search & Course Context on Left -->
+<div class="flex items-center gap-4">
+<span class="text-code-md font-code-md font-bold text-on-surface tracking-tight uppercase">CS 301: ALGORITHMS</span>
+<div class="h-4 w-[1px] bg-outline-variant"></div>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-2.5 text-outline text-[16px]">search</span>
+<input class="bg-surface-container-lowest border border-outline-variant/50 rounded-sm pl-8 pr-3 py-1 text-code-sm font-code-sm text-on-surface placeholder:text-outline focus:outline-none focus:border-primary w-64" placeholder="Search modules, proofs, recitations... (/)" type="text"/>
+</div>
+</div>
+<!-- Center Inactive / Active Link Cluster -->
+<div class="hidden lg:flex items-center gap-6">
+<a class="text-primary border-b-2 border-primary pb-1 font-label-tactical text-label-tactical uppercase tracking-wider" href="#modules">Modules</a>
+<a class="text-on-surface-variant font-label-tactical text-label-tactical uppercase tracking-wider hover:text-on-surface" href="#deliverables">Deliverables</a>
+<a class="text-on-surface-variant font-label-tactical text-label-tactical uppercase tracking-wider hover:text-on-surface" href="#vault">Vault</a>
+<a class="text-on-surface-variant font-label-tactical text-label-tactical uppercase tracking-wider hover:text-on-surface" href="#telemetry">Telemetry</a>
+</div>
+<!-- Trailing Action Cluster -->
+<div class="flex items-center gap-3">
+<button class="px-2.5 py-1 text-label-tactical font-label-tactical uppercase tracking-wider bg-surface-container-low hover:bg-surface-container-high border border-outline-variant text-on-surface flex items-center gap-1.5 transition-colors">
+<span class="material-symbols-outlined text-[15px] text-outline">description</span>
+          SYLLABUS.PDF
+        </button>
+<button class="px-3 py-1 text-label-tactical font-label-tactical uppercase tracking-wider bg-primary-container text-on-primary-container hover:bg-primary font-bold transition-colors">
+          SUBMIT WORK
+        </button>
+<div class="flex items-center gap-1 border-l border-outline-variant/40 pl-2">
+<button class="p-1.5 text-outline hover:text-on-surface hover:bg-surface-container transition-colors" title="Notifications">
+<span class="material-symbols-outlined">notifications_active</span>
+</button>
+<button class="p-1.5 text-outline hover:text-on-surface hover:bg-surface-container transition-colors" title="Terminal View">
+<span class="material-symbols-outlined">qr_code_2</span>
+</button>
+</div>
+</div>
+</header>
+<!-- CONTENT WORKSPACE -->
+<main class="p-6 space-y-6 flex-1 max-w-[1600px] w-full mx-auto">
+<!-- TOP BREADCRUMB & HERO BANNER WITH THEMATIC TERRARIUM PIXEL ASSET -->
+<section class="bg-surface-container-low border border-outline-variant/40 relative overflow-hidden rounded">
+<div class="flex flex-col lg:flex-row items-stretch justify-between">
+<!-- Left: Meta & Course Credentials -->
+<div class="p-6 flex-1 flex flex-col justify-between z-10">
+<!-- Breadcrumbs -->
+<div>
+<div class="flex items-center gap-2 text-label-tactical font-label-tactical text-outline text-[11px] mb-2 tracking-wider">
+<span>STUDENT LIFE OS</span>
+<span>/</span>
+<span>ACADEMIC WORKSTATION</span>
+<span>/</span>
+<span>COURSES</span>
+<span>/</span>
+<span class="text-primary font-bold">CS 301</span>
+</div>
+<!-- Header Tag Row -->
+<div class="flex flex-wrap items-center gap-2 mb-2">
+<span class="px-2 py-0.5 bg-primary/10 border border-primary/30 text-primary font-label-tactical text-label-tactical">
+                  CODE: CS-301
+                </span>
+<span class="px-2 py-0.5 bg-surface-container-high border border-outline-variant text-on-surface-variant font-label-tactical text-label-tactical">
+                  4.0 CREDITS
+                </span>
+<span class="px-2 py-0.5 bg-secondary/10 border border-secondary/30 text-secondary font-label-tactical text-label-tactical">
+                  TERM: FALL 2026.1
+                </span>
+<span class="px-2 py-0.5 bg-surface-container border border-outline-variant text-outline font-label-tactical text-label-tactical">
+                  CRN: #84920
+                </span>
+</div>
+<!-- Course Title -->
+<h1 class="text-headline-xl font-headline-xl text-on-surface font-bold tracking-tight">
+                Design &amp; Analysis of Algorithms
+              </h1>
+<p class="text-body-md font-body-md text-on-surface-variant mt-1 max-w-2xl">
+                Rigorous algorithmic analysis, asymptotic notations, divide-and-conquer paradigms, greedy optimization, dynamic programming, and fundamental graph traversals with proof mechanics.
+              </p>
+</div>
+<!-- Faculty & Venue metadata grid -->
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-4 mt-4 border-t border-outline-variant/30">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-outline">school</span>
+<div>
+<div class="text-label-tactical font-label-tactical text-outline text-[10px]">FACULTY</div>
+<div class="text-body-sm font-body-sm text-on-surface font-semibold">Prof. Dr. A. Vance</div>
+<div class="text-[11px] font-code-sm text-outline">OH: Tue/Thu 14:00</div>
+</div>
+</div>
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-outline">meeting_room</span>
+<div>
+<div class="text-label-tactical font-label-tactical text-outline text-[10px]">VENUE &amp; LOCATION</div>
+<div class="text-body-sm font-body-sm text-on-surface font-semibold">Lab 402 / Turing Hall</div>
+<div class="text-[11px] font-code-sm text-secondary">Terminal Matrix Station</div>
+</div>
+</div>
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-outline">schedule</span>
+<div>
+<div class="text-label-tactical font-label-tactical text-outline text-[10px]">RECURRING SCHEDULE</div>
+<div class="text-body-sm font-body-sm text-on-surface font-semibold">Mon &amp; Wed 11:30 - 13:00</div>
+<div class="text-[11px] font-code-sm text-outline">Recitation: Fri 10:00</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right: Cyber-Academic Terrarium Banner Integration -->
+<div class="w-full lg:w-96 border-t lg:border-t-0 lg:border-l border-outline-variant/40 bg-surface-container-lowest relative flex flex-col justify-between">
+<div class="relative h-44 overflow-hidden group">
+<img alt="Academic Terrarium Subsystem" class="w-full h-full object-cover opacity-85 group-hover:opacity-100 transition-opacity duration-300" src="https://lh3.googleusercontent.com/aida/AEtjO1XflNgqjtCK5pnLvDDhdvj5VVfKtl_habHjbKiPAt8bBbAGi5dmVwbu6bIzoJ8NUbiSdfmLAdmRzf21VXXRpSePLe4G1U-kIAYNwx4ZbcjSk0XRVL2MnbvZ-nz2C2D0L9a9prwMy0tR5rwlrbAW1cMB-VjEE9Jj1aqU7Hi6EzfTJQdwjbjGwR1COwCr4sZvbQtdC_GIFsCA5_FwifrBF1E9-dZIuYduF8HT1wIG4bugkAeEguzU0O66vzY"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-transparent"></div>
+<div class="absolute top-2 right-2 px-2 py-0.5 bg-surface-container-lowest/90 border border-secondary/40 text-secondary font-label-tactical text-[9px] uppercase tracking-wider backdrop-blur-sm">
+                BIOME-CORE // ACTIVE
+              </div>
+<div class="absolute bottom-2 left-3">
+<span class="text-code-sm font-code-sm text-on-surface font-semibold text-[11px] bg-surface-container-lowest/80 px-1.5 py-0.5 border border-outline-variant/40">
+                  LIFE-OS COMPANION TANK // 22.4°C
+                </span>
+</div>
+</div>
+<div class="p-3 bg-surface-container border-t border-outline-variant/30 flex items-center justify-between">
+<div class="text-label-tactical font-label-tactical text-outline text-[10px]">
+                STUDY FOCUS PULSE: <span class="text-secondary font-bold">OPTIMAL (98.4%)</span>
+</div>
+<span class="material-symbols-outlined text-secondary text-[16px]">eco</span>
+</div>
+</div>
+</div>
+</section>
+<!-- URGENT ALERT BANNER: MIDTERM COUNTDOWN -->
+<section class="bg-error-container/20 border-l-4 border-error border-y border-r border-outline-variant/40 p-4 rounded flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+<div class="flex items-start gap-3">
+<div class="p-2 bg-error/10 border border-error/30 rounded text-error flex-shrink-0">
+<span class="material-symbols-outlined text-error fill-icon">warning</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 bg-error/20 border border-error/40 text-error font-label-tactical text-[10px] tracking-wider font-bold uppercase">
+                URGENT EXAMINATION LOCK
+              </span>
+<span class="font-code-md text-code-md font-bold text-error">MIDTERM EXAMINATION IN 4 DAYS</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant mt-1">
+              Scheduled: <strong class="text-on-surface">May 12, 10:00 AM • Room 402</strong> — Weight: <span class="text-error font-semibold">30% Total Grade</span> • 1 Sheet Double-Sided Formula Cheatsheet Allowed.
+            </p>
+</div>
+</div>
+<div class="flex items-center gap-2 self-end md:self-center flex-shrink-0">
+<a class="px-3 py-1.5 bg-surface-container-high hover:bg-surface-container-highest border border-outline-variant text-on-surface font-label-tactical text-label-tactical transition-colors flex items-center gap-1.5" href="#vault">
+<span class="material-symbols-outlined text-[15px]">lock_open</span>
+            OPEN EXAM PREP VAULT
+          </a>
+<button class="px-3 py-1.5 bg-error hover:bg-error-container text-on-error font-label-tactical text-label-tactical font-bold transition-colors flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[15px]">download</span>
+            DOWNLOAD PRACTICE MIDTERM
+          </button>
+</div>
+</section>
+<!-- ACADEMIC PROGRESS OVERVIEW (TELEMETRY MATRIX) -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="telemetry">
+<!-- Metric 1: Syllabus Coverage -->
+<div class="bg-surface-container-low border border-outline-variant/40 p-4 rounded flex flex-col justify-between">
+<div class="flex items-center justify-between mb-3">
+<span class="text-label-tactical font-label-tactical text-outline uppercase tracking-wider">SYLLABUS COVERAGE</span>
+<span class="material-symbols-outlined text-primary text-[18px]">account_tree</span>
+</div>
+<div>
+<div class="flex items-baseline justify-between mb-1.5">
+<span class="text-headline-lg font-headline-lg text-on-surface font-bold font-mono-tabular">64%</span>
+<span class="text-code-sm font-code-sm text-primary">WEEK 9 / 16</span>
+</div>
+<!-- Multi-stage progress bar -->
+<div class="w-full bg-surface-container-highest h-2 rounded-sm overflow-hidden flex">
+<div class="bg-primary h-full" style="width: 64%;"></div>
+<div class="bg-surface-variant h-full" style="width: 36%;"></div>
+</div>
+<div class="flex justify-between text-[10px] font-label-tactical text-outline mt-1.5">
+<span>WEEKS 1-9 DONE</span>
+<span>7 WEEKS REMAINING</span>
+</div>
+</div>
+</div>
+<!-- Metric 2: Attendance Record -->
+<div class="bg-surface-container-low border border-outline-variant/40 p-4 rounded flex flex-col justify-between">
+<div class="flex items-center justify-between mb-3">
+<span class="text-label-tactical font-label-tactical text-outline uppercase tracking-wider">ATTENDANCE RECORD</span>
+<span class="material-symbols-outlined text-secondary text-[18px]">how_to_reg</span>
+</div>
+<div>
+<div class="flex items-baseline justify-between mb-1.5">
+<span class="text-headline-lg font-headline-lg text-on-surface font-bold font-mono-tabular">92.0%</span>
+<span class="text-code-sm font-code-sm text-secondary">23 / 25 SESSIONS</span>
+</div>
+<div class="w-full bg-surface-container-highest h-2 rounded-sm overflow-hidden">
+<div class="bg-secondary h-full" style="width: 92%;"></div>
+</div>
+<div class="flex justify-between text-[10px] font-label-tactical text-outline mt-1.5">
+<span class="text-secondary">● CLEAN STANDING</span>
+<span>MAX UNEXCUSED: 4</span>
+</div>
+</div>
+</div>
+<!-- Metric 3: Homework & Lab Score -->
+<div class="bg-surface-container-low border border-outline-variant/40 p-4 rounded flex flex-col justify-between">
+<div class="flex items-center justify-between mb-3">
+<span class="text-label-tactical font-label-tactical text-outline uppercase tracking-wider">ASSIGNMENT BENCHMARK</span>
+<span class="material-symbols-outlined text-primary-container text-[18px]">military_tech</span>
+</div>
+<div>
+<div class="flex items-baseline justify-between mb-1.5">
+<span class="text-headline-lg font-headline-lg text-on-surface font-bold font-mono-tabular">185<span class="text-outline text-body-md font-normal">/200</span></span>
+<span class="px-1.5 py-0.5 bg-secondary/15 border border-secondary/30 text-secondary font-label-tactical text-[10px]">GRADE A // 3.94</span>
+</div>
+<div class="w-full bg-surface-container-highest h-2 rounded-sm overflow-hidden">
+<div class="bg-primary-container h-full" style="width: 92.5%;"></div>
+</div>
+<div class="flex justify-between text-[10px] font-label-tactical text-outline mt-1.5">
+<span>ACCUMULATED 92.5%</span>
+<span>TARGET &gt; 90%</span>
+</div>
+</div>
+</div>
+<!-- Metric 4: Next Deliverable Countdown -->
+<div class="bg-surface-container-low border border-outline-variant/40 p-4 rounded flex flex-col justify-between border-l-2 border-l-amber-500">
+<div class="flex items-center justify-between mb-3">
+<span class="text-label-tactical font-label-tactical text-outline uppercase tracking-wider">UPCOMING DELIVERABLE</span>
+<span class="px-1.5 py-0.5 bg-amber-500/15 border border-amber-500/30 text-amber-400 font-label-tactical text-[10px]">PRIORITY</span>
+</div>
+<div>
+<div class="text-body-md font-body-md font-bold text-on-surface truncate">
+              PS #4: Dynamic Programming
+            </div>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-code-md font-code-md text-amber-400 font-bold font-mono-tabular">T-MINUS 48H:14M</span>
+</div>
+<div class="flex justify-between text-[10px] font-label-tactical text-outline mt-2 border-t border-outline-variant/30 pt-1.5">
+<span>DUE: FRI 23:59 EST</span>
+<span class="text-primary hover:underline cursor-pointer">VIEW SPECS →</span>
+</div>
+</div>
+</div>
+</section>
+<!-- TWO-COLUMN WORKSTATION SECTION: ROADMAP (8 COLUMNS) & RIGHT-HAND RAIL (4 COLUMNS) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<!-- PRIMARY VIEWPORT: MODULES & LECTURE ROADMAP (8 COLUMNS) -->
+<div class="lg:col-span-8 space-y-6">
+<!-- MODULES & LECTURE ROADMAP -->
+<section class="bg-surface-container-low border border-outline-variant/40 rounded" id="modules">
+<!-- Header & Filter Bar -->
+<div class="p-4 border-b border-outline-variant/40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+<div>
+<h2 class="text-headline-md font-headline-md text-on-surface font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">account_tree</span>
+                  Modules &amp; Lecture Roadmap
+                </h2>
+<div class="text-label-tactical font-label-tactical text-outline text-[11px] mt-0.5">
+                  SEMESTER TIMELINE // 16 WEEKS TACTICAL SYLLABUS
+                </div>
+</div>
+<!-- Filter Tabs -->
+<div class="flex flex-wrap gap-1 bg-surface-container p-1 border border-outline-variant/40 rounded">
+<button class="px-2.5 py-1 bg-surface-container-high text-primary font-label-tactical text-[10px] uppercase font-bold border border-primary/30">
+                  ALL MODULES
+                </button>
+<button class="px-2.5 py-1 text-on-surface-variant hover:text-on-surface font-label-tactical text-[10px] uppercase transition-colors">
+                  GRAPH THEORY
+                </button>
+<button class="px-2.5 py-1 text-on-surface-variant hover:text-on-surface font-label-tactical text-[10px] uppercase transition-colors">
+                  DYNAMIC PROG.
+                </button>
+<button class="px-2.5 py-1 text-on-surface-variant hover:text-on-surface font-label-tactical text-[10px] uppercase transition-colors">
+                  DIVIDE &amp; CONQUER
+                </button>
+</div>
+</div>
+<!-- Tabular Week-by-Week Syllabus Rows -->
+<div class="divide-y divide-outline-variant/30 font-body-sm">
+<!-- Week 07 (Completed) -->
+<div class="p-4 hover:bg-surface-container transition-colors flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div class="flex items-start gap-3">
+<div class="flex flex-col items-center justify-center w-14 h-12 bg-surface-container-high border border-outline-variant text-center rounded-sm">
+<span class="text-[9px] font-label-tactical text-outline">WEEK</span>
+<span class="text-code-md font-code-md font-bold text-on-surface leading-none">07</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="px-1.5 py-0.2 bg-secondary/10 border border-secondary/30 text-secondary font-label-tactical text-[10px] font-bold">
+                        COMPLETED
+                      </span>
+<h3 class="font-headline-md text-[15px] font-bold text-on-surface">
+                        Divide &amp; Conquer &amp; Master Theorem
+                      </h3>
+</div>
+<p class="text-on-surface-variant text-[13px] mt-0.5">
+                      Strassen's Matrix Multiplication, Closest Pair of Points, Substitution &amp; Recursion Tree Analysis.
+                    </p>
+<div class="flex items-center gap-3 text-[11px] font-code-sm text-outline mt-1.5">
+<span>Prof. Dr. Vance</span>
+<span>•</span>
+<span>CLRS Ch. 4</span>
+<span>•</span>
+<span class="text-secondary">Recitation Recorded</span>
+</div>
+</div>
+</div>
+<!-- Action Tags -->
+<div class="flex items-center gap-2 self-start md:self-center flex-wrap">
+<button class="px-2 py-1 bg-surface-container border border-outline-variant/50 text-on-surface hover:text-primary hover:border-primary text-label-tactical text-[10px] flex items-center gap-1 transition-colors">
+<span class="material-symbols-outlined text-[13px]">slideshow</span>
+                    L13 SLIDES
+                  </button>
+<button class="px-2 py-1 bg-surface-container border border-outline-variant/50 text-on-surface hover:text-primary hover:border-primary text-label-tactical text-[10px] flex items-center gap-1 transition-colors">
+<span class="material-symbols-outlined text-[13px]">edit_note</span>
+                    NOTES.MD
+                  </button>
+<button class="px-2 py-1 bg-surface-container border border-outline-variant/50 text-on-surface hover:text-primary hover:border-primary text-label-tactical text-[10px] flex items-center gap-1 transition-colors">
+<span class="material-symbols-outlined text-[13px]">mic</span>
+                    AUDIO
+                  </button>
+</div>
+</div>
+<!-- Week 08 (Active) -->
+<div class="p-4 bg-primary-container/5 border-l-2 border-l-primary hover:bg-surface-container transition-colors flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div class="flex items-start gap-3">
+<div class="flex flex-col items-center justify-center w-14 h-12 bg-primary/10 border border-primary/40 text-center rounded-sm">
+<span class="text-[9px] font-label-tactical text-primary font-bold">WEEK</span>
+<span class="text-code-md font-code-md font-bold text-primary leading-none">08</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="px-1.5 py-0.2 bg-primary/20 border border-primary/40 text-primary font-label-tactical text-[10px] font-bold animate-pulse">
+                        CURRENT ACTIVE
+                      </span>
+<h3 class="font-headline-md text-[15px] font-bold text-on-surface">
+                        Graph Algorithms I: BFS, DFS &amp; Topological Sort
+                      </h3>
+</div>
+<p class="text-on-surface-variant text-[13px] mt-0.5">
+                      Directed Acyclic Graphs (DAG), Strongly Connected Components (Kosaraju-Sharir), Edge classification.
+                    </p>
+<div class="flex items-center gap-3 text-[11px] font-code-sm text-outline mt-1.5">
+<span>Prof. Dr. Vance</span>
+<span>•</span>
+<span class="text-primary font-semibold">Turing Lab 402</span>
+<span>•</span>
+<span>CLRS Ch. 22</span>
+</div>
+</div>
+</div>
+<!-- Action Tags -->
+<div class="flex items-center gap-2 self-start md:self-center flex-wrap">
+<button class="px-2 py-1 bg-primary text-on-primary font-bold text-label-tactical text-[10px] flex items-center gap-1 hover:bg-primary-container transition-colors">
+<span class="material-symbols-outlined text-[13px]">slideshow</span>
+                    L15 SLIDES
+                  </button>
+<button class="px-2 py-1 bg-surface-container border border-outline-variant/50 text-on-surface hover:text-primary hover:border-primary text-label-tactical text-[10px] flex items-center gap-1 transition-colors">
+<span class="material-symbols-outlined text-[13px]">terminal</span>
+                    ALGO REPO
+                  </button>
+<button class="px-2 py-1 bg-surface-container border border-outline-variant/50 text-on-surface hover:text-primary hover:border-primary text-label-tactical text-[10px] flex items-center gap-1 transition-colors">
+<span class="material-symbols-outlined text-[13px]">description</span>
+                    RECITATION
+                  </button>
+</div>
+</div>
+<!-- Week 09 (Upcoming - Amber) -->
+<div class="p-4 hover:bg-surface-container transition-colors flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div class="flex items-start gap-3">
+<div class="flex flex-col items-center justify-center w-14 h-12 bg-surface-container-high border border-outline-variant text-center rounded-sm">
+<span class="text-[9px] font-label-tactical text-outline">WEEK</span>
+<span class="text-code-md font-code-md font-bold text-on-surface leading-none">09</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="px-1.5 py-0.2 bg-amber-500/10 border border-amber-500/30 text-amber-400 font-label-tactical text-[10px] font-bold">
+                        UPCOMING
+                      </span>
+<h3 class="font-headline-md text-[15px] font-bold text-on-surface">
+                        Graph Algorithms II: Dijkstra, Bellman-Ford &amp; MST
+                      </h3>
+</div>
+<p class="text-on-surface-variant text-[13px] mt-0.5">
+                      Minimum Spanning Trees (Prim's &amp; Kruskal's), Disjoint-Set Union data structure, Negative edge cycles.
+                    </p>
+<div class="flex items-center gap-3 text-[11px] font-code-sm text-outline mt-1.5">
+<span class="text-amber-400">Required: CLRS Ch. 23-24</span>
+<span>•</span>
+<span class="text-error font-semibold">Due: Homework #3</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2 self-start md:self-center">
+<span class="text-[11px] font-code-sm text-outline px-2 py-1 bg-surface-container border border-outline-variant/40">
+                    STARTS MON 11:30
+                  </span>
+</div>
+</div>
+<!-- Week 10 (Upcoming) -->
+<div class="p-4 hover:bg-surface-container transition-colors flex flex-col md:flex-row md:items-center justify-between gap-4 opacity-75 hover:opacity-100">
+<div class="flex items-start gap-3">
+<div class="flex flex-col items-center justify-center w-14 h-12 bg-surface-container-high border border-outline-variant text-center rounded-sm">
+<span class="text-[9px] font-label-tactical text-outline">WEEK</span>
+<span class="text-code-md font-code-md font-bold text-on-surface leading-none">10</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="px-1.5 py-0.2 bg-surface-container border border-outline-variant text-outline font-label-tactical text-[10px]">
+                        LOCKED ROADMAP
+                      </span>
+<h3 class="font-headline-md text-[15px] font-semibold text-on-surface">
+                        Dynamic Programming I: Memoization &amp; Subproblems
+                      </h3>
+</div>
+<p class="text-on-surface-variant text-[13px] mt-0.5">
+                      Bellman optimality, 0/1 Knapsack, Longest Common Subsequence (LCS), and Matrix Chain Multiplication.
+                    </p>
+</div>
+</div>
+<span class="text-[11px] font-code-sm text-outline">WEEK 10 CURRICULUM</span>
+</div>
+<!-- Week 11 (Upcoming) -->
+<div class="p-4 hover:bg-surface-container transition-colors flex flex-col md:flex-row md:items-center justify-between gap-4 opacity-75 hover:opacity-100">
+<div class="flex items-start gap-3">
+<div class="flex flex-col items-center justify-center w-14 h-12 bg-surface-container-high border border-outline-variant text-center rounded-sm">
+<span class="text-[9px] font-label-tactical text-outline">WEEK</span>
+<span class="text-code-md font-code-md font-bold text-on-surface leading-none">11</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="px-1.5 py-0.2 bg-surface-container border border-outline-variant text-outline font-label-tactical text-[10px]">
+                        LOCKED ROADMAP
+                      </span>
+<h3 class="font-headline-md text-[15px] font-semibold text-on-surface">
+                        Dynamic Programming II: All-Pairs Shortest Path
+                      </h3>
+</div>
+<p class="text-on-surface-variant text-[13px] mt-0.5">
+                      Floyd-Warshall algorithm, Transitive Closure, Johnson's algorithm for sparse graphs.
+                    </p>
+</div>
+</div>
+<span class="text-[11px] font-code-sm text-outline">WEEK 11 CURRICULUM</span>
+</div>
+</div>
+</section>
+<!-- PROBLEM SET & LAB SUBMISSIONS TRACKER -->
+<section class="bg-surface-container-low border border-outline-variant/40 rounded overflow-hidden" id="deliverables">
+<!-- Table Header -->
+<div class="p-4 border-b border-outline-variant/40 flex items-center justify-between">
+<div>
+<h2 class="text-headline-md font-headline-md text-on-surface font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">task_alt</span>
+                  Problem Set &amp; Lab Submissions Tracker
+                </h2>
+<div class="text-label-tactical font-label-tactical text-outline text-[11px] mt-0.5">
+                  CONTINUOUS EVALUATION ENGINE // 5 ACTIVE RECORDS
+                </div>
+</div>
+<button class="px-2.5 py-1 bg-surface-container-high hover:bg-surface-container-highest border border-outline-variant text-primary font-label-tactical text-[10px] flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">filter_alt</span>
+                ALL STATUSES
+              </button>
+</div>
+<!-- Tactical Table View -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse font-body-sm text-[13px]">
+<thead>
+<tr class="border-b border-outline-variant/40 bg-surface-container font-label-tactical text-outline text-[10px] uppercase tracking-wider">
+<th class="p-3 pl-4">Code</th>
+<th class="p-3">Deliverable Name</th>
+<th class="p-3">Topic Context</th>
+<th class="p-3">Due / Submitted</th>
+<th class="p-3">Status</th>
+<th class="p-3 text-right">Score</th>
+<th class="p-3 pr-4 text-right">Artifact</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/20 font-code-sm">
+<!-- Item 1: PS #1 -->
+<tr class="hover:bg-surface-container transition-colors">
+<td class="p-3 pl-4 font-bold text-primary">PS-01</td>
+<td class="p-3 font-body-sm font-semibold text-on-surface">Asymptotic Analysis &amp; Recurrences</td>
+<td class="p-3 text-outline">Divide &amp; Conquer</td>
+<td class="p-3 text-on-surface-variant font-mono-tabular">Apr 04, 23:59</td>
+<td class="p-3">
+<span class="px-2 py-0.5 bg-secondary/10 border border-secondary/30 text-secondary font-label-tactical text-[10px]">
+                        GRADED
+                      </span>
+</td>
+<td class="p-3 text-right font-bold text-secondary font-mono-tabular">48 / 50</td>
+<td class="p-3 pr-4 text-right">
+<a class="text-primary hover:underline flex items-center justify-end gap-1 text-[11px]" href="#">
+<span>github</span>
+<span class="material-symbols-outlined text-[13px]">open_in_new</span>
+</a>
+</td>
+</tr>
+<!-- Item 2: PS #2 -->
+<tr class="hover:bg-surface-container transition-colors">
+<td class="p-3 pl-4 font-bold text-primary">PS-02</td>
+<td class="p-3 font-body-sm font-semibold text-on-surface">Divide &amp; Conquer Implementations</td>
+<td class="p-3 text-outline">Strassen / Medians</td>
+<td class="p-3 text-on-surface-variant font-mono-tabular">Apr 18, 23:59</td>
+<td class="p-3">
+<span class="px-2 py-0.5 bg-secondary/10 border border-secondary/30 text-secondary font-label-tactical text-[10px]">
+                        GRADED
+                      </span>
+</td>
+<td class="p-3 text-right font-bold text-secondary font-mono-tabular">50 / 50</td>
+<td class="p-3 pr-4 text-right">
+<a class="text-primary hover:underline flex items-center justify-end gap-1 text-[11px]" href="#">
+<span>github</span>
+<span class="material-symbols-outlined text-[13px]">open_in_new</span>
+</a>
+</td>
+</tr>
+<!-- Item 3: Lab 3 -->
+<tr class="hover:bg-surface-container transition-colors">
+<td class="p-3 pl-4 font-bold text-primary">LAB-03</td>
+<td class="p-3 font-body-sm font-semibold text-on-surface">Graph Traversal C++ &amp; Benchmarking</td>
+<td class="p-3 text-outline">BFS/DFS Profiling</td>
+<td class="p-3 text-on-surface-variant font-mono-tabular">Apr 28, 23:59</td>
+<td class="p-3">
+<span class="px-2 py-0.5 bg-secondary/10 border border-secondary/30 text-secondary font-label-tactical text-[10px]">
+                        GRADED
+                      </span>
+</td>
+<td class="p-3 text-right font-bold text-secondary font-mono-tabular">47 / 50</td>
+<td class="p-3 pr-4 text-right">
+<a class="text-primary hover:underline flex items-center justify-end gap-1 text-[11px]" href="#">
+<span>build.log</span>
+<span class="material-symbols-outlined text-[13px]">open_in_new</span>
+</a>
+</td>
+</tr>
+<!-- Item 4: PS #3 -->
+<tr class="hover:bg-surface-container transition-colors bg-primary/5">
+<td class="p-3 pl-4 font-bold text-primary">PS-03</td>
+<td class="p-3 font-body-sm font-semibold text-on-surface">Graph Theory &amp; Shortest Path Proofs</td>
+<td class="p-3 text-outline">Dijkstra / Bellman</td>
+<td class="p-3 text-on-surface-variant font-mono-tabular">May 05, 23:59</td>
+<td class="p-3">
+<span class="px-2 py-0.5 bg-primary/15 border border-primary/30 text-primary font-label-tactical text-[10px]">
+                        UNDER REVIEW
+                      </span>
+</td>
+<td class="p-3 text-right font-mono-tabular text-outline">-- / 50</td>
+<td class="p-3 pr-4 text-right">
+<span class="text-[11px] text-outline font-label-tactical">SUBMITTED</span>
+</td>
+</tr>
+<!-- Item 5: PS #4 -->
+<tr class="hover:bg-surface-container transition-colors border-l-2 border-l-amber-500">
+<td class="p-3 pl-4 font-bold text-amber-400">PS-04</td>
+<td class="p-3 font-body-sm font-semibold text-on-surface">Dynamic Programming &amp; Substructures</td>
+<td class="p-3 text-outline">Knapsack / LCS</td>
+<td class="p-3 text-amber-400 font-mono-tabular font-bold">May 15, 23:59</td>
+<td class="p-3">
+<span class="px-2 py-0.5 bg-amber-500/15 border border-amber-500/30 text-amber-400 font-label-tactical text-[10px]">
+                        IN PROGRESS
+                      </span>
+</td>
+<td class="p-3 text-right font-mono-tabular text-outline">-- / 50</td>
+<td class="p-3 pr-4 text-right">
+<button class="px-2 py-0.5 bg-primary-container text-on-primary-container font-label-tactical text-[10px] font-bold">
+                        UPLOAD
+                      </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+<!-- RIGHT-HAND TACTICAL RAIL: VAULT & FORMULAS (4 COLUMNS) -->
+<div class="lg:col-span-4 space-y-6">
+<!-- EXAM PREPARATION VAULT -->
+<section class="bg-surface-container-low border border-outline-variant/40 rounded p-4" id="vault">
+<div class="flex items-center justify-between pb-3 mb-3 border-b border-outline-variant/40">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-error">lock_open</span>
+<h2 class="text-headline-md text-[17px] font-bold text-on-surface">Exam Vault &amp; Archives</h2>
+</div>
+<span class="px-1.5 py-0.5 bg-error/10 border border-error/30 text-error font-label-tactical text-[10px]">
+                RESTRICTED
+              </span>
+</div>
+<!-- Section A: Past Midterms & Finals -->
+<div class="space-y-2 mb-4">
+<div class="text-label-tactical font-label-tactical text-outline text-[10px] uppercase tracking-wider">
+                ARCHIVED PAPERS &amp; SOLUTIONS
+              </div>
+<!-- Item 1 -->
+<div class="p-2.5 bg-surface-container hover:bg-surface-container-high border border-outline-variant/40 rounded flex items-center justify-between transition-colors">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-outline">picture_as_pdf</span>
+<div>
+<div class="text-body-sm font-semibold text-on-surface">2025 Midterm + Solutions</div>
+<div class="text-[11px] font-code-sm text-outline">Includes rubric &amp; grade dist.</div>
+</div>
+</div>
+<button class="p-1 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">download</span>
+</button>
+</div>
+<!-- Item 2 -->
+<div class="p-2.5 bg-surface-container hover:bg-surface-container-high border border-outline-variant/40 rounded flex items-center justify-between transition-colors">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-outline">picture_as_pdf</span>
+<div>
+<div class="text-body-sm font-semibold text-on-surface">2024 Midterm Exam (Fall)</div>
+<div class="text-[11px] font-code-sm text-outline">Unsolved practice baseline</div>
+</div>
+</div>
+<button class="p-1 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">download</span>
+</button>
+</div>
+<!-- Item 3 -->
+<div class="p-2.5 bg-surface-container hover:bg-surface-container-high border border-outline-variant/40 rounded flex items-center justify-between transition-colors">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-outline">quiz</span>
+<div>
+<div class="text-body-sm font-semibold text-on-surface">45-Problem Practice Bank</div>
+<div class="text-[11px] font-code-sm text-secondary">Verified by Prof. Vance</div>
+</div>
+</div>
+<button class="p-1 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]">open_in_new</span>
+</button>
+</div>
+</div>
+<!-- Quick Action: Launch Simulation -->
+<button class="w-full py-2.5 px-3 bg-error hover:bg-error-container text-on-error font-label-tactical text-label-tactical font-bold flex items-center justify-center gap-2 transition-colors rounded">
+<span class="material-symbols-outlined text-[16px]">timer</span>
+              LAUNCH TIMED 90-MIN MIDTERM SIM
+            </button>
+</section>
+<!-- CHEATSHEETS & FORMULA CARDS -->
+<section class="bg-surface-container-low border border-outline-variant/40 rounded p-4">
+<div class="flex items-center justify-between pb-3 mb-3 border-b border-outline-variant/40">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">integration_instructions</span>
+<h2 class="text-headline-md text-[17px] font-bold text-on-surface">Cheatsheets &amp; Matrices</h2>
+</div>
+<span class="text-label-tactical font-label-tactical text-outline text-[10px]">PDF READY</span>
+</div>
+<div class="space-y-3 font-code-sm text-[12px]">
+<!-- Card 1: Master Theorem Cheat -->
+<div class="p-3 bg-surface-container border border-outline-variant/50 rounded">
+<div class="flex items-center justify-between text-on-surface font-semibold mb-1">
+<span class="text-primary font-bold">Master Theorem: T(n) = aT(n/b) + f(n)</span>
+</div>
+<div class="text-on-surface-variant text-[11px] space-y-0.5">
+<div>• Case 1: f(n) = O(n^(log_b(a) - ε)) ⇒ Θ(n^(log_b(a)))</div>
+<div>• Case 2: f(n) = Θ(n^(log_b(a))) ⇒ Θ(n^(log_b(a)) lg n)</div>
+<div>• Case 3: f(n) = Ω(n^(log_b(a) + ε)) ⇒ Θ(f(n))</div>
+</div>
+</div>
+<!-- Card 2: Graph Complexity Matrix -->
+<div class="p-3 bg-surface-container border border-outline-variant/50 rounded">
+<div class="flex items-center justify-between text-on-surface font-semibold mb-1">
+<span class="text-secondary font-bold">Graph Algorithm Complexities</span>
+</div>
+<div class="grid grid-cols-2 gap-2 text-[11px] text-on-surface-variant pt-1">
+<div>• BFS / DFS: <span class="text-on-surface">O(V + E)</span></div>
+<div>• Dijkstra: <span class="text-on-surface">O(E + V log V)</span></div>
+<div>• Bellman-Ford: <span class="text-on-surface">O(V · E)</span></div>
+<div>• Kruskal's: <span class="text-on-surface">O(E log V)</span></div>
+</div>
+</div>
+<!-- Card 3: DP Recurrence Patterns -->
+<div class="p-3 bg-surface-container border border-outline-variant/50 rounded">
+<div class="text-amber-400 font-bold mb-1">
+                  DP Canonical Recurrences
+                </div>
+<div class="text-outline text-[11px]">
+                  0/1 Knapsack: DP[i,w] = max(DP[i-1,w], DP[i-1, w-w_i] + v_i)
+                </div>
+</div>
+</div>
+<div class="mt-3 pt-3 border-t border-outline-variant/30 flex items-center justify-between">
+<span class="text-label-tactical font-label-tactical text-outline text-[10px]">VERIFIED FOR EXAM COMPLIANCE</span>
+<a class="text-primary font-label-tactical text-label-tactical hover:underline flex items-center gap-1" href="#">
+                FULL COMPENDIUM →
+              </a>
+</div>
+</section>
+<!-- OFFICE HOURS & DISCORD TELEMETRY CHIP -->
+<div class="bg-surface-container-lowest border border-outline-variant/40 p-4 rounded flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-3 h-3 rounded-full bg-secondary animate-ping"></div>
+<div>
+<div class="text-body-sm font-semibold text-on-surface">TA Recitation Live Queue</div>
+<div class="text-label-tactical text-[10px] text-outline font-code-sm">Current Wait: 2 scholars • Room 402B</div>
+</div>
+</div>
+<button class="px-2 py-1 bg-surface-container-high border border-outline-variant text-secondary font-label-tactical text-[10px]">
+              JOIN QUEUE
+            </button>
+</div>
+</div>
+</div>
+</main>
+<!-- WORKSTATION SYSTEM FOOTER -->
+<footer class="mt-auto px-6 py-3 bg-surface border-t border-outline-variant/30 flex flex-col sm:flex-row items-center justify-between gap-2 text-label-tactical font-label-tactical text-outline text-[10px]">
+<div class="flex items-center gap-4">
+<span>STUDENT LIFE OS // ACADEMIC RUNTIME v4.19</span>
+<span>•</span>
+<span class="text-secondary font-code-sm">SYSTEM STABLE 99.98%</span>
+<span>•</span>
+<span>LAST SYNC: 14 SECONDS AGO</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="font-code-sm text-on-surface-variant">HOST: TURING-NODE-01</span>
+<span class="text-outline">/</span>
+<a class="hover:text-primary transition-colors" href="#">DIAGNOSTICS</a>
+<span class="text-outline">/</span>
+<a class="hover:text-primary transition-colors" href="#">EXPORT AUDIT</a>
+</div>
+</footer>
+</div>
+</body></html>

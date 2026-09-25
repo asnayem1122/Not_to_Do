@@ -3,12 +3,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'app_colors.dart';
 
 /// AppTheme configuration for Not To Do Routine Tracker.
-/// Provides dynamic Light & Dark themes fully aligned with Stitch Design Tokens.
+/// Phase 1: Cosmic Obsidian (dark) & Matcha Oat Latte (light) palettes.
 class AppTheme {
   AppTheme._();
 
   static ThemeData get lightTheme {
-    final colorScheme = ColorScheme(
+    const colorScheme = ColorScheme(
       brightness: Brightness.light,
       primary: AppColors.lightPrimary,
       onPrimary: AppColors.lightOnPrimary,
@@ -36,6 +36,7 @@ class AppTheme {
       onSurfaceVariant: AppColors.lightOnSurfaceVariant,
       outline: AppColors.lightOutline,
       outlineVariant: AppColors.lightOutlineVariant,
+      surfaceTint: Colors.transparent,
     );
 
     return _buildTheme(
@@ -46,7 +47,7 @@ class AppTheme {
   }
 
   static ThemeData get darkTheme {
-    final colorScheme = ColorScheme(
+    const colorScheme = ColorScheme(
       brightness: Brightness.dark,
       primary: AppColors.darkPrimary,
       onPrimary: AppColors.darkOnPrimary,
@@ -74,6 +75,7 @@ class AppTheme {
       onSurfaceVariant: AppColors.darkOnSurfaceVariant,
       outline: AppColors.darkOutline,
       outlineVariant: AppColors.darkOutlineVariant,
+      surfaceTint: Colors.transparent,
     );
 
     return _buildTheme(
@@ -114,17 +116,17 @@ class AppTheme {
         letterSpacing: -0.01 * 18,
         color: colorScheme.onSurface,
       ),
-      bodyLarge: GoogleFonts.inter(
+      bodyLarge: GoogleFonts.plusJakartaSans(
         fontSize: 16,
-        fontWeight: FontWeight.w500,
+        fontWeight: FontWeight.w400,
         color: colorScheme.onSurface,
       ),
-      bodyMedium: GoogleFonts.inter(
+      bodyMedium: GoogleFonts.plusJakartaSans(
         fontSize: 14,
         fontWeight: FontWeight.w400,
         color: colorScheme.onSurfaceVariant,
       ),
-      bodySmall: GoogleFonts.inter(
+      bodySmall: GoogleFonts.plusJakartaSans(
         fontSize: 12,
         fontWeight: FontWeight.w400,
         color: colorScheme.onSurfaceVariant,
@@ -238,8 +240,39 @@ class AppTheme {
           color: customColors.textMuted,
         ),
       ),
+      bottomSheetTheme: BottomSheetThemeData(
+        backgroundColor: customColors.cardBackground,
+        modalBackgroundColor: customColors.cardBackground,
+        surfaceTintColor: Colors.transparent,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+        ),
+      ),
+      dialogTheme: DialogThemeData(
+        backgroundColor: customColors.cardBackground,
+        surfaceTintColor: Colors.transparent,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(24),
+        ),
+      ),
+      snackBarTheme: SnackBarThemeData(
+        behavior: SnackBarBehavior.floating,
+        elevation: 3,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+      ),
+      pageTransitionsTheme: const PageTransitionsTheme(
+        builders: {
+          TargetPlatform.android: FadeForwardsPageTransitionsBuilder(),
+          TargetPlatform.iOS: FadeForwardsPageTransitionsBuilder(),
+          TargetPlatform.windows: FadeForwardsPageTransitionsBuilder(),
+          TargetPlatform.macOS: FadeForwardsPageTransitionsBuilder(),
+          TargetPlatform.linux: ZoomPageTransitionsBuilder(),
+        },
+      ),
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
-        backgroundColor: customColors.cardBackground.withOpacity(0.95),
+        backgroundColor: customColors.cardBackground.withValues(alpha: 0.95),
         selectedItemColor: colorScheme.primary,
         unselectedItemColor: colorScheme.onSurfaceVariant,
         selectedLabelStyle: GoogleFonts.plusJakartaSans(

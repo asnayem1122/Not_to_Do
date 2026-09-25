@@ -71,7 +71,7 @@ class CalendarSyncService {
         final request = await Permission.calendarFullAccess.request();
         if (!request.isGranted) {
           // Fallback to basic calendar permission for older Android/iOS
-          final basicRequest = await Permission.calendar.request();
+          final basicRequest = await Permission.calendarWriteOnly.request();
           if (!basicRequest.isGranted) {
             return false;
           }

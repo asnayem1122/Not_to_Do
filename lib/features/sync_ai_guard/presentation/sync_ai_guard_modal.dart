@@ -483,12 +483,36 @@ class _SyncAiGuardModalState extends ConsumerState<SyncAiGuardModal>
             ),
             tabs: const [
               Tab(
-                icon: Icon(Icons.forum, size: 16),
-                text: 'AI Agent & Schedule',
+                height: 38,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.forum, size: 15),
+                    SizedBox(width: 6),
+                    Flexible(
+                      child: Text(
+                        'AI Assistant',
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ],
+                ),
               ),
               Tab(
-                icon: Icon(Icons.cloud_sync, size: 16),
-                text: 'Calendar & Free Slots',
+                height: 38,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.cloud_sync, size: 15),
+                    SizedBox(width: 6),
+                    Flexible(
+                      child: Text(
+                        'Calendar & Gaps',
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
@@ -517,8 +541,9 @@ class _SyncAiGuardModalState extends ConsumerState<SyncAiGuardModal>
           ),
         ),
 
-        // Bottom Fixed Action Bar (Commit to Timeline)
-        _buildBottomCommitBar(customColors, theme),
+        // Bottom Fixed Action Bar (Commit to Timeline) - only when suggestions present
+        if (_suggestedBlocks.isNotEmpty)
+          _buildBottomCommitBar(customColors, theme),
       ],
     );
 
@@ -551,7 +576,7 @@ class _SyncAiGuardModalState extends ConsumerState<SyncAiGuardModal>
   }) {
     return SingleChildScrollView(
       controller: _chatScrollController,
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      padding: const EdgeInsets.fromLTRB(16, 8, 16, 96),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -559,10 +584,10 @@ class _SyncAiGuardModalState extends ConsumerState<SyncAiGuardModal>
           Container(
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
-              color: customColors.primaryFixed.withOpacity(0.5),
+              color: customColors.primaryFixed.withValues(alpha: 0.5),
               borderRadius: BorderRadius.circular(12),
               border: Border.all(
-                color: customColors.primaryAccent.withOpacity(0.2),
+                color: customColors.primaryAccent.withValues(alpha: 0.2),
               ),
             ),
             child: Row(
@@ -851,7 +876,7 @@ class _SyncAiGuardModalState extends ConsumerState<SyncAiGuardModal>
     final freeGaps = ref.watch(todayFreeGapsProvider);
 
     return SingleChildScrollView(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      padding: const EdgeInsets.fromLTRB(16, 12, 16, 96),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -864,7 +889,7 @@ class _SyncAiGuardModalState extends ConsumerState<SyncAiGuardModal>
               border: Border.all(color: customColors.cardBorder),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.02),
+                  color: Colors.black.withValues(alpha: 0.02),
                   blurRadius: 8,
                   offset: const Offset(0, 2),
                 ),
@@ -1051,7 +1076,7 @@ class _SyncAiGuardModalState extends ConsumerState<SyncAiGuardModal>
                       padding: const EdgeInsets.symmetric(
                           horizontal: 8, vertical: 2),
                       decoration: BoxDecoration(
-                        color: customColors.academic.withOpacity(0.12),
+                        color: customColors.academic.withValues(alpha: 0.12),
                         borderRadius: BorderRadius.circular(6),
                       ),
                       child: Text(
@@ -1181,7 +1206,7 @@ class _SyncAiGuardModalState extends ConsumerState<SyncAiGuardModal>
           border: Border.all(color: customColors.cardBorder),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.02),
+              color: Colors.black.withValues(alpha: 0.02),
               blurRadius: 4,
               offset: const Offset(0, 1),
             ),
@@ -1195,7 +1220,7 @@ class _SyncAiGuardModalState extends ConsumerState<SyncAiGuardModal>
               height: 26,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: customColors.primaryAccent.withOpacity(0.15),
+                color: customColors.primaryAccent.withValues(alpha: 0.15),
               ),
               child: Icon(
                 Icons.auto_awesome,
@@ -1276,7 +1301,7 @@ class _SyncAiGuardModalState extends ConsumerState<SyncAiGuardModal>
         color: customColors.cardBackground,
         borderRadius: BorderRadius.circular(14),
         border: Border.all(
-          color: borderColor.withOpacity(0.5),
+          color: borderColor.withValues(alpha: 0.5),
           width: 1.5,
         ),
       ),
@@ -1293,7 +1318,7 @@ class _SyncAiGuardModalState extends ConsumerState<SyncAiGuardModal>
                   padding:
                       const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                   decoration: BoxDecoration(
-                    color: badgeColor.withOpacity(0.12),
+                    color: badgeColor.withValues(alpha: 0.12),
                     borderRadius: BorderRadius.circular(4),
                   ),
                   child: Text(
@@ -1382,7 +1407,7 @@ class _SyncAiGuardModalState extends ConsumerState<SyncAiGuardModal>
                 padding:
                     const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                 decoration: BoxDecoration(
-                  color: customColors.antiHabit.withOpacity(0.08),
+                  color: customColors.antiHabit.withValues(alpha: 0.08),
                   borderRadius: BorderRadius.circular(6),
                 ),
                 child: Row(
@@ -1436,8 +1461,9 @@ class _SyncAiGuardModalState extends ConsumerState<SyncAiGuardModal>
               : _commitRoutineToTimelineAndCalendar,
           icon: const Icon(Icons.playlist_add_check, size: 20),
           label: Text(
-            'Apply Routine to Timeline & Google Calendar (${_suggestedBlocks.length})',
-            style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 14),
+            'Apply Routine to Schedule (${_suggestedBlocks.length})',
+            overflow: TextOverflow.ellipsis,
+            style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 13),
           ),
           style: ElevatedButton.styleFrom(
             backgroundColor: customColors.primaryAccent,
@@ -1496,7 +1522,7 @@ class _SyncAiGuardModalState extends ConsumerState<SyncAiGuardModal>
           ),
           Switch(
             value: value,
-            activeColor: customColors.primaryAccent,
+            activeThumbColor: customColors.primaryAccent,
             onChanged: onChanged,
           ),
         ],

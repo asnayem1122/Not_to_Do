@@ -715,7 +715,7 @@ class _AddEditAcademicEventSheetState
                           ),
                           Switch(
                             value: _syncToCalendar,
-                            activeColor: customColors.primaryAccent,
+                            activeThumbColor: customColors.primaryAccent,
                             onChanged: (val) =>
                                 setState(() => _syncToCalendar = val),
                           ),

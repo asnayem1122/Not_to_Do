@@ -1,12 +1,14 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import '../providers/routine_providers.dart';
 import '../repositories/routine_repository.dart';
 import '../services/notification_service.dart';
 import '../theme/app_colors.dart';
 import '../theme/app_theme.dart';
 import '../../features/navigation/main_scaffold.dart';
+import '../../features/onboarding/presentation/onboarding_screen.dart';
 import 'app_logo.dart';
 
 /// AppBootstrapWidget renders an immediate branded first frame to prevent
@@ -21,6 +23,7 @@ class AppBootstrapWidget extends ConsumerStatefulWidget {
 
 class _AppBootstrapWidgetState extends ConsumerState<AppBootstrapWidget> {
   bool _isInitialized = false;
+  bool _hasCompletedOnboarding = false;
   String? _initError;
 
   @override
@@ -41,6 +44,11 @@ class _AppBootstrapWidgetState extends ConsumerState<AppBootstrapWidget> {
           debugPrint('Hive initialization reached 4s deadline; continuing in safe mode.');
         },
       );
+
+      // Read onboarding flag from Hive settings box
+      _hasCompletedOnboarding = Hive.isBoxOpen('settings_box')
+          ? Hive.box('settings_box').get('hasCompletedOnboarding', defaultValue: false)
+          : false;
 
       // 2. Queue secondary heavy platform services non-blocking in post-frame microtask
       WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -108,7 +116,9 @@ class _AppBootstrapWidgetState extends ConsumerState<AppBootstrapWidget> {
       home: AnimatedSwitcher(
         duration: const Duration(milliseconds: 300),
         child: _isInitialized
-            ? const MainScaffold(key: ValueKey('main_scaffold'))
+            ? (_hasCompletedOnboarding
+                ? const MainScaffold(key: ValueKey('main_scaffold'))
+                : const OnboardingScreen(key: ValueKey('onboarding')))
             : _BootstrapSplashView(
                 key: const ValueKey('splash_view'),
                 error: _initError,
@@ -128,7 +138,7 @@ class _BootstrapSplashView extends StatelessWidget {
   Widget build(BuildContext context) {
     final customColors = AppColors.of(context);
     final theme = Theme.of(context);
-    final isDark = theme.brightness == Brightness.dark;
+
 
     return Scaffold(
       backgroundColor: theme.scaffoldBackgroundColor,
@@ -145,16 +155,14 @@ class _BootstrapSplashView extends StatelessWidget {
                 style: theme.textTheme.headlineMedium?.copyWith(
                   fontWeight: FontWeight.w800,
                   letterSpacing: -0.5,
-                  color: isDark ? Colors.white : const Color(0xFF0F172A),
+                  color: customColors.textPrimary,
                 ),
               ),
               const SizedBox(height: 6),
               Text(
                 'Academic Routine & Habit Protection',
                 style: theme.textTheme.bodyMedium?.copyWith(
-                  color: isDark
-                      ? const Color(0xFF94A3B8)
-                      : const Color(0xFF64748B),
+                  color: customColors.textSecondary,
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -173,9 +181,7 @@ class _BootstrapSplashView extends StatelessWidget {
               Text(
                 'Protected by Clarity Anti-Habit Engine',
                 style: theme.textTheme.labelSmall?.copyWith(
-                  color: isDark
-                      ? const Color(0xFF64748B)
-                      : const Color(0xFF94A3B8),
+                  color: customColors.textMuted,
                   letterSpacing: 0.2,
                 ),
               ),

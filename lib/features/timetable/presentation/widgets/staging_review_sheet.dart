@@ -432,9 +432,9 @@ class _StagingReviewSheetState extends ConsumerState<StagingReviewSheet> {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
         decoration: BoxDecoration(
-          color: color.withOpacity(0.1),
+          color: color.withValues(alpha: 0.1),
           borderRadius: BorderRadius.circular(8),
-          border: Border.all(color: color.withOpacity(0.25)),
+          border: Border.all(color: color.withValues(alpha: 0.25)),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -512,7 +512,7 @@ class _StagingReviewSheetState extends ConsumerState<StagingReviewSheet> {
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 8, vertical: 2),
                                   decoration: BoxDecoration(
-                                    color: accentColor.withOpacity(0.12),
+                                    color: accentColor.withValues(alpha: 0.12),
                                     borderRadius: BorderRadius.circular(6),
                                   ),
                                   child: Text(
@@ -605,10 +605,10 @@ class _StagingReviewSheetState extends ConsumerState<StagingReviewSheet> {
                           padding: const EdgeInsets.symmetric(
                               horizontal: 10, vertical: 6),
                           decoration: BoxDecoration(
-                            color: accentColor.withOpacity(0.06),
+                            color: accentColor.withValues(alpha: 0.06),
                             borderRadius: BorderRadius.circular(8),
                             border: Border.all(
-                                color: accentColor.withOpacity(0.15)),
+                                color: accentColor.withValues(alpha: 0.15)),
                           ),
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.start,

@@ -1,3 +1,4 @@
+import 'dart:io' show File;
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -19,6 +20,28 @@ class ApiKeyService {
 
   /// Global static in-memory cache shared across all instances
   static String? _cachedKey;
+
+  /// Reads a GEMINI_API_KEY from a local .env file if running locally.
+  static String? _loadKeyFromLocalEnv() {
+    try {
+      if (!kIsWeb) {
+        final file = File('.env');
+        if (file.existsSync()) {
+          final lines = file.readAsLinesSync();
+          for (final line in lines) {
+            final trimmed = line.trim();
+            if (trimmed.isEmpty || trimmed.startsWith('#')) continue;
+            if (trimmed.startsWith('GEMINI_API_KEY=')) {
+              final val = trimmed.substring('GEMINI_API_KEY='.length).trim();
+              final cleaned = cleanApiKey(val);
+              if (cleaned.isNotEmpty) return cleaned;
+            }
+          }
+        }
+      }
+    } catch (_) {}
+    return null;
+  }
 
   /// Sanitizes any pasted or raw API key by stripping quotes, whitespace,
   /// and variable prefix declarations (e.g., GEMINI_API_KEY=, export, key=).
@@ -74,7 +97,7 @@ class ApiKeyService {
       return 'API key should not contain spaces.';
     }
     if (clean.length < 25) {
-      return 'API key appears too short (Gemini keys are typically 39 characters).';
+      return 'API key appears too short (Gemini keys are typically 39-55 characters).';
     }
     return null;
   }
@@ -84,7 +107,8 @@ class ApiKeyService {
   /// 1. In-memory static cache
   /// 2. Hive persistent storage (instant disk I/O, works on all platforms)
   /// 3. FlutterSecureStorage (hardware Keystore)
-  /// 4. Compile-time --dart-define=GEMINI_API_KEY
+  /// 4. Compile-time --dart-define=GEMINI_API_KEY or --dart-define-from-file=.env
+  /// 5. Local .env file on disk (development mode, ignored by git)
   Future<String?> getApiKey() async {
     if (_cachedKey != null && _cachedKey!.trim().isNotEmpty) {
       return _cachedKey;
@@ -92,16 +116,18 @@ class ApiKeyService {
 
     // 1. Try Hive settings box (reliable across Android, iOS, Windows, Desktop, Web)
     try {
+      Box? box;
       if (Hive.isBoxOpen(_settingsBoxName)) {
-        final hiveKey =
-            Hive.box(_settingsBoxName).get(_geminiStorageKey) as String?;
-        if (hiveKey != null && hiveKey.trim().isNotEmpty) {
-          _cachedKey = cleanApiKey(hiveKey);
-          return _cachedKey;
-        }
+        box = Hive.box(_settingsBoxName);
       } else {
-        final box = await Hive.openBox(_settingsBoxName)
-            .timeout(const Duration(seconds: 2));
+        try {
+          box = await Hive.openBox(_settingsBoxName)
+              .timeout(const Duration(seconds: 2));
+        } catch (_) {
+          box = null;
+        }
+      }
+      if (box != null) {
         final hiveKey = box.get(_geminiStorageKey) as String?;
         if (hiveKey != null && hiveKey.trim().isNotEmpty) {
           _cachedKey = cleanApiKey(hiveKey);
@@ -127,10 +153,19 @@ class ApiKeyService {
       // Keystore unavailable / error
     }
 
-    // 3. Compile-time fallback
+    // 3. Compile-time fallback (--dart-define or --dart-define-from-file=.env)
     const envKey = String.fromEnvironment('GEMINI_API_KEY', defaultValue: '');
     if (envKey.trim().isNotEmpty) {
       _cachedKey = cleanApiKey(envKey);
+      _syncToHive(_cachedKey!);
+      return _cachedKey;
+    }
+
+    // 4. Local .env file fallback (for local development & debugging)
+    final localEnvKey = _loadKeyFromLocalEnv();
+    if (localEnvKey != null && localEnvKey.isNotEmpty) {
+      _cachedKey = localEnvKey;
+      _syncToHive(_cachedKey!);
       return _cachedKey;
     }
 

@@ -4,6 +4,9 @@ import '../../../core/models/routine_models.dart';
 import '../../../core/providers/routine_providers.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/widgets/app_top_header.dart';
+import '../../../core/widgets/bento_empty_state.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import '../../defense/presentation/breathing_shield_dialog.dart';
 import 'widgets/add_habit_sheet.dart';
 
 class HabitProtectionScreen extends ConsumerWidget {
@@ -21,7 +24,7 @@ class HabitProtectionScreen extends ConsumerWidget {
         subtitle: "The 'Not To Do' & Habit Protection Vault",
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+        padding: const EdgeInsets.fromLTRB(16, 14, 16, 100),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -34,7 +37,7 @@ class HabitProtectionScreen extends ConsumerWidget {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                   decoration: BoxDecoration(
-                    color: customColors.antiHabit.withOpacity(0.15),
+                    color: customColors.antiHabit.withValues(alpha: 0.15),
                     borderRadius: BorderRadius.circular(9999),
                   ),
                   child: Row(
@@ -106,7 +109,7 @@ class HabitProtectionScreen extends ConsumerWidget {
                 border: Border.all(color: customColors.cardBorder),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.02),
+                    color: Colors.black.withValues(alpha: 0.02),
                     blurRadius: 8,
                     offset: const Offset(0, 2),
                   ),
@@ -118,7 +121,7 @@ class HabitProtectionScreen extends ConsumerWidget {
                     width: 48,
                     height: 48,
                     decoration: BoxDecoration(
-                      color: customColors.primaryAccent.withOpacity(0.12),
+                      color: customColors.primaryAccent.withValues(alpha: 0.12),
                       borderRadius: BorderRadius.circular(14),
                     ),
                     child: Icon(
@@ -313,7 +316,7 @@ class HabitProtectionScreen extends ConsumerWidget {
                               width: 44,
                               height: 44,
                               decoration: BoxDecoration(
-                                color: customColors.antiHabit.withOpacity(0.15),
+                                color: customColors.antiHabit.withValues(alpha: 0.15),
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               child: Icon(
@@ -363,6 +366,23 @@ class HabitProtectionScreen extends ConsumerWidget {
             ),
             const SizedBox(height: 20),
 
+            // Empty state when no habits exist
+            if (antiHabits.isEmpty && positiveHabits.isEmpty) ...[
+              const SizedBox(height: 24),
+              BentoEmptyState(
+                icon: Icons.shield_outlined,
+                title: 'No habits in the vault',
+                subtitle:
+                    'Start by defining a "Not To Do" — a habit you want\n'
+                    'to stop — and the engine will help you defend against it.',
+                ctaLabel: 'Add Your First Habit',
+                onCtaTap: () {
+                  AddEditHabitSheet.show(context);
+                },
+              ),
+              const SizedBox(height: 24),
+            ],
+
             // ==========================================
             // FORBIDDEN ANTI-HABITS SECTION
             // ==========================================
@@ -383,7 +403,7 @@ class HabitProtectionScreen extends ConsumerWidget {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 8, vertical: 2),
                       decoration: BoxDecoration(
-                        color: customColors.antiHabit.withOpacity(0.12),
+                        color: customColors.antiHabit.withValues(alpha: 0.12),
                         borderRadius: BorderRadius.circular(9999),
                       ),
                       child: Text(
@@ -544,15 +564,51 @@ class HabitProtectionScreen extends ConsumerWidget {
     final today = DateTime.now();
     final isDefendedToday = habit.isCompletedOn(today);
 
-    return Container(
-      margin: const EdgeInsets.only(bottom: 12),
+    return Dismissible(
+      key: ValueKey(habit.id),
+      direction: DismissDirection.endToStart,
+      confirmDismiss: (direction) async {
+        final settings = Hive.box('settings_box');
+        final isShieldEnabled = settings.get('breathingShieldEnabled', defaultValue: true);
+        final shieldDuration = settings.get('breathingShieldDuration', defaultValue: 15);
+
+        if (!isShieldEnabled) {
+          ref.read(habitsProvider.notifier).deleteHabit(habit.id);
+          return true;
+        }
+
+        bool confirmed = false;
+        await BreathingShieldDialog.show(
+          context,
+          title: 'Deleting "${habit.title}"',
+          warningText: 'Are you sure you want to drop this defense?',
+          durationSeconds: shieldDuration,
+          onProceed: () {
+            confirmed = true;
+            ref.read(habitsProvider.notifier).deleteHabit(habit.id);
+          },
+        );
+        return confirmed;
+      },
+      background: Container(
+        margin: const EdgeInsets.only(bottom: 12),
+        decoration: BoxDecoration(
+          color: customColors.antiHabit,
+          borderRadius: BorderRadius.circular(16),
+        ),
+        alignment: Alignment.centerRight,
+        padding: const EdgeInsets.only(right: 24),
+        child: const Icon(Icons.delete_outline, color: Colors.white, size: 28),
+      ),
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 12),
       decoration: BoxDecoration(
         color: customColors.cardBackground,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(color: customColors.cardBorder),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.02),
+            color: Colors.black.withValues(alpha: 0.02),
             blurRadius: 6,
             offset: const Offset(0, 2),
           ),
@@ -593,7 +649,7 @@ class HabitProtectionScreen extends ConsumerWidget {
                                     horizontal: 8, vertical: 3),
                                 decoration: BoxDecoration(
                                   color:
-                                      customColors.antiHabit.withOpacity(0.12),
+                                      customColors.antiHabit.withValues(alpha: 0.12),
                                   borderRadius: BorderRadius.circular(6),
                                 ),
                                 child: Text(
@@ -706,7 +762,7 @@ class HabitProtectionScreen extends ConsumerWidget {
                                     color: isDefendedToday
                                         ? customColors.antiHabit
                                         : customColors.antiHabit
-                                            .withOpacity(0.12),
+                                            .withValues(alpha: 0.12),
                                     borderRadius: BorderRadius.circular(8),
                                   ),
                                   child: Row(
@@ -748,6 +804,7 @@ class HabitProtectionScreen extends ConsumerWidget {
           ),
         ),
       ),
+      ),
     );
   }
 
@@ -761,8 +818,44 @@ class HabitProtectionScreen extends ConsumerWidget {
     final dayLabels = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
     final now = DateTime.now();
 
-    return Container(
-      margin: const EdgeInsets.only(bottom: 12),
+    return Dismissible(
+      key: ValueKey(habit.id),
+      direction: DismissDirection.endToStart,
+      confirmDismiss: (direction) async {
+        final settings = Hive.box('settings_box');
+        final isShieldEnabled = settings.get('breathingShieldEnabled', defaultValue: true);
+        final shieldDuration = settings.get('breathingShieldDuration', defaultValue: 15);
+
+        if (!isShieldEnabled) {
+          ref.read(habitsProvider.notifier).deleteHabit(habit.id);
+          return true;
+        }
+
+        bool confirmed = false;
+        await BreathingShieldDialog.show(
+          context,
+          title: 'Deleting "${habit.title}"',
+          warningText: 'Are you sure you want to drop this discipline?',
+          durationSeconds: shieldDuration,
+          onProceed: () {
+            confirmed = true;
+            ref.read(habitsProvider.notifier).deleteHabit(habit.id);
+          },
+        );
+        return confirmed;
+      },
+      background: Container(
+        margin: const EdgeInsets.only(bottom: 12),
+        decoration: BoxDecoration(
+          color: customColors.antiHabit,
+          borderRadius: BorderRadius.circular(16),
+        ),
+        alignment: Alignment.centerRight,
+        padding: const EdgeInsets.only(right: 24),
+        child: const Icon(Icons.delete_outline, color: Colors.white, size: 28),
+      ),
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
         color: customColors.cardBackground,
@@ -791,7 +884,7 @@ class HabitProtectionScreen extends ConsumerWidget {
                     padding: const EdgeInsets.symmetric(
                         horizontal: 8, vertical: 3),
                     decoration: BoxDecoration(
-                      color: customColors.primaryAccent.withOpacity(0.1),
+                      color: customColors.primaryAccent.withValues(alpha: 0.1),
                       borderRadius: BorderRadius.circular(6),
                     ),
                     child: Text(
@@ -913,6 +1006,7 @@ class HabitProtectionScreen extends ConsumerWidget {
             ],
           ),
         ),
+      ),
       ),
     );
   }

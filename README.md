@@ -14,7 +14,7 @@
   <img src="https://img.shields.io/badge/Dart-3.x-0175C2?logo=dart&logoColor=white" alt="Dart">
   <img src="https://img.shields.io/badge/State_Management-Riverpod-blueviolet" alt="Riverpod">
   <img src="https://img.shields.io/badge/Storage-Hive_NoSQL-F38020" alt="Hive">
-  <img src="https://img.shields.io/badge/AI-Gemini_1.5_Flash-4285F4?logo=google&logoColor=white" alt="Gemini">
+  <img src="https://img.shields.io/badge/AI-Gemini_3.6_Flash-4285F4?logo=google&logoColor=white" alt="Gemini">
   <img src="https://img.shields.io/badge/Architecture-Offline--First_BYOK-success" alt="Architecture">
 </p>
 
@@ -36,7 +36,7 @@ Traditional routine planners fail students when real life happens: classes get d
 ### 📷 Multimodal Timetable Scanner
 - Snap a photo or select an image of your course schedule, syllabus, or lecture board.
 - On-device downsampling pipeline (`instantiateImageCodec`, `<= 1560px`) keeps peak memory `< 30MB`, preventing Android Low-Memory-Killer (LMK) eviction on high-resolution cameras.
-- Gemini 1.5 Flash extracts course names, room numbers, instructor details, day of week, and precise time blocks into clean, structured staging records.
+- Gemini 3.6 Flash (with automatic 3.8 fallback) extracts course names, room numbers, instructor details, day of week, and precise time blocks into clean, structured staging records.
 - Staging review drawer allows one-tap editing before committing events into your permanent timetable.
 
 ### ⚡ 1-Tap "Fix My Day" Rescheduling Engine
@@ -63,6 +63,11 @@ Traditional routine planners fail students when real life happens: classes get d
 - Stored locally via `flutter_secure_storage` (Android Keystore / iOS Keychain) with encrypted Hive memory fallback.
 - In-app key settings dialog with instant validation, input sanitization, and immediate key clearing.
 
+### 🎨 Minimal Student-Hub Design
+- **One type family, everywhere**: Plus Jakarta Sans carries the entire interface — tight-tracked bold headings, light quiet body text. Stylish, but minimal.
+- **Code-drawn brand mark**: the logo is a pure-Flutter geometric shield crossed by a negation slash (protection × "Not To Do") — theme-aware, crisp at every size, no image assets required.
+- **Smooth by default**: the bottom navigation glides between Hub, Today, Routine, Not To Do, and AI Guard with an animated selection pill, subtle haptics, and fade-forward page transitions; snackbars float, sheets and dialogs share one rounded 24px language.
+
 ---
 
 ## 🏗️ Architecture & Tech Stack
@@ -70,13 +75,15 @@ Traditional routine planners fail students when real life happens: classes get d
 ```
 lib/
 ├── core/
+│   ├── constants/         # Centralized Gemini model configuration
 │   ├── models/            # Hive-annotated TypeAdapters (AcademicEvent, HabitItem, TimelineBlock)
 │   ├── providers/         # Riverpod providers & StateNotifiers (TimelineNotifier, HabitNotifier)
 │   ├── repositories/      # Local Hive storage repositories
 │   ├── services/          # Gemini AI services, CalendarSync, ScheduleGap, NotificationService
-│   ├── theme/             # Modern high-contrast academic UI design system & AppColors
-│   └── widgets/           # Global widgets (API settings dialog, AppBootstrapWidget, Logo, Header)
+│   ├── theme/             # Minimal high-contrast design system, unified typography & AppColors
+│   └── widgets/           # Global widgets (API settings dialog, custom-painted logo, header)
 ├── features/
+│   ├── dashboard/         # Student Life OS hub: focus timer, wheel of life, tasks & calendar
 │   ├── habits/            # Habit Vault UI, Add Habit Sheet, Defense tracking
 │   ├── navigation/        # Bottom navigation scaffold & screen routing
 │   ├── sync_ai_guard/     # Calendar sync modal, collision detection, queue status
@@ -89,7 +96,7 @@ lib/
 - **Framework:** [Flutter](https://flutter.dev/) (Channel stable, Dart >= 3.0.0 < 4.0.0)
 - **State Management:** [Flutter Riverpod](https://pub.dev/packages/flutter_riverpod)
 - **Persistence:** [Hive](https://pub.dev/packages/hive) & [Hive Flutter](https://pub.dev/packages/hive_flutter)
-- **Multimodal AI:** [google_generative_ai](https://pub.dev/packages/google_generative_ai) (Gemini 1.5 Flash / Pro)
+- **Multimodal AI:** [google_generative_ai](https://pub.dev/packages/google_generative_ai) (Gemini 3.6 Flash primary, 3.8 Flash fallback)
 - **Keystore / Keychain:** [flutter_secure_storage](https://pub.dev/packages/flutter_secure_storage)
 - **Calendar:** [device_calendar](https://pub.dev/packages/device_calendar)
 - **System Alarms:** [flutter_local_notifications](https://pub.dev/packages/flutter_local_notifications), [timezone](https://pub.dev/packages/timezone)
@@ -117,9 +124,9 @@ lib/
    flutter pub get
    ```
 
-3. **Run Code Generation (if modifying Hive adapters):**
+3. **Run Code Generation (if modifying Hive adapters or Riverpod providers):**
    ```bash
-   dart run build_runner build --delete-conflicting-outputs
+   flutter pub run build_runner build --delete-conflicting-outputs
    ```
 
 4. **Run the Application:**
@@ -131,7 +138,22 @@ lib/
    ```bash
    flutter run --dart-define=GEMINI_API_KEY="your_api_key_here"
    ```
-   *(Alternatively, tap the Settings icon in the app header to paste your API key at runtime).*
+   *(Alternatively, tap the ✦ icon in the app header to paste your API key at runtime — the recommended path. For local debugging you can also copy `.env.example` to `.env`; it is git-ignored.)*
+
+---
+
+## 👩‍💻 Developer Onboarding & Architecture
+
+Before contributing to this repository or utilizing AI coding agents on this codebase, you **must** read the permanent architectural source of truth:
+
+👉 **[Read ARCHITECTURE.md](ARCHITECTURE.md)**
+
+**Key Guidelines for Agents & Engineers:**
+1. **Riverpod 2.x Only**: Use `@riverpod` codegen. No `StatefulWidget` for global states.
+2. **Hive Offline-First**: All domain data resides in local `Hive` boxes. Schema changes require running `build_runner` and preserving `@HiveField` ID continuity.
+3. **Cosmic Obsidian Design**: Do not use standard Material defaults. Always route styling through `AppColors.of(context)` and `AppTheme`. Use our custom `BentoCard` and `SpringBounce` widgets.
+4. **Behavioral Friction**: Do not bypass the `CurfewSentryOverlay` or `BreathingShieldDialog` for any destructive or time-locked features.
+5. **Zero-Hardcode Rule**: Dynamic thresholds (like the Energy Budget's `-10` burnout limit) must read from `settings_box`, never from hardcoded primitives in UI files.
 
 ---
 
@@ -145,7 +167,7 @@ flutter test
 
 Expected output:
 ```
-00:00 +17: All tests passed!
+00:00 +21: All tests passed!
 ```
 
 ---

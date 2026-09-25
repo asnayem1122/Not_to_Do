@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
+import '../constants/gemini_constants.dart';
 import '../models/routine_models.dart';
 import 'api_key_service.dart';
 import 'routine_parser_service.dart';
@@ -95,7 +96,7 @@ class AiPlannerService {
     }
 
     return GenerativeModel(
-      model: 'gemini-1.5-flash',
+      model: GeminiConstants.primaryModel,
       apiKey: apiKey.trim(),
       generationConfig: GenerationConfig(
         temperature: 0.2,

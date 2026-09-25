@@ -135,7 +135,7 @@ class _AddEditHabitSheetState extends ConsumerState<AddEditHabitSheet> {
               Navigator.pop(dlgCtx);
               Navigator.pop(context);
               ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
+                const SnackBar(
                   content: Text('Removed rule from vault.'),
                   behavior: SnackBarBehavior.floating,
                 ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import '../models/routine_models.dart';
 import '../repositories/routine_repository.dart';
 import '../services/calendar_sync_service.dart';
@@ -11,8 +12,18 @@ final routineRepositoryProvider = Provider<RoutineRepository>((ref) {
   return HiveRoutineRepository();
 });
 
-// App Theme Mode Provider
-final themeModeProvider = StateProvider<ThemeMode>((ref) => ThemeMode.light);
+// App Theme Mode Provider (Focus OS Executive Dark by default)
+final themeModeProvider = StateProvider<ThemeMode>((ref) => ThemeMode.dark);
+
+// Onboarding completion flag (reads from Hive settings_box)
+final hasCompletedOnboardingProvider = Provider<bool>((ref) {
+  try {
+    if (Hive.isBoxOpen('settings_box')) {
+      return Hive.box('settings_box').get('hasCompletedOnboarding', defaultValue: false);
+    }
+  } catch (_) {}
+  return false;
+});
 
 // =========================================================================
 // ACADEMIC EVENTS STATE (Hive-backed CRUD)

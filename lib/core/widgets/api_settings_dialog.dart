@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
+import '../constants/gemini_constants.dart';
 import '../services/api_key_service.dart';
 import '../theme/app_colors.dart';
 
@@ -126,7 +127,7 @@ class _ApiSettingsDialogState extends ConsumerState<ApiSettingsDialog> {
 
     try {
       String? replyText;
-      String testedModel = 'gemini-1.5-flash';
+      String testedModel = GeminiConstants.primaryModel;
 
       try {
         final model = GenerativeModel(
@@ -139,8 +140,12 @@ class _ApiSettingsDialogState extends ConsumerState<ApiSettingsDialog> {
         replyText = response.text;
       } catch (err1) {
         final errStr = err1.toString().toLowerCase();
-        if (errStr.contains('not found') || errStr.contains('404')) {
-          testedModel = 'gemini-2.0-flash';
+        if (errStr.contains('not found') ||
+            errStr.contains('404') ||
+            errStr.contains('no longer available') ||
+            errStr.contains('503') ||
+            errStr.contains('unavailable')) {
+          testedModel = GeminiConstants.fallbackModel;
           final model2 = GenerativeModel(
             model: testedModel,
             apiKey: cleaned,
@@ -599,20 +604,35 @@ class _ApiSettingsDialogState extends ConsumerState<ApiSettingsDialog> {
                 children: [
                   TextButton(
                     onPressed: () => Navigator.of(context).pop(),
-                    child: const Text('Close'),
+                    child: Text(_testSuccess ? 'Close' : 'Cancel'),
                   ),
                   const SizedBox(width: 10),
-                  OutlinedButton(
-                    onPressed: _saveKey,
-                    style: OutlinedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 18, vertical: 10),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
+                  if (_testSuccess)
+                    ElevatedButton(
+                      onPressed: () => Navigator.of(context).pop(),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: customColors.primaryAccent,
+                        foregroundColor: Colors.white,
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 24, vertical: 10),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
                       ),
+                      child: const Text('OK'),
+                    )
+                  else
+                    OutlinedButton(
+                      onPressed: _saveKey,
+                      style: OutlinedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 18, vertical: 10),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      child: const Text('Save Changes'),
                     ),
-                    child: const Text('Save Changes'),
-                  ),
                 ],
               ),
             ],

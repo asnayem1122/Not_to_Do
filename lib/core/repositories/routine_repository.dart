@@ -106,334 +106,8 @@ class HiveRoutineRepository implements RoutineRepository {
   }
 
   Future<void> _seedInitialDataIfEmpty() async {
-    // 1. Seed Academic Events if empty
-    if (academicBox.isEmpty) {
-      final initialEvents = [
-        // Tuesday (dayOfWeek: 2)
-        AcademicEvent(
-          id: 'ae-tue-1',
-          courseCode: 'CSE 3101',
-          title: 'Database Systems',
-          type: AcademicEventType.lecture,
-          startTime: '09:00',
-          endTime: '10:30',
-          room: 'Room 301, North Tower',
-          instructor: 'Prof. Sarah Khan',
-          dayOfWeek: 2,
-          isCompleted: true,
-          syncToCalendar: true,
-        ),
-        AcademicEvent(
-          id: 'ae-tue-2',
-          courseCode: 'CSE 3102',
-          title: 'Software Engineering Lab',
-          type: AcademicEventType.sessionalLab,
-          startTime: '11:00',
-          endTime: '13:30',
-          room: 'Lab 3, Software Wing',
-          instructor: 'Dr. Alex Mercer',
-          dayOfWeek: 2,
-          syllabusNotes: 'Bring Project Wireframes & verified Git repo push',
-          isCompleted: false,
-          syncToCalendar: true,
-        ),
-        AcademicEvent(
-          id: 'ae-tue-3',
-          courseCode: 'MATH 2205',
-          title: 'Discrete Mathematics',
-          type: AcademicEventType.tutorial,
-          startTime: '14:30',
-          endTime: '16:00',
-          room: 'Room 205',
-          instructor: 'TA Emily Thornton',
-          dayOfWeek: 2,
-          isCompleted: false,
-          syncToCalendar: true,
-        ),
-
-        // Monday (dayOfWeek: 1)
-        AcademicEvent(
-          id: 'ae-mon-1',
-          courseCode: 'CSE 2101',
-          title: 'Object Oriented Programming',
-          type: AcademicEventType.lecture,
-          startTime: '09:00',
-          endTime: '10:30',
-          room: 'Room 401',
-          instructor: 'Dr. Hasan Ali',
-          dayOfWeek: 1,
-          isCompleted: true,
-          syncToCalendar: true,
-        ),
-        AcademicEvent(
-          id: 'ae-mon-2',
-          courseCode: 'MATH 2101',
-          title: 'Linear Algebra & Matrices',
-          type: AcademicEventType.lecture,
-          startTime: '11:00',
-          endTime: '12:30',
-          room: 'Hall B',
-          instructor: 'Prof. David Clark',
-          dayOfWeek: 1,
-          isCompleted: true,
-          syncToCalendar: true,
-        ),
-        AcademicEvent(
-          id: 'ae-mon-3',
-          courseCode: 'CSE 2102',
-          title: 'OOP Java Lab',
-          type: AcademicEventType.sessionalLab,
-          startTime: '13:30',
-          endTime: '15:30',
-          room: 'Lab 2',
-          instructor: 'TA Michael Vance',
-          dayOfWeek: 1,
-          isCompleted: false,
-          syncToCalendar: true,
-        ),
-        AcademicEvent(
-          id: 'ae-mon-4',
-          courseCode: 'ENG 1101',
-          title: 'Technical Communication',
-          type: AcademicEventType.lecture,
-          startTime: '16:00',
-          endTime: '17:00',
-          room: 'Room 102',
-          instructor: 'Ms. Clara Oswald',
-          dayOfWeek: 1,
-          isCompleted: false,
-          syncToCalendar: true,
-        ),
-
-        // Wednesday (dayOfWeek: 3)
-        AcademicEvent(
-          id: 'ae-wed-1',
-          courseCode: 'CSE 3201',
-          title: 'Operating Systems',
-          type: AcademicEventType.lecture,
-          startTime: '10:00',
-          endTime: '11:30',
-          room: 'Room 305',
-          instructor: 'Prof. Alan Turing',
-          dayOfWeek: 3,
-          isCompleted: false,
-          syncToCalendar: true,
-        ),
-        AcademicEvent(
-          id: 'ae-wed-2',
-          courseCode: 'CSE 3202',
-          title: 'Operating Systems Kernel Lab',
-          type: AcademicEventType.sessionalLab,
-          startTime: '14:00',
-          endTime: '16:00',
-          room: 'Lab 1, Systems Wing',
-          instructor: 'Dr. Linus Vance',
-          dayOfWeek: 3,
-          isCompleted: false,
-          syncToCalendar: true,
-        ),
-
-        // Thursday (dayOfWeek: 4)
-        AcademicEvent(
-          id: 'ae-thu-1',
-          courseCode: 'CSE 3101',
-          title: 'Database Systems (Relational Model)',
-          type: AcademicEventType.lecture,
-          startTime: '09:00',
-          endTime: '10:30',
-          room: 'Room 301',
-          instructor: 'Prof. Sarah Khan',
-          dayOfWeek: 4,
-          isCompleted: false,
-          syncToCalendar: true,
-        ),
-        AcademicEvent(
-          id: 'ae-thu-2',
-          courseCode: 'CSE 3301',
-          title: 'Computer Networks',
-          type: AcademicEventType.lecture,
-          startTime: '11:00',
-          endTime: '12:30',
-          room: 'Hall A',
-          instructor: 'Dr. Robert Metcalfe',
-          dayOfWeek: 4,
-          isCompleted: false,
-          syncToCalendar: true,
-        ),
-        AcademicEvent(
-          id: 'ae-thu-3',
-          courseCode: 'MATH 2205',
-          title: 'Discrete Mathematics Problem Set',
-          type: AcademicEventType.tutorial,
-          startTime: '13:30',
-          endTime: '15:00',
-          room: 'Room 205',
-          instructor: 'TA Emily Thornton',
-          dayOfWeek: 4,
-          isCompleted: false,
-          syncToCalendar: true,
-        ),
-        AcademicEvent(
-          id: 'ae-thu-4',
-          courseCode: 'CSE 3302',
-          title: 'Cisco Packet Tracer Lab',
-          type: AcademicEventType.sessionalLab,
-          startTime: '15:30',
-          endTime: '17:00',
-          room: 'Networks Lab',
-          instructor: 'Engr. John Doe',
-          dayOfWeek: 4,
-          isCompleted: false,
-          syncToCalendar: true,
-        ),
-
-        // Friday (dayOfWeek: 5)
-        AcademicEvent(
-          id: 'ae-fri-1',
-          courseCode: 'CSE 3401',
-          title: 'Artificial Intelligence & Search Algorithms',
-          type: AcademicEventType.lecture,
-          startTime: '09:30',
-          endTime: '11:30',
-          room: 'Auditorium 1',
-          instructor: 'Prof. Stuart Russell',
-          dayOfWeek: 5,
-          isCompleted: false,
-          syncToCalendar: true,
-        ),
-      ];
-
-      for (final ev in initialEvents) {
-        await academicBox.put(ev.id, ev);
-      }
-    }
-
-    // 2. Seed Habits if empty
-    if (habitsBox.isEmpty) {
-      final initialHabits = [
-        HabitItem(
-          id: 'h-anti-1',
-          title: "Don't open Instagram / TikTok before 6 PM",
-          type: HabitType.antiHabit,
-          category: 'Social Media Lockout',
-          streakCount: 9,
-          shieldRuleDescription:
-              'Academic Focus Block • Priority 1 Perimeter Guard',
-          targetDays: [1, 2, 3, 4, 5, 6, 7],
-          completedDates: [
-            DateTime.now().subtract(const Duration(days: 1)),
-            DateTime.now(),
-          ],
-        ),
-        HabitItem(
-          id: 'h-anti-2',
-          title: "Don't sleep past 7:30 AM",
-          type: HabitType.antiHabit,
-          category: 'Morning Momentum',
-          streakCount: 14,
-          shieldRuleDescription:
-              'Verified at 6:45 AM today (45m before target perimeter)',
-          targetDays: [1, 2, 3, 4, 5],
-          completedDates: [DateTime.now()],
-        ),
-        HabitItem(
-          id: 'h-anti-3',
-          title: 'No gaming during semester exam prep weeks',
-          type: HabitType.antiHabit,
-          category: 'Focus Protocol',
-          streakCount: 21,
-          shieldRuleDescription:
-              '12 days left until finals complete • Steam app sandbox locked',
-          targetDays: [1, 2, 3, 4, 5, 6, 7],
-        ),
-        HabitItem(
-          id: 'h-pos-1',
-          title: 'Solve 2 Graph Theory problems',
-          type: HabitType.positiveHabit,
-          category: 'CS 301 Core Practice',
-          streakCount: 6,
-          shieldRuleDescription:
-              'LeetCode #133 (Clone Graph), #207 (Course Schedule) completed',
-          targetDays: [1, 2, 3, 4, 5, 6, 7],
-          completedDates: [
-            DateTime.now().subtract(const Duration(days: 6)),
-            DateTime.now().subtract(const Duration(days: 5)),
-            DateTime.now().subtract(const Duration(days: 4)),
-            DateTime.now().subtract(const Duration(days: 3)),
-            DateTime.now().subtract(const Duration(days: 2)),
-            DateTime.now().subtract(const Duration(days: 1)),
-          ],
-        ),
-        HabitItem(
-          id: 'h-pos-2',
-          title: 'Drink 2.5L Water during lectures',
-          type: HabitType.positiveHabit,
-          category: 'Biometric Readiness',
-          streakCount: 5,
-          shieldRuleDescription:
-              '1.8L / 2.5L target logged • 700ml remaining before 8 PM',
-          targetDays: [1, 2, 3, 4, 5],
-          completedDates: [DateTime.now()],
-        ),
-      ];
-
-      for (final h in initialHabits) {
-        await habitsBox.put(h.id, h);
-      }
-    }
-
-    // 3. Seed Timeline Blocks if empty
-    if (timelineBox.isEmpty) {
-      final initialTimeline = [
-        TimelineBlock(
-          id: 'tb-1',
-          title: 'Data Structures: Graph Theory Lecture',
-          startTime: '08:30 AM',
-          endTime: '10:00 AM',
-          type: TimelineBlockType.academicClass,
-          location: 'Hall 101',
-          subtitle: 'CSE 2201 • Covered Dijkstra and topological sorting',
-          isCompleted: true,
-          badgeText: 'Completed',
-        ),
-        TimelineBlock(
-          id: 'tb-2',
-          title: 'LeetCode & Competitive Track',
-          startTime: '11:00 AM',
-          endTime: '12:00 PM',
-          type: TimelineBlockType.routineFocus,
-          subtitle: 'Target achieved: 2 DP Problems Solved cleanly',
-          isCompleted: true,
-          badgeText: 'Routine Focus',
-        ),
-        TimelineBlock(
-          id: 'tb-3',
-          title: 'Doomscrolling or Social Reels during Lunch Break',
-          startTime: '01:00 PM',
-          endTime: '02:00 PM',
-          type: TimelineBlockType.antiHabitShield,
-          subtitle: 'Lunch break digital detox guard',
-          streakDays: 7,
-          replacementTrigger:
-              'Walk around courtyard + 10 pages physical book reading.',
-          badgeText: '🔥 7d clean streak',
-        ),
-        TimelineBlock(
-          id: 'tb-4',
-          title: 'Study Group: Distributed Systems Project',
-          startTime: '03:00 PM',
-          endTime: '04:30 PM',
-          type: TimelineBlockType.calendarSync,
-          location: 'Central Library Discussion Room A',
-          subtitle: 'G-Cal Synced team collaboration session',
-          badgeText: 'Google Calendar',
-        ),
-      ];
-
-      for (final tb in initialTimeline) {
-        await timelineBox.put(tb.id, tb);
-      }
-    }
+    // Phase 1 Clean-Slate Purge: All mock seed data removed.
+    // Phase 2 Onboarding flow will populate initial user-configured data.
   }
 
   // ==========================================
@@ -451,15 +125,55 @@ class HiveRoutineRepository implements RoutineRepository {
 
   @override
   HeroClass getHeroUpcomingClass() {
+    // Compute next upcoming class from real academic events
+    try {
+      if (Hive.isBoxOpen(academicBoxName)) {
+        final now = DateTime.now();
+        final todayDow = now.weekday; // 1=Mon, 2=Tue, ..., 7=Sun
+        final nowMinutes = now.hour * 60 + now.minute;
+
+        final todayEvents = Hive.box<AcademicEvent>(academicBoxName)
+            .values
+            .where((e) => e.dayOfWeek == todayDow && !e.isCompleted)
+            .toList()
+          ..sort((a, b) => a.startTime.compareTo(b.startTime));
+
+        for (final ev in todayEvents) {
+          final parts = ev.startTime.split(':');
+          if (parts.length >= 2) {
+            final h = int.tryParse(parts[0]) ?? 0;
+            final m = int.tryParse(parts[1]) ?? 0;
+            final eventMinutes = h * 60 + m;
+            if (eventMinutes > nowMinutes) {
+              final diff = eventMinutes - nowMinutes;
+              final startsIn = diff <= 60
+                  ? 'Starts in $diff min'
+                  : 'Starts in ${diff ~/ 60}h ${diff % 60}m';
+              return HeroClass(
+                startsIn: startsIn,
+                courseCode: ev.courseCode,
+                sessionType: ev.type.name,
+                title: ev.title,
+                location: ev.room,
+                instructor: ev.instructor,
+                slidesDownloaded: false,
+                assignmentDueText: ev.syllabusNotes,
+              );
+            }
+          }
+        }
+      }
+    } catch (_) {}
+
     return const HeroClass(
-      startsIn: 'Starts in 20 min',
-      courseCode: 'CSE 2201',
-      sessionType: 'Lab Session',
-      title: 'Algorithms & Data Structures Lab',
-      location: 'Room 402, Academic Bldg 2',
-      instructor: 'Prof. Rahman',
-      slidesDownloaded: true,
-      assignmentDueText: 'Assignment 3 Due Today',
+      startsIn: 'No upcoming class',
+      courseCode: '',
+      sessionType: '',
+      title: 'All clear for today',
+      location: '',
+      instructor: '',
+      slidesDownloaded: false,
+      assignmentDueText: '',
     );
   }
 
@@ -551,22 +265,8 @@ class HiveRoutineRepository implements RoutineRepository {
 
   @override
   List<AiGapSlot> getAiGapSlots() {
-    return const [
-      AiGapSlot(
-        id: 'gap-1',
-        gapName: 'GAP 1: 10:30 AM – 11:00 AM',
-        tag: '30 min buffer',
-        recommendation:
-            'Recommended: Review Data Structure Lab slides & Hydrate before Algorithms discussion.',
-      ),
-      AiGapSlot(
-        id: 'gap-2',
-        gapName: 'GAP 2: 01:30 PM – 02:30 PM',
-        tag: '60 min post-lab',
-        recommendation:
-            'Recommended: 45 min LeetCode Graph Theory session. Distraction shield fully enforced.',
-      ),
-    ];
+    // Phase 1: Return empty. Phase 3 will compute from todayFreeGapsProvider.
+    return const [];
   }
 
   @override
@@ -576,7 +276,7 @@ class HiveRoutineRepository implements RoutineRepository {
         final box = Hive.box(settingsBoxName);
         return SyncSettings(
           accountEmail: box.get('accountEmail',
-              defaultValue: 'alex.student@university.edu'),
+              defaultValue: 'Not connected'),
           lastSyncTime:
               box.get('lastSyncTime', defaultValue: '4m ago'),
           is2WayLiveSyncActive:
@@ -592,7 +292,7 @@ class HiveRoutineRepository implements RoutineRepository {
     } catch (_) {}
 
     return const SyncSettings(
-      accountEmail: 'alex.student@university.edu',
+      accountEmail: 'Not connected',
       lastSyncTime: 'Just now',
       is2WayLiveSyncActive: true,
       autoPushRoutine: true,

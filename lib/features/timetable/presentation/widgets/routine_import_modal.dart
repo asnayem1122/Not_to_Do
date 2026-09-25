@@ -1,6 +1,4 @@
-import 'dart:typed_data';
 import 'package:file_picker/file_picker.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -409,10 +407,10 @@ Thursday:
                 padding:
                     const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                 decoration: BoxDecoration(
-                  color: customColors.antiHabit.withOpacity(0.08),
+                  color: customColors.antiHabit.withValues(alpha: 0.08),
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(
-                      color: customColors.antiHabit.withOpacity(0.2)),
+                      color: customColors.antiHabit.withValues(alpha: 0.2)),
                 ),
                 child: Row(
                   children: [
@@ -582,9 +580,9 @@ Thursday:
               height: 90,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: customColors.primaryAccent.withOpacity(0.1),
+                color: customColors.primaryAccent.withValues(alpha: 0.1),
                 border: Border.all(
-                  color: customColors.primaryAccent.withOpacity(0.4),
+                  color: customColors.primaryAccent.withValues(alpha: 0.4),
                   width: 2,
                 ),
               ),
@@ -632,7 +630,7 @@ Thursday:
               label: const Text('Cancel Scan'),
               style: OutlinedButton.styleFrom(
                 foregroundColor: customColors.antiHabit,
-                side: BorderSide(color: customColors.antiHabit.withOpacity(0.5)),
+                side: BorderSide(color: customColors.antiHabit.withValues(alpha: 0.5)),
               ),
             ),
           ],
@@ -764,7 +762,7 @@ Thursday:
                   Container(
                     padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
-                      color: customColors.academic.withOpacity(0.15),
+                      color: customColors.academic.withValues(alpha: 0.15),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Icon(

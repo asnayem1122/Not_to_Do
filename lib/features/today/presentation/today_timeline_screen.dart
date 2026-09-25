@@ -4,8 +4,11 @@ import '../../../core/models/routine_models.dart';
 import '../../../core/providers/routine_providers.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/widgets/app_top_header.dart';
+import '../../../core/widgets/bento_card.dart';
+import '../../../core/widgets/bento_empty_state.dart';
 import '../../habits/presentation/widgets/add_habit_sheet.dart';
 import '../../timetable/presentation/widgets/add_academic_event_sheet.dart';
+import 'widgets/daily_energy_gauge.dart';
 import 'widgets/fix_my_day_sheet.dart';
 
 class TodayTimelineScreen extends ConsumerWidget {
@@ -22,15 +25,18 @@ class TodayTimelineScreen extends ConsumerWidget {
     return Scaffold(
       appBar: const AppTopHeader(subtitle: "Today's Protected Timeline"),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+        padding: const EdgeInsets.fromLTRB(16, 14, 16, 96),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             // ==========================================
             // TOP DATE & STATUS BAR
             // ==========================================
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            Wrap(
+              alignment: WrapAlignment.spaceBetween,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              spacing: 8,
+              runSpacing: 8,
               children: [
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.baseline,
@@ -72,10 +78,10 @@ class TodayTimelineScreen extends ConsumerWidget {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 10, vertical: 4),
                         decoration: BoxDecoration(
-                          color: customColors.antiHabit.withOpacity(0.12),
+                          color: customColors.antiHabit.withValues(alpha: 0.12),
                           borderRadius: BorderRadius.circular(9999),
                           border: Border.all(
-                            color: customColors.antiHabit.withOpacity(0.4),
+                            color: customColors.antiHabit.withValues(alpha: 0.4),
                           ),
                         ),
                         child: Row(
@@ -136,14 +142,17 @@ class TodayTimelineScreen extends ConsumerWidget {
             ),
             const SizedBox(height: 12),
 
+            // Daily Energy Budget Gauge
+            const DailyEnergyGauge(),
+
             // Emergency Schedule Delay Recovery Banner
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
               decoration: BoxDecoration(
-                color: customColors.antiHabit.withOpacity(0.08),
+                color: customColors.antiHabit.withValues(alpha: 0.08),
                 borderRadius: BorderRadius.circular(14),
                 border: Border.all(
-                  color: customColors.antiHabit.withOpacity(0.25),
+                  color: customColors.antiHabit.withValues(alpha: 0.25),
                 ),
               ),
               child: Row(
@@ -152,7 +161,7 @@ class TodayTimelineScreen extends ConsumerWidget {
                     padding: const EdgeInsets.all(6),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: customColors.antiHabit.withOpacity(0.15),
+                      color: customColors.antiHabit.withValues(alpha: 0.15),
                     ),
                     child: Icon(
                       Icons.healing,
@@ -218,7 +227,7 @@ class TodayTimelineScreen extends ConsumerWidget {
                 border: Border.all(color: customColors.cardBorder),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.02),
+                    color: Colors.black.withValues(alpha: 0.02),
                     blurRadius: 8,
                     offset: const Offset(0, 2),
                   ),
@@ -317,7 +326,7 @@ class TodayTimelineScreen extends ConsumerWidget {
                 border: Border.all(color: customColors.cardBorder),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.04),
+                    color: Colors.black.withValues(alpha: 0.04),
                     blurRadius: 12,
                     offset: const Offset(0, 4),
                   ),
@@ -352,7 +361,7 @@ class TodayTimelineScreen extends ConsumerWidget {
                                             horizontal: 8, vertical: 3),
                                         decoration: BoxDecoration(
                                           color: customColors.academic
-                                              .withOpacity(0.15),
+                                              .withValues(alpha: 0.15),
                                           borderRadius:
                                               BorderRadius.circular(9999),
                                         ),
@@ -392,7 +401,7 @@ class TodayTimelineScreen extends ConsumerWidget {
                                     decoration: BoxDecoration(
                                       shape: BoxShape.circle,
                                       color: customColors.academic
-                                          .withOpacity(0.15),
+                                          .withValues(alpha: 0.15),
                                     ),
                                     child: Icon(
                                       Icons.terminal,
@@ -444,7 +453,7 @@ class TodayTimelineScreen extends ConsumerWidget {
                                         horizontal: 8, vertical: 4),
                                     decoration: BoxDecoration(
                                       color: customColors.primaryAccent
-                                          .withOpacity(0.12),
+                                          .withValues(alpha: 0.12),
                                       borderRadius: BorderRadius.circular(6),
                                     ),
                                     child: Row(
@@ -473,7 +482,7 @@ class TodayTimelineScreen extends ConsumerWidget {
                                           horizontal: 8, vertical: 4),
                                       decoration: BoxDecoration(
                                         color: customColors.antiHabit
-                                            .withOpacity(0.12),
+                                            .withValues(alpha: 0.12),
                                         borderRadius: BorderRadius.circular(6),
                                       ),
                                       child: Row(
@@ -659,19 +668,16 @@ class TodayTimelineScreen extends ConsumerWidget {
             // VERTICAL CHRONOLOGICAL TIMELINE (TAP TO EDIT)
             // ==========================================
             if (timelineBlocks.isEmpty)
-              Container(
-                padding: const EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  color: customColors.cardBackground,
-                  borderRadius: BorderRadius.circular(16),
-                  border: Border.all(color: customColors.cardBorder),
-                ),
-                child: Center(
-                  child: Text(
-                    'No timeline blocks scheduled for this filter.',
-                    style: theme.textTheme.bodySmall,
-                  ),
-                ),
+              BentoEmptyState(
+                icon: Icons.view_timeline_outlined,
+                title: 'No timeline blocks yet',
+                subtitle:
+                    'Your protected daily timeline will appear here.\n'
+                    'Add classes in the Routine tab or import your schedule.',
+                ctaLabel: 'Add a Block',
+                onCtaTap: () {
+                  AddEditAcademicEventSheet.show(context);
+                },
               )
             else
               ListView.builder(
@@ -802,7 +808,7 @@ class TodayTimelineScreen extends ConsumerWidget {
           boxShadow: isSelected
               ? [
                   BoxShadow(
-                    color: customColors.primaryAccent.withOpacity(0.25),
+                    color: customColors.primaryAccent.withValues(alpha: 0.25),
                     blurRadius: 6,
                     offset: const Offset(0, 2),
                   ),
@@ -869,7 +875,7 @@ class TodayTimelineScreen extends ConsumerWidget {
                     ),
                     boxShadow: [
                       BoxShadow(
-                        color: domainColor.withOpacity(0.3),
+                        color: domainColor.withValues(alpha: 0.3),
                         blurRadius: 4,
                       ),
                     ],
@@ -891,32 +897,20 @@ class TodayTimelineScreen extends ConsumerWidget {
           Expanded(
             child: Padding(
               padding: const EdgeInsets.only(bottom: 14),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: customColors.cardBackground,
-                  borderRadius: BorderRadius.circular(14),
-                  border: Border.all(color: customColors.cardBorder),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.02),
-                      blurRadius: 6,
-                      offset: const Offset(0, 2),
-                    ),
-                  ],
-                ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(14),
-                  child: IntrinsicHeight(
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        // Colored strip
-                        Container(width: 4, color: domainColor),
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 14, vertical: 12),
-                            child: Column(
+              child: BentoCard(
+                borderColor: domainColor.withValues(alpha: 0.3),
+                padding: EdgeInsets.zero,
+                child: IntrinsicHeight(
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      // Colored strip
+                      Container(width: 4, color: domainColor),
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 14, vertical: 12),
+                          child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisSize: MainAxisSize.min,
                               children: [
@@ -925,35 +919,42 @@ class TodayTimelineScreen extends ConsumerWidget {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Row(
-                                      children: [
-                                        Text(
-                                          block.timeRange,
-                                          style: theme.textTheme.labelSmall
-                                              ?.copyWith(
-                                            color: domainColor,
-                                            fontWeight: FontWeight.w700,
-                                            fontSize: 12,
-                                          ),
-                                        ),
-                                        if (block.location != null) ...[
-                                          const SizedBox(width: 6),
-                                          Text('•',
-                                              style: TextStyle(
-                                                  color:
-                                                      customColors.textMuted)),
-                                          const SizedBox(width: 6),
+                                    Expanded(
+                                      child: Row(
+                                        children: [
                                           Text(
-                                            block.location!,
+                                            block.timeRange,
                                             style: theme.textTheme.labelSmall
                                                 ?.copyWith(
-                                              color:
-                                                  customColors.textSecondary,
+                                              color: domainColor,
+                                              fontWeight: FontWeight.w700,
+                                              fontSize: 12,
                                             ),
                                           ),
+                                          if (block.location != null) ...[
+                                            const SizedBox(width: 6),
+                                            Text('•',
+                                                style: TextStyle(
+                                                    color:
+                                                        customColors.textMuted)),
+                                            const SizedBox(width: 6),
+                                            Expanded(
+                                              child: Text(
+                                                block.location!,
+                                                maxLines: 1,
+                                                overflow: TextOverflow.ellipsis,
+                                                style: theme.textTheme.labelSmall
+                                                    ?.copyWith(
+                                                  color:
+                                                      customColors.textSecondary,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
                                         ],
-                                      ],
+                                      ),
                                     ),
+                                    const SizedBox(width: 8),
                                     Row(
                                       children: [
                                         if (block.badgeText != null)
@@ -966,9 +967,9 @@ class TodayTimelineScreen extends ConsumerWidget {
                                                       TimelineBlockType
                                                           .antiHabitShield
                                                   ? customColors.antiHabit
-                                                      .withOpacity(0.12)
+                                                      .withValues(alpha: 0.12)
                                                   : customColors.primaryAccent
-                                                      .withOpacity(0.12),
+                                                      .withValues(alpha: 0.12),
                                               borderRadius:
                                                   BorderRadius.circular(9999),
                                             ),
@@ -1057,7 +1058,7 @@ class TodayTimelineScreen extends ConsumerWidget {
                                         horizontal: 10, vertical: 8),
                                     decoration: BoxDecoration(
                                       color: customColors.antiHabit
-                                          .withOpacity(0.1),
+                                          .withValues(alpha: 0.1),
                                       borderRadius: BorderRadius.circular(8),
                                     ),
                                     child: Row(
@@ -1103,7 +1104,7 @@ class TodayTimelineScreen extends ConsumerWidget {
                                         color: block.isCompleted
                                             ? customColors.primaryFixed
                                             : customColors.primaryAccent
-                                                .withOpacity(0.1),
+                                                .withValues(alpha: 0.1),
                                         borderRadius:
                                             BorderRadius.circular(8),
                                       ),
@@ -1142,7 +1143,6 @@ class TodayTimelineScreen extends ConsumerWidget {
                 ),
               ),
             ),
-          ),
         ],
       ),
     );
@@ -1184,7 +1184,7 @@ class TodayTimelineScreen extends ConsumerWidget {
                 leading: Container(
                   padding: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
-                    color: customColors.academic.withOpacity(0.12),
+                    color: customColors.academic.withValues(alpha: 0.12),
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Icon(Icons.school, color: customColors.academic),
@@ -1203,7 +1203,7 @@ class TodayTimelineScreen extends ConsumerWidget {
                 leading: Container(
                   padding: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
-                    color: customColors.antiHabit.withOpacity(0.12),
+                    color: customColors.antiHabit.withValues(alpha: 0.12),
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Icon(Icons.shield, color: customColors.antiHabit),

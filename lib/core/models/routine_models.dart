@@ -283,6 +283,9 @@ class TimelineBlock extends HiveObject {
   @HiveField(11)
   final String? badgeText;
 
+  @HiveField(12)
+  final int energyCost;
+
   TimelineBlock({
     required this.id,
     required this.title,
@@ -296,6 +299,7 @@ class TimelineBlock extends HiveObject {
     this.streakDays,
     this.replacementTrigger,
     this.badgeText,
+    this.energyCost = 0,
   });
 
   String get timeRange => '$startTime – $endTime';
@@ -313,6 +317,7 @@ class TimelineBlock extends HiveObject {
     int? streakDays,
     String? replacementTrigger,
     String? badgeText,
+    int? energyCost,
   }) {
     return TimelineBlock(
       id: id ?? this.id,
@@ -327,6 +332,7 @@ class TimelineBlock extends HiveObject {
       streakDays: streakDays ?? this.streakDays,
       replacementTrigger: replacementTrigger ?? this.replacementTrigger,
       badgeText: badgeText ?? this.badgeText,
+      energyCost: energyCost ?? this.energyCost,
     );
   }
 }

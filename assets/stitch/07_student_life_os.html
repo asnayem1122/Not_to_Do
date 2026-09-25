@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Student Life OS — Academic &amp; Focus Command Center</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 with plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            obsidian: '#0E1015',
+            surface: '#161922',
+            borderDark: '#232734',
+            emeraldToken: '#10B981',
+            crimsonToken: '#F43F5E',
+            skyToken: '#38BDF8',
+            amberToken: '#F59E0B'
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace']
+          }
+        }
+      }
+    };
+  </script>
+<!-- Custom Styles: Layout, Scrollbar, Custom Micro-details -->
+<style data-purpose="custom-decorations">
+    /* Subtle custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0E1015;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #232734;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #333a4c;
+    }
+
+    /* Glow utilities */
+    .glow-emerald {
+      box-shadow: 0 0 20px -3px rgba(16, 185, 129, 0.25);
+    }
+    .glow-pill-emerald {
+      box-shadow: 0 0 10px rgba(16, 185, 129, 0.35);
+    }
+    .glow-crimson {
+      box-shadow: 0 0 12px rgba(244, 63, 94, 0.25);
+    }
+    
+    /* Pixel art rendering preservation */
+    .pixelated-banner {
+      image-rendering: pixelated;
+      image-rendering: -moz-crisp-edges;
+      image-rendering: crisp-edges;
+    }
+  </style>
+</head>
+<body class="bg-obsidian text-slate-200 font-sans min-h-screen antialiased selection:bg-emeraldToken/30 selection:text-emeraldToken">
+<!-- BEGIN: MainContainer -->
+<div class="max-w-[1720px] mx-auto p-4 sm:p-6 lg:p-8 space-y-6">
+<!-- BEGIN: TopBarBannerSection -->
+<header class="relative rounded-2xl border border-borderDark bg-surface overflow-hidden shadow-2xl">
+<!-- Panoramic Terrarium/Aquarium Banner Image -->
+<div class="relative w-full h-[220px] lg:h-[240px] overflow-hidden bg-[#0A0D11]">
+<img alt="Pixel art panorama banner illustration of a lush botanical terrarium and planted water aquarium with floating green aquatic plants, moss, ferns, pebbles, neon bioluminescent algae, retro 16-bit cyber-cozy aesthetic, dark moody cyberpunk greenhouse backdrop with soft emerald and mint lighting, ultra-detailed pixel art banner" class="w-full h-full object-cover pixelated-banner brightness-95 contrast-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfuzCMsQBeouDT3i32mCvGsg4KUJ6CxDtxtfKpepKn77uQwPRdSmZkadX8bm4x7BW1oOCO8aMSA62st_T0MuxOn7PxhV_BYhl3hONiLWu40TsRBBIWN2i7ZtsqYNPweLHirUQuZv9cw-i0s53bmdGFHG3GaQPt-6ldLME22zlaDHPfm4faRLe9VjWEuUnrqkpeeSVGxKt1n2Z_ULPl3YYeocXIaDLsyqcX1rIJFOaobF4vPP1VB3cH_XADJ3Z8kF2JjJU1DPnZtH0"/>
+<!-- Atmospheric Ambient Gradient Overlays -->
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-black/30 pointer-events-none"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-obsidian/85 via-obsidian/40 to-transparent pointer-events-none"></div>
+<!-- Banner Overlaid Identifiers -->
+<div class="absolute top-4 right-4 flex flex-wrap items-center gap-2">
+<div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface/90 backdrop-blur-md border border-borderDark text-xs font-mono">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emeraldToken opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-emeraldToken"></span>
+</span>
+<span class="text-emeraldToken font-semibold uppercase tracking-wider">Botanical Sync Active</span>
+</div>
+<span class="px-3 py-1.5 rounded-full bg-surface/90 backdrop-blur-md border border-borderDark text-xs font-mono text-slate-300">
+            Term: <strong class="text-white">2026.1</strong>
+</span>
+</div>
+</div>
+<!-- Banner Metadata & Title Strip -->
+<div class="px-6 py-5 flex flex-col lg:flex-row lg:items-center justify-between gap-5 border-t border-borderDark/60 bg-surface/95 backdrop-blur-sm">
+<div class="flex items-center gap-4">
+<!-- Grade A+ Badge Squircle -->
+<div class="relative flex-shrink-0 w-14 h-14 rounded-2xl bg-gradient-to-br from-[#1C2230] to-[#0E121A] border border-borderDark flex items-center justify-center glow-emerald shadow-lg">
+<span class="font-mono text-xl font-bold tracking-tight text-emeraldToken">A+</span>
+<span class="absolute -bottom-1 -right-1 w-3.5 h-3.5 rounded-full bg-emeraldToken border-2 border-surface"></span>
+</div>
+<div>
+<div class="flex items-center gap-3">
+<h1 class="text-2xl lg:text-3xl font-extrabold text-white tracking-tight">Student Life OS</h1>
+<span class="px-2.5 py-0.5 rounded-md text-[11px] font-mono uppercase bg-emeraldToken/10 text-emeraldToken border border-emeraldToken/20 font-medium">v4.2-Live</span>
+</div>
+<p class="text-xs sm:text-sm text-slate-400 mt-0.5 font-medium flex items-center gap-1.5">
+<span>Tactical Academic Discipline</span>
+<span class="text-slate-600">•</span>
+<span>Habit Protection</span>
+<span class="text-slate-600">•</span>
+<span class="text-emeraldToken/90">Botanical Focus Workspace</span>
+</p>
+</div>
+</div>
+<!-- Academic Key Metric Chips -->
+<div class="flex flex-wrap items-center gap-3">
+<div class="px-3.5 py-2 rounded-xl bg-obsidian border border-borderDark flex items-center gap-2.5">
+<span class="text-[11px] font-mono uppercase text-slate-400">Cumulative GPA</span>
+<span class="font-mono text-sm font-bold text-emeraldToken bg-emeraldToken/10 px-2 py-0.5 rounded border border-emeraldToken/20">3.92 / 4.0</span>
+</div>
+<div class="px-3.5 py-2 rounded-xl bg-obsidian border border-borderDark flex items-center gap-2.5">
+<span class="text-[11px] font-mono uppercase text-slate-400">Semester Cadence</span>
+<span class="font-mono text-sm font-bold text-skyToken">Week 8 <span class="text-slate-500 font-normal">/ 16</span></span>
+<span class="text-[10px] font-mono text-crimsonToken bg-crimsonToken/10 px-1.5 py-0.5 rounded border border-crimsonToken/20">Midterms Ahead</span>
+</div>
+</div>
+</div>
+</header>
+<!-- END: TopBarBannerSection -->
+<!-- BEGIN: TwoColumnWorkspaceLayout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+<!-- BEGIN: LeftRailSidebar -->
+<aside class="lg:col-span-3 space-y-5">
+<!-- Widget 1: Chronometer & Date Readout -->
+<div class="rounded-2xl border border-borderDark bg-surface p-5 shadow-lg relative overflow-hidden" data-purpose="chronometer-widget">
+<div class="flex items-center justify-between pb-3 border-b border-borderDark">
+<span class="text-xs font-mono font-semibold uppercase text-slate-400 flex items-center gap-1.5">
+<svg class="w-3.5 h-3.5 text-emeraldToken" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+              Standard Chrono
+            </span>
+<span class="text-[10px] font-mono text-emeraldToken bg-emeraldToken/10 px-2 py-0.5 rounded border border-emeraldToken/20">UTC+01:00</span>
+</div>
+<!-- Analog Clock Face -->
+<div class="my-4 flex flex-col items-center justify-center">
+<div class="relative w-36 h-36 rounded-full bg-[#12141C] border-2 border-borderDark shadow-inner flex items-center justify-center">
+<!-- Radial Tick Marks -->
+<div class="absolute inset-1 rounded-full border border-dashed border-borderDark/40 pointer-events-none"></div>
+<span class="absolute top-1 text-[9px] font-mono text-slate-500">12</span>
+<span class="absolute right-2 text-[9px] font-mono text-slate-500">3</span>
+<span class="absolute bottom-1 text-[9px] font-mono text-slate-500">6</span>
+<span class="absolute left-2 text-[9px] font-mono text-slate-500">9</span>
+<!-- SVG Hands -->
+<svg class="w-32 h-32 transform -rotate-90" viewbox="0 0 100 100">
+<!-- Center Pivot -->
+<circle cx="50" cy="50" fill="#10B981" r="3"></circle>
+<!-- Hour Hand -->
+<line id="analog-hour" stroke="#94A3B8" stroke-linecap="round" stroke-width="3" x1="50" x2="68" y1="50" y2="50"></line>
+<!-- Minute Hand -->
+<line id="analog-minute" stroke="#E2E8F0" stroke-linecap="round" stroke-width="2" x1="50" x2="80" y1="50" y2="50"></line>
+<!-- Second Hand -->
+<line id="analog-second" stroke="#10B981" stroke-linecap="round" stroke-width="1.2" x1="50" x2="86" y1="50" y2="50"></line>
+</svg>
+</div>
+<!-- Digital Output Readout -->
+<div class="mt-3 text-center">
+<div class="text-2xl font-bold font-mono tracking-wider text-white" id="live-digital-clock">13:17:55</div>
+<div class="text-xs text-slate-400 font-mono mt-0.5">Sat, May 3 • Week 18</div>
+</div>
+</div>
+<!-- Widget 2: Life Cadence Progress Bars -->
+<div class="space-y-3 pt-3 border-t border-borderDark">
+<div>
+<div class="flex justify-between text-xs font-mono mb-1">
+<span class="text-slate-400">Year 2026</span>
+<span class="text-emeraldToken font-semibold">34%</span>
+</div>
+<div class="w-full h-1.5 bg-obsidian rounded-full overflow-hidden border border-borderDark/40">
+<div class="h-full bg-emeraldToken rounded-full" style="width: 34%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-xs font-mono mb-1">
+<span class="text-slate-400">May Elapsed</span>
+<span class="text-skyToken font-semibold">10%</span>
+</div>
+<div class="w-full h-1.5 bg-obsidian rounded-full overflow-hidden border border-borderDark/40">
+<div class="h-full bg-skyToken rounded-full" style="width: 10%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-xs font-mono mb-1">
+<span class="text-slate-400">Weekly Target</span>
+<span class="text-amberToken font-semibold">78%</span>
+</div>
+<div class="w-full h-1.5 bg-obsidian rounded-full overflow-hidden border border-borderDark/40">
+<div class="h-full bg-amberToken rounded-full" style="width: 78%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Widget 3: Quick Action Operators -->
+<div class="rounded-2xl border border-borderDark bg-surface p-4 shadow-lg" data-purpose="quick-actions">
+<h2 class="text-xs font-mono font-semibold uppercase text-slate-400 mb-3 tracking-wider flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-emeraldToken"></span>
+            Quick Insert Operators
+          </h2>
+<div class="grid grid-cols-2 gap-2 text-xs">
+<button class="flex items-center gap-1.5 px-2.5 py-2 rounded-xl bg-obsidian hover:bg-[#1E222D] border border-borderDark hover:border-emeraldToken/40 text-slate-300 hover:text-white transition-all text-left group">
+<span class="text-emeraldToken font-mono text-sm group-hover:scale-125 transition-transform">+</span>
+<span>New Task</span>
+</button>
+<button class="flex items-center gap-1.5 px-2.5 py-2 rounded-xl bg-obsidian hover:bg-[#1E222D] border border-borderDark hover:border-skyToken/40 text-slate-300 hover:text-white transition-all text-left group">
+<span class="text-skyToken font-mono text-sm group-hover:scale-125 transition-transform">+</span>
+<span>New Course</span>
+</button>
+<button class="flex items-center gap-1.5 px-2.5 py-2 rounded-xl bg-obsidian hover:bg-[#1E222D] border border-borderDark hover:border-crimsonToken/40 text-slate-300 hover:text-white transition-all text-left group">
+<span class="text-crimsonToken font-mono text-sm group-hover:scale-125 transition-transform">+</span>
+<span>Assignment</span>
+</button>
+<button class="flex items-center gap-1.5 px-2.5 py-2 rounded-xl bg-obsidian hover:bg-[#1E222D] border border-borderDark hover:border-amberToken/40 text-slate-300 hover:text-white transition-all text-left group">
+<span class="text-amberToken font-mono text-sm group-hover:scale-125 transition-transform">+</span>
+<span>New Exam</span>
+</button>
+<button class="flex items-center gap-1.5 px-2.5 py-2 rounded-xl bg-obsidian hover:bg-[#1E222D] border border-borderDark hover:border-emeraldToken/40 text-slate-300 hover:text-white transition-all text-left group">
+<span class="text-emeraldToken font-mono text-sm group-hover:scale-125 transition-transform">+</span>
+<span>New Note</span>
+</button>
+<button class="flex items-center gap-1.5 px-2.5 py-2 rounded-xl bg-obsidian hover:bg-[#1E222D] border border-borderDark hover:border-skyToken/40 text-slate-300 hover:text-white transition-all text-left group">
+<span class="text-skyToken font-mono text-sm group-hover:scale-125 transition-transform">+</span>
+<span>Resource</span>
+</button>
+</div>
+</div>
+<!-- Widget 4: Quarterly Objective Status -->
+<div class="rounded-2xl border border-borderDark bg-surface p-4 shadow-lg space-y-3" data-purpose="quarterly-tracker">
+<div class="flex items-center justify-between">
+<h2 class="text-xs font-mono font-semibold uppercase text-slate-400">Quarterly Milestones</h2>
+<span class="text-[10px] font-mono text-emeraldToken">Q1: 30% Closed</span>
+</div>
+<div class="space-y-2.5 font-mono text-xs">
+<div>
+<div class="flex justify-between text-[11px] text-slate-300 mb-1">
+<span>Q1 Sprint</span>
+<span class="text-emeraldToken">30% Finished</span>
+</div>
+<div class="w-full h-1.5 bg-obsidian rounded-full overflow-hidden border border-borderDark/40">
+<div class="h-full bg-emeraldToken rounded-full" style="width: 30%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-[11px] text-slate-400 mb-1">
+<span>Q2 Deep Focus</span>
+<span class="text-slate-500">0% Upcoming</span>
+</div>
+<div class="w-full h-1.5 bg-obsidian rounded-full overflow-hidden border border-borderDark/40">
+<div class="h-full bg-slate-700 rounded-full" style="width: 0%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-[11px] text-slate-400 mb-1">
+<span>Q3 Summer Research</span>
+<span class="text-slate-500">0%</span>
+</div>
+<div class="w-full h-1.5 bg-obsidian rounded-full overflow-hidden border border-borderDark/40">
+<div class="h-full bg-slate-700 rounded-full" style="width: 0%"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-[11px] text-slate-400 mb-1">
+<span>Q4 Thesis Defense</span>
+<span class="text-slate-500">0%</span>
+</div>
+<div class="w-full h-1.5 bg-obsidian rounded-full overflow-hidden border border-borderDark/40">
+<div class="h-full bg-slate-700 rounded-full" style="width: 0%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Widget 5: Categorized Navigation Hubs -->
+<nav aria-label="Operating Hubs" class="rounded-2xl border border-borderDark bg-surface p-4 shadow-lg space-y-4">
+<!-- Hub Section 1 -->
+<div>
+<h3 class="text-[11px] font-mono uppercase tracking-wider text-slate-500 mb-2 flex items-center justify-between">
+<span>Academy-Life</span>
+<span class="text-[9px] text-slate-600">HUB 01</span>
+</h3>
+<ul class="space-y-1 text-xs">
+<li>
+<a class="flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-slate-300 hover:text-emeraldToken hover:bg-obsidian transition-colors" href="#timetable">
+<svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                  Time Tracker &amp; Logs
+                </a>
+</li>
+<li>
+<a class="flex items-center justify-between px-2.5 py-1.5 rounded-lg text-slate-300 hover:text-emeraldToken hover:bg-obsidian transition-colors" href="#tasks">
+<div class="flex items-center gap-2">
+<svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                    Task Manager
+                  </div>
+<span class="text-[10px] font-mono text-emeraldToken bg-emeraldToken/10 px-1.5 rounded">8 Due</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-slate-300 hover:text-emeraldToken hover:bg-obsidian transition-colors" href="#courses">
+<svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                  Active Courses &amp; Syllabus
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-slate-300 hover:text-emeraldToken hover:bg-obsidian transition-colors" href="#timetable">
+<svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                  Weekly Class Timetable
+                </a>
+</li>
+</ul>
+</div>
+<!-- Hub Section 2 -->
+<div class="pt-2 border-t border-borderDark/60">
+<h3 class="text-[11px] font-mono uppercase tracking-wider text-slate-500 mb-2 flex items-center justify-between">
+<span>Personal-Life</span>
+<span class="text-[9px] text-slate-600">HUB 02</span>
+</h3>
+<ul class="space-y-1 text-xs">
+<li>
+<a class="flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-slate-300 hover:text-emeraldToken hover:bg-obsidian transition-colors" href="#wheel-of-life">
+<svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                  Wheel of Life &amp; Equilibrium
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-slate-300 hover:text-emeraldToken hover:bg-obsidian transition-colors" href="#todos">
+<svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                  Daily Habit Checklist
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-slate-300 hover:text-emeraldToken hover:bg-obsidian transition-colors" href="#journal">
+<svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                  Daily Journal &amp; Reflection
+                </a>
+</li>
+<li>
+<a class="flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-slate-300 hover:text-emeraldToken hover:bg-obsidian transition-colors" href="#finance">
+<svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                  Student Finance Ledger
+                </a>
+</li>
+</ul>
+</div>
+<!-- Hub Section 3 -->
+<div class="pt-2 border-t border-borderDark/60">
+<h3 class="text-[11px] font-mono uppercase tracking-wider text-slate-500 mb-2 flex items-center justify-between">
+<span>Future-Plan &amp; Vault</span>
+<span class="text-[9px] text-slate-600">HUB 03</span>
+</h3>
+<ul class="space-y-1 text-xs">
+<li>
+<a class="flex items-center justify-between px-2.5 py-1.5 rounded-lg text-slate-300 hover:text-emeraldToken hover:bg-obsidian transition-colors" href="#career">
+<span>Internship Hunter</span>
+<span class="text-[10px] font-mono text-crimsonToken bg-crimsonToken/10 px-1.5 rounded">Summer '26</span>
+</a>
+</li>
+<li>
+<a class="flex items-center justify-between px-2.5 py-1.5 rounded-lg text-slate-300 hover:text-emeraldToken hover:bg-obsidian transition-colors" href="#vault">
+<span>Master Syllabus &amp; Vault</span>
+<span class="text-[10px] font-mono text-slate-500">48 items</span>
+</a>
+</li>
+</ul>
+</div>
+</nav>
+</aside>
+<!-- END: LeftRailSidebar -->
+<!-- BEGIN: MainContentCanvas -->
+<main class="lg:col-span-9 space-y-6">
+<!-- SECTION 1: Active Courses Grid -->
+<section class="space-y-4" data-purpose="active-courses" id="courses">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2.5">
+<span class="w-2.5 h-2.5 rounded-sm bg-skyToken"></span>
+<h2 class="text-base font-bold text-white tracking-wide">Active Courses Enrolled (5)</h2>
+<span class="text-xs font-mono text-slate-400 bg-surface px-2 py-0.5 rounded border border-borderDark">18.0 Credits Total</span>
+</div>
+<button class="text-xs font-mono px-3 py-1.5 rounded-lg bg-surface hover:bg-borderDark/50 text-slate-300 hover:text-white border border-borderDark flex items-center gap-1.5 transition">
+<span class="text-emeraldToken font-bold">+</span>
+<span>New course page</span>
+</button>
+</div>
+<!-- 5 Course Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+<!-- Card 1 -->
+<div class="rounded-2xl border border-borderDark bg-surface p-4 hover:border-skyToken/50 transition-all flex flex-col justify-between group">
+<div>
+<div class="flex items-start justify-between gap-2 mb-2">
+<div class="w-8 h-8 rounded-lg bg-skyToken/10 border border-skyToken/20 flex items-center justify-center text-skyToken font-mono text-xs font-bold">
+                    01
+                  </div>
+<span class="text-[11px] font-mono px-2 py-0.5 rounded bg-skyToken/10 text-skyToken border border-skyToken/20">CS 101</span>
+</div>
+<h3 class="font-semibold text-white group-hover:text-skyToken transition-colors text-sm">Intro to Computing &amp; UNIX</h3>
+<p class="text-xs text-slate-400 mt-1 line-clamp-1">Prof. A. Vance • Hall 101</p>
+</div>
+<div class="mt-4 pt-3 border-t border-borderDark/70">
+<div class="flex justify-between text-xs font-mono mb-1.5">
+<span class="text-slate-400">Progress</span>
+<span class="text-skyToken font-semibold">72%</span>
+</div>
+<div class="w-full h-1.5 bg-obsidian rounded-full overflow-hidden border border-borderDark">
+<div class="h-full bg-skyToken rounded-full" style="width: 72%"></div>
+</div>
+<div class="mt-2.5 flex items-center justify-between text-[11px] font-mono">
+<span class="text-slate-400">Exams:</span>
+<span class="text-slate-300">1 Upcoming Quiz</span>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="rounded-2xl border border-borderDark bg-surface p-4 hover:border-skyToken/50 transition-all flex flex-col justify-between group">
+<div>
+<div class="flex items-start justify-between gap-2 mb-2">
+<div class="w-8 h-8 rounded-lg bg-skyToken/10 border border-skyToken/20 flex items-center justify-center text-skyToken font-mono text-xs font-bold">
+                    02
+                  </div>
+<span class="text-[11px] font-mono px-2 py-0.5 rounded bg-skyToken/10 text-skyToken border border-skyToken/20">CS 204</span>
+</div>
+<h3 class="font-semibold text-white group-hover:text-skyToken transition-colors text-sm">Object Oriented Design &amp; C++</h3>
+<p class="text-xs text-slate-400 mt-1 line-clamp-1">Dr. Thorne • Turing Lab A</p>
+</div>
+<div class="mt-4 pt-3 border-t border-borderDark/70">
+<div class="flex justify-between text-xs font-mono mb-1.5">
+<span class="text-slate-400">Progress</span>
+<span class="text-emeraldToken font-semibold">85%</span>
+</div>
+<div class="w-full h-1.5 bg-obsidian rounded-full overflow-hidden border border-borderDark">
+<div class="h-full bg-emeraldToken rounded-full" style="width: 85%"></div>
+</div>
+<div class="mt-2.5 flex items-center justify-between text-[11px] font-mono">
+<span class="text-slate-400">Exams:</span>
+<span class="text-emeraldToken">0 Upcoming</span>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="rounded-2xl border border-borderDark bg-surface p-4 hover:border-crimsonToken/50 transition-all flex flex-col justify-between group">
+<div>
+<div class="flex items-start justify-between gap-2 mb-2">
+<div class="w-8 h-8 rounded-lg bg-crimsonToken/10 border border-crimsonToken/20 flex items-center justify-center text-crimsonToken font-mono text-xs font-bold">
+                    03
+                  </div>
+<span class="text-[11px] font-mono px-2 py-0.5 rounded bg-skyToken/10 text-skyToken border border-skyToken/20">CS 301</span>
+</div>
+<h3 class="font-semibold text-white group-hover:text-crimsonToken transition-colors text-sm">Design &amp; Analysis of Algorithms</h3>
+<p class="text-xs text-slate-400 mt-1 line-clamp-1">Prof. Mercer • Room 402</p>
+</div>
+<div class="mt-4 pt-3 border-t border-borderDark/70">
+<div class="flex justify-between text-xs font-mono mb-1.5">
+<span class="text-slate-400">Progress</span>
+<span class="text-amberToken font-semibold">64%</span>
+</div>
+<div class="w-full h-1.5 bg-obsidian rounded-full overflow-hidden border border-borderDark">
+<div class="h-full bg-amberToken rounded-full" style="width: 64%"></div>
+</div>
+<div class="mt-2.5 flex items-center justify-between text-[11px] font-mono">
+<span class="text-slate-400">Exams:</span>
+<span class="text-crimsonToken font-semibold bg-crimsonToken/10 px-1.5 py-0.5 rounded border border-crimsonToken/20 glow-crimson">Midterm in 4d</span>
+</div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="rounded-2xl border border-borderDark bg-surface p-4 hover:border-skyToken/50 transition-all flex flex-col justify-between group">
+<div>
+<div class="flex items-start justify-between gap-2 mb-2">
+<div class="w-8 h-8 rounded-lg bg-skyToken/10 border border-skyToken/20 flex items-center justify-center text-skyToken font-mono text-xs font-bold">
+                    04
+                  </div>
+<span class="text-[11px] font-mono px-2 py-0.5 rounded bg-skyToken/10 text-skyToken border border-skyToken/20">CS 310</span>
+</div>
+<h3 class="font-semibold text-white group-hover:text-skyToken transition-colors text-sm">Software Engineering Lab &amp; CI/CD</h3>
+<p class="text-xs text-slate-400 mt-1 line-clamp-1">Prof. Lindqvist • Lab 3</p>
+</div>
+<div class="mt-4 pt-3 border-t border-borderDark/70">
+<div class="flex justify-between text-xs font-mono mb-1.5">
+<span class="text-slate-400">Progress</span>
+<span class="text-emeraldToken font-semibold">90%</span>
+</div>
+<div class="w-full h-1.5 bg-obsidian rounded-full overflow-hidden border border-borderDark">
+<div class="h-full bg-emeraldToken rounded-full" style="width: 90%"></div>
+</div>
+<div class="mt-2.5 flex items-center justify-between text-[11px] font-mono">
+<span class="text-slate-400">Exams:</span>
+<span class="text-emeraldToken">0 Upcoming</span>
+</div>
+</div>
+</div>
+<!-- Card 5 -->
+<div class="rounded-2xl border border-borderDark bg-surface p-4 hover:border-amberToken/50 transition-all flex flex-col justify-between group md:col-span-2 xl:col-span-1">
+<div>
+<div class="flex items-start justify-between gap-2 mb-2">
+<div class="w-8 h-8 rounded-lg bg-amberToken/10 border border-amberToken/20 flex items-center justify-center text-amberToken font-mono text-xs font-bold">
+                    05
+                  </div>
+<span class="text-[11px] font-mono px-2 py-0.5 rounded bg-skyToken/10 text-skyToken border border-skyToken/20">CS 201</span>
+</div>
+<h3 class="font-semibold text-white group-hover:text-amberToken transition-colors text-sm">Advanced Data Structures &amp; Trees</h3>
+<p class="text-xs text-slate-400 mt-1 line-clamp-1">Dr. Kowalski • Hall 2B</p>
+</div>
+<div class="mt-4 pt-3 border-t border-borderDark/70">
+<div class="flex justify-between text-xs font-mono mb-1.5">
+<span class="text-slate-400">Progress</span>
+<span class="text-skyToken font-semibold">78%</span>
+</div>
+<div class="w-full h-1.5 bg-obsidian rounded-full overflow-hidden border border-borderDark">
+<div class="h-full bg-skyToken rounded-full" style="width: 78%"></div>
+</div>
+<div class="mt-2.5 flex items-center justify-between text-[11px] font-mono">
+<span class="text-slate-400">Exams:</span>
+<span class="text-amberToken bg-amberToken/10 px-1.5 py-0.5 rounded border border-amberToken/20">1 Quiz (Thu)</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 2: 4-Hub Visual Workspace Gateways -->
+<section class="grid grid-cols-2 sm:grid-cols-4 gap-4" data-purpose="workspace-hubs">
+<!-- Hub 1: Assignments -->
+<a class="rounded-2xl border border-borderDark bg-surface p-4 hover:border-crimsonToken/40 transition-all group flex flex-col justify-between" href="#tasks">
+<div class="flex items-center justify-between">
+<span class="p-2.5 rounded-xl bg-crimsonToken/10 text-crimsonToken border border-crimsonToken/20">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</span>
+<span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-crimsonToken/15 text-crimsonToken border border-crimsonToken/30 font-semibold">3 DUE SOON</span>
+</div>
+<div class="mt-4">
+<h3 class="font-bold text-white group-hover:text-crimsonToken text-sm transition">Assignments</h3>
+<p class="text-xs font-mono text-slate-400 mt-0.5">14 Active • 3 This Wk</p>
+</div>
+</a>
+<!-- Hub 2: Resources -->
+<a class="rounded-2xl border border-borderDark bg-surface p-4 hover:border-skyToken/40 transition-all group flex flex-col justify-between" href="#vault">
+<div class="flex items-center justify-between">
+<span class="p-2.5 rounded-xl bg-skyToken/10 text-skyToken border border-skyToken/20">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M5 19a2 2 0 01-2-2V7a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1M5 19h14a2 2 0 002-2v-5a2 2 0 00-2-2H9a2 2 0 00-2 2v5a2 2 0 01-2 2z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</span>
+<span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-skyToken/15 text-skyToken border border-skyToken/30">PAPERS</span>
+</div>
+<div class="mt-4">
+<h3 class="font-bold text-white group-hover:text-skyToken text-sm transition">Resources</h3>
+<p class="text-xs font-mono text-slate-400 mt-0.5">48 Papers &amp; Repos</p>
+</div>
+</a>
+<!-- Hub 3: Notes -->
+<a class="rounded-2xl border border-borderDark bg-surface p-4 hover:border-emeraldToken/40 transition-all group flex flex-col justify-between" href="#journal">
+<div class="flex items-center justify-between">
+<span class="p-2.5 rounded-xl bg-emeraldToken/10 text-emeraldToken border border-emeraldToken/20">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</span>
+<span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emeraldToken/15 text-emeraldToken border border-emeraldToken/30">SYNCED</span>
+</div>
+<div class="mt-4">
+<h3 class="font-bold text-white group-hover:text-emeraldToken text-sm transition">Notes</h3>
+<p class="text-xs font-mono text-slate-400 mt-0.5">112 Markdown Docs</p>
+</div>
+</a>
+<!-- Hub 4: Exams & Midterms -->
+<a class="rounded-2xl border border-borderDark bg-surface p-4 hover:border-amberToken/40 transition-all group flex flex-col justify-between" href="#courses">
+<div class="flex items-center justify-between">
+<span class="p-2.5 rounded-xl bg-amberToken/10 text-amberToken border border-amberToken/20">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</span>
+<span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-amberToken/15 text-amberToken border border-amberToken/30">COUNTDOWN</span>
+</div>
+<div class="mt-4">
+<h3 class="font-bold text-white group-hover:text-amberToken text-sm transition">Exams &amp; Tests</h3>
+<p class="text-xs font-mono text-slate-400 mt-0.5">2 Locks Approaching</p>
+</div>
+</a>
+</section>
+<!-- SECTION 3: Middle Widgets Row (Radar Wheel of Life + Mini-To-Dos & Reminders) -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+<!-- Column A: Wheel of Life Radar Chart (5 cols) -->
+<div class="lg:col-span-5 rounded-2xl border border-borderDark bg-surface p-5 shadow-lg flex flex-col justify-between" data-purpose="wheel-of-life-widget" id="wheel-of-life">
+<div class="flex items-center justify-between border-b border-borderDark pb-3">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-emeraldToken"></span>
+<h3 class="text-xs font-mono font-bold uppercase tracking-wider text-white">Wheel of Life Radar</h3>
+</div>
+<span class="text-[11px] font-mono text-emeraldToken bg-emeraldToken/10 px-2 py-0.5 rounded border border-emeraldToken/20 font-semibold">Equilibrium: 71%</span>
+</div>
+<!-- Radar SVG Illustration -->
+<div class="my-4 flex justify-center items-center relative">
+<svg class="w-64 h-64 overflow-visible" viewbox="0 0 240 240">
+<!-- Concentric Hexagons (Polygons) for Grid Levels -->
+<polygon fill="none" points="120,40 189.28,80 189.28,160 120,200 50.72,160 50.72,80" stroke="#232734" stroke-dasharray="2,2" stroke-width="1"></polygon>
+<polygon fill="none" points="120,60 171.96,90 171.96,150 120,180 68.04,150 68.04,90" stroke="#232734" stroke-width="1"></polygon>
+<polygon fill="none" points="120,80 154.64,100 154.64,140 120,160 85.36,140 85.36,100" stroke="#232734" stroke-width="1"></polygon>
+<!-- Axis Spokes -->
+<line stroke="#232734" stroke-width="1" x1="120" x2="120" y1="120" y2="40"></line>
+<line stroke="#232734" stroke-width="1" x1="120" x2="189.28" y1="120" y2="80"></line>
+<line stroke="#232734" stroke-width="1" x1="120" x2="189.28" y1="120" y2="160"></line>
+<line stroke="#232734" stroke-width="1" x1="120" x2="120" y1="120" y2="200"></line>
+<line stroke="#232734" stroke-width="1" x1="120" x2="50.72" y1="120" y2="160"></line>
+<line stroke="#232734" stroke-width="1" x1="120" x2="50.72" y1="120" y2="80"></line>
+<!-- Values polygon: Career:85%, Health:70%, Social:60%, Physical:75%, Money:55%, Family:80% -->
+<!-- Center=(120,120), Max Radius = 80 -->
+<!-- P0 Career (angle -90): r=68 -> (120, 52) -->
+<!-- P1 Health (angle -30): r=56 -> (120 + 56*cos(-30)=168.5, 120 + 56*sin(-30)=92) -->
+<!-- P2 Social (angle 30): r=48 -> (120 + 48*cos(30)=161.5, 120 + 48*sin(30)=144) -->
+<!-- P3 Physical (angle 90): r=60 -> (120, 180) -->
+<!-- P4 Money (angle 150): r=44 -> (120 + 44*cos(150)=81.9, 120 + 44*sin(150)=142) -->
+<!-- P5 Family (angle 210): r=64 -> (120 + 64*cos(210)=64.5, 120 + 64*sin(210)=88) -->
+<polygon class="filter drop-shadow-[0_0_8px_rgba(16,185,129,0.5)]" fill="#10B981" fill-opacity="0.22" points="120,52 168.5,92 161.5,144 120,180 81.9,142 64.5,88" stroke="#10B981" stroke-width="2"></polygon>
+<!-- Point Markers -->
+<circle cx="120" cy="52" fill="#10B981" r="3.5"></circle>
+<circle cx="168.5" cy="92" fill="#10B981" r="3.5"></circle>
+<circle cx="161.5" cy="144" fill="#10B981" r="3.5"></circle>
+<circle cx="120" cy="180" fill="#10B981" r="3.5"></circle>
+<circle cx="81.9" cy="142" fill="#10B981" r="3.5"></circle>
+<circle cx="64.5" cy="88" fill="#10B981" r="3.5"></circle>
+<!-- Text Labels -->
+<text fill="#94A3B8" font-family="monospace" font-size="9" text-anchor="middle" x="120" y="32">CAREER (85%)</text>
+<text fill="#94A3B8" font-family="monospace" font-size="9" text-anchor="start" x="200" y="80">HEALTH (70%)</text>
+<text fill="#94A3B8" font-family="monospace" font-size="9" text-anchor="start" x="200" y="165">SOCIAL (60%)</text>
+<text fill="#94A3B8" font-family="monospace" font-size="9" text-anchor="middle" x="120" y="215">PHYSICAL (75%)</text>
+<text fill="#94A3B8" font-family="monospace" font-size="9" text-anchor="end" x="40" y="165">MONEY (55%)</text>
+<text fill="#94A3B8" font-family="monospace" font-size="9" text-anchor="end" x="40" y="80">FAMILY (80%)</text>
+</svg>
+</div>
+<div class="pt-3 border-t border-borderDark flex items-center justify-between text-[11px] font-mono text-slate-400">
+<span>Powered by ChartBase</span>
+<span class="text-emeraldToken hover:underline cursor-pointer">Recalibrate Axes →</span>
+</div>
+</div>
+<!-- Column B: Mini-To-Do's & Key Reminders (7 cols) -->
+<div class="lg:col-span-7 rounded-2xl border border-borderDark bg-surface p-5 shadow-lg flex flex-col justify-between" data-purpose="daily-todos-and-reminders">
+<div>
+<div class="flex items-center justify-between border-b border-borderDark pb-3 mb-4">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-emeraldToken"></span>
+<h3 class="text-xs font-mono font-bold uppercase tracking-wider text-white">Daily Fast Checklist</h3>
+</div>
+<span class="text-xs font-mono text-slate-400">1 of 4 completed</span>
+</div>
+<!-- Fast Checklist Items -->
+<div class="space-y-2.5">
+<label class="flex items-center gap-3 p-2.5 rounded-xl bg-obsidian border border-borderDark hover:border-borderDark/80 cursor-pointer transition">
+<input checked="" class="rounded border-borderDark bg-surface text-emeraldToken focus:ring-0 focus:ring-offset-0 w-4 h-4" type="checkbox"/>
+<span class="text-xs text-slate-400 line-through">Push Git commits for SE Lab 3 CI/CD</span>
+</label>
+<label class="flex items-center justify-between p-2.5 rounded-xl bg-obsidian border border-borderDark hover:border-emeraldToken/40 cursor-pointer transition">
+<div class="flex items-center gap-3">
+<input class="rounded border-borderDark bg-surface text-emeraldToken focus:ring-0 focus:ring-offset-0 w-4 h-4" type="checkbox"/>
+<span class="text-xs text-slate-200">LeetCode #133 Graph Clone</span>
+</div>
+<span class="text-[10px] font-mono text-crimsonToken bg-crimsonToken/10 px-2 py-0.5 rounded border border-crimsonToken/20">Due 18:00</span>
+</label>
+<label class="flex items-center justify-between p-2.5 rounded-xl bg-obsidian border border-borderDark hover:border-emeraldToken/40 cursor-pointer transition">
+<div class="flex items-center gap-3">
+<input class="rounded border-borderDark bg-surface text-emeraldToken focus:ring-0 focus:ring-offset-0 w-4 h-4" type="checkbox"/>
+<span class="text-xs text-slate-200">Read 15 pages of Distributed Systems (Ch 4)</span>
+</div>
+<span class="text-[10px] font-mono text-skyToken bg-skyToken/10 px-2 py-0.5 rounded">Academic</span>
+</label>
+<label class="flex items-center justify-between p-2.5 rounded-xl bg-obsidian border border-borderDark hover:border-emeraldToken/40 cursor-pointer transition">
+<div class="flex items-center gap-3">
+<input class="rounded border-borderDark bg-surface text-emeraldToken focus:ring-0 focus:ring-offset-0 w-4 h-4" type="checkbox"/>
+<span class="text-xs text-slate-200">Water botanical terrarium &amp; hydrate 1000ml</span>
+</div>
+<span class="text-[10px] font-mono text-emeraldToken bg-emeraldToken/10 px-2 py-0.5 rounded">Vitality</span>
+</label>
+</div>
+</div>
+<!-- Critical Events & Notice Stream Card -->
+<div class="mt-4 pt-3 border-t border-borderDark">
+<span class="text-[10px] font-mono uppercase tracking-wider text-slate-400 block mb-2">Imminent Radar Flags</span>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+<div class="p-2.5 rounded-xl bg-obsidian border border-amberToken/30 flex items-center gap-2.5">
+<span class="w-2 h-2 rounded-full bg-amberToken animate-pulse"></span>
+<div>
+<div class="text-slate-200 font-semibold">May 5: Discrete Math Quiz II</div>
+<div class="text-[11px] font-mono text-slate-400">Chapters 7 &amp; 8 Combinatorics</div>
+</div>
+</div>
+<div class="p-2.5 rounded-xl bg-obsidian border border-skyToken/30 flex items-center gap-2.5">
+<span class="w-2 h-2 rounded-full bg-skyToken"></span>
+<div>
+<div class="text-slate-200 font-semibold">May 8: Google Internship</div>
+<div class="text-[11px] font-mono text-slate-400">SWE Early Career Portal Opens</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 4: Focus Timer & Master Task Table -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+<!-- Column A: Pomodoro Focus Timer Widget (4 cols) -->
+<div class="lg:col-span-4 rounded-2xl border border-borderDark bg-surface p-5 shadow-lg space-y-4" data-purpose="pomodoro-timer">
+<div class="flex items-center justify-between border-b border-borderDark pb-3">
+<h3 class="text-xs font-mono font-bold uppercase tracking-wider text-white flex items-center gap-1.5">
+<svg class="w-4 h-4 text-emeraldToken" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                Focus Session
+              </h3>
+<button aria-label="Pomodoro settings" class="text-slate-400 hover:text-white transition" id="pomo-settings-btn">
+<svg class="w-4 h-4" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+</div>
+<!-- Mode Selector Tabs -->
+<div class="grid grid-cols-3 gap-1 p-1 bg-obsidian rounded-xl border border-borderDark text-[11px] font-mono">
+<button class="py-1.5 rounded-lg bg-emeraldToken text-black font-semibold text-center transition" id="mode-pomo">Pomodoro</button>
+<button class="py-1.5 rounded-lg text-slate-400 hover:text-white text-center transition" id="mode-short">Short</button>
+<button class="py-1.5 rounded-lg text-slate-400 hover:text-white text-center transition" id="mode-long">Long</button>
+</div>
+<!-- Monospace Timer Output -->
+<div class="py-6 flex flex-col items-center justify-center bg-obsidian rounded-2xl border border-borderDark/80 relative">
+<div class="font-mono text-4xl lg:text-5xl font-black tracking-widest text-emeraldToken filter drop-shadow-[0_0_12px_rgba(16,185,129,0.3)]" id="pomo-display">
+                25:00
+              </div>
+<div class="text-[11px] font-mono text-slate-500 mt-2 flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-emeraldToken"></span>
+                Standard Deep Focus Interval
+              </div>
+</div>
+<!-- Control Buttons -->
+<div class="grid grid-cols-2 gap-2">
+<button class="w-full py-2.5 rounded-xl bg-emeraldToken hover:bg-emerald-400 text-black font-bold text-xs uppercase tracking-wider transition glow-pill-emerald" id="pomo-toggle-btn">
+                Start Focus
+              </button>
+<button class="w-full py-2.5 rounded-xl bg-obsidian hover:bg-[#1E222D] border border-borderDark text-slate-300 font-mono text-xs transition" id="pomo-reset-btn">
+                Reset
+              </button>
+</div>
+<!-- Session Streak Indicator -->
+<div class="pt-2 border-t border-borderDark/80 text-[11px] font-mono text-slate-400 flex items-center justify-between">
+<span class="flex items-center gap-1 text-slate-300">
+<span>🔥</span> 4 Blocks Finished
+              </span>
+<span class="text-emeraldToken">100 min protected</span>
+</div>
+</div>
+<!-- Column B: Task Manager Table (8 cols) -->
+<div class="lg:col-span-8 rounded-2xl border border-borderDark bg-surface p-5 shadow-lg space-y-4" data-purpose="task-manager-table" id="tasks">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-borderDark pb-3">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-skyToken"></span>
+<h3 class="text-xs font-mono font-bold uppercase tracking-wider text-white">Active Task Manager</h3>
+</div>
+<!-- Filter Tabs -->
+<div class="flex items-center gap-1 text-xs font-mono">
+<button class="px-2.5 py-1 rounded-md bg-emeraldToken/10 text-emeraldToken border border-emeraldToken/30 font-semibold">This Week (Active)</button>
+<button class="px-2.5 py-1 rounded-md text-slate-400 hover:text-slate-200">Unrelated</button>
+<button class="px-2.5 py-1 rounded-md text-slate-400 hover:text-slate-200">Priority Board</button>
+</div>
+</div>
+<!-- Responsive Table Wrapper -->
+<div class="overflow-x-auto">
+<table class="w-full text-left text-xs font-sans">
+<thead>
+<tr class="border-b border-borderDark text-slate-400 font-mono text-[11px] uppercase tracking-wider">
+<th class="pb-2.5 font-medium pl-1">Task Item</th>
+<th class="pb-2.5 font-medium px-2">Course</th>
+<th class="pb-2.5 font-medium px-2">Priority</th>
+<th class="pb-2.5 font-medium px-2">Status</th>
+<th class="pb-2.5 font-medium pr-1 text-right">Deadline</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-borderDark/60">
+<!-- Row 1 -->
+<tr class="hover:bg-obsidian/40 transition">
+<td class="py-3 pl-1 font-medium text-slate-200 flex items-center gap-2.5">
+<input class="rounded border-borderDark bg-surface text-emeraldToken focus:ring-0 focus:ring-offset-0 w-3.5 h-3.5" type="checkbox"/>
+<span>Implement Red-Black Tree Deletion</span>
+</td>
+<td class="py-3 px-2 font-mono text-slate-400 text-[11px]">Data Structure</td>
+<td class="py-3 px-2">
+<span class="px-2 py-0.5 rounded text-[10px] font-mono uppercase bg-crimsonToken/10 text-crimsonToken border border-crimsonToken/20 font-bold">High</span>
+</td>
+<td class="py-3 px-2">
+<span class="px-2 py-0.5 rounded text-[10px] font-mono bg-amberToken/10 text-amberToken border border-amberToken/20">In Progress</span>
+</td>
+<td class="py-3 pr-1 text-right font-mono text-[11px] text-amberToken">Tomorrow, 23:59</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-obsidian/40 transition">
+<td class="py-3 pl-1 font-medium text-slate-400 line-through flex items-center gap-2.5">
+<input checked="" class="rounded border-borderDark bg-surface text-emeraldToken focus:ring-0 focus:ring-offset-0 w-3.5 h-3.5" type="checkbox"/>
+<span>Dockerize Node Microservices</span>
+</td>
+<td class="py-3 px-2 font-mono text-slate-500 text-[11px]">Software Eng</td>
+<td class="py-3 px-2">
+<span class="px-2 py-0.5 rounded text-[10px] font-mono uppercase bg-skyToken/10 text-skyToken border border-skyToken/20">Medium</span>
+</td>
+<td class="py-3 px-2">
+<span class="px-2 py-0.5 rounded text-[10px] font-mono bg-emeraldToken/10 text-emeraldToken border border-emeraldToken/20">Done</span>
+</td>
+<td class="py-3 pr-1 text-right font-mono text-[11px] text-slate-500">May 2</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-obsidian/40 transition">
+<td class="py-3 pl-1 font-medium text-slate-200 flex items-center gap-2.5">
+<input class="rounded border-borderDark bg-surface text-emeraldToken focus:ring-0 focus:ring-offset-0 w-3.5 h-3.5" type="checkbox"/>
+<span>Graph Theory BFS/DFS Proofs</span>
+</td>
+<td class="py-3 px-2 font-mono text-slate-400 text-[11px]">Algorithm</td>
+<td class="py-3 px-2">
+<span class="px-2 py-0.5 rounded text-[10px] font-mono uppercase bg-crimsonToken/10 text-crimsonToken border border-crimsonToken/20 font-bold">High</span>
+</td>
+<td class="py-3 px-2">
+<span class="px-2 py-0.5 rounded text-[10px] font-mono bg-slate-800 text-slate-400 border border-slate-700">To Do</span>
+</td>
+<td class="py-3 pr-1 text-right font-mono text-[11px] text-slate-300">May 5</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-obsidian/40 transition">
+<td class="py-3 pl-1 font-medium text-slate-200 flex items-center gap-2.5">
+<input class="rounded border-borderDark bg-surface text-emeraldToken focus:ring-0 focus:ring-offset-0 w-3.5 h-3.5" type="checkbox"/>
+<span>Database Normalization 3NF Review</span>
+</td>
+<td class="py-3 px-2 font-mono text-slate-400 text-[11px]">Database Systems</td>
+<td class="py-3 px-2">
+<span class="px-2 py-0.5 rounded text-[10px] font-mono uppercase bg-slate-800 text-slate-400 border border-slate-700">Low</span>
+</td>
+<td class="py-3 px-2">
+<span class="px-2 py-0.5 rounded text-[10px] font-mono bg-slate-800 text-slate-400 border border-slate-700">To Do</span>
+</td>
+<td class="py-3 pr-1 text-right font-mono text-[11px] text-slate-400">May 7</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-obsidian/40 transition">
+<td class="py-3 pl-1 font-medium text-slate-400 line-through flex items-center gap-2.5">
+<input checked="" class="rounded border-borderDark bg-surface text-emeraldToken focus:ring-0 focus:ring-offset-0 w-3.5 h-3.5" type="checkbox"/>
+<span>Set up CI/CD GitHub Action pipeline</span>
+</td>
+<td class="py-3 px-2 font-mono text-slate-500 text-[11px]">Software Eng</td>
+<td class="py-3 px-2">
+<span class="px-2 py-0.5 rounded text-[10px] font-mono uppercase bg-crimsonToken/10 text-crimsonToken border border-crimsonToken/20 font-bold">High</span>
+</td>
+<td class="py-3 px-2">
+<span class="px-2 py-0.5 rounded text-[10px] font-mono bg-emeraldToken/10 text-emeraldToken border border-emeraldToken/20">Done</span>
+</td>
+<td class="py-3 pr-1 text-right font-mono text-[11px] text-slate-500">Yesterday</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Footer summary -->
+<div class="pt-2 flex items-center justify-between text-xs font-mono text-slate-400 border-t border-borderDark/60">
+<span>Showing 5 of 22 tactical tasks</span>
+<button class="text-emeraldToken hover:underline">+ Add new row</button>
+</div>
+</div>
+</section>
+<!-- SECTION 5: Weekly Class Routine Timetable Matrix -->
+<section class="rounded-2xl border border-borderDark bg-surface p-5 shadow-lg space-y-4" data-purpose="timetable-matrix" id="timetable">
+<div class="flex items-center justify-between border-b border-borderDark pb-3">
+<div>
+<h2 class="text-sm font-bold text-white tracking-wide">Weekly Class Routine Matrix (8:00 - 15:30)</h2>
+<p class="text-xs text-slate-400 font-mono">Academic Term 2026.1 • On-Campus Schedule</p>
+</div>
+<div class="flex items-center gap-2 font-mono text-xs">
+<span class="px-2 py-0.5 rounded bg-emeraldToken/10 text-emeraldToken border border-emeraldToken/20">Semester Synchronized</span>
+</div>
+</div>
+<!-- Schedule Grid (Mon - Fri) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 text-xs">
+<!-- Monday Column -->
+<div class="rounded-xl border border-borderDark bg-obsidian/70 p-3 space-y-2.5">
+<div class="font-mono text-xs font-bold text-slate-300 pb-1.5 border-b border-borderDark flex justify-between items-center">
+<span>MONDAY</span>
+<span class="text-[10px] text-slate-500 font-normal">2 Sessions</span>
+</div>
+<!-- Block 1 -->
+<div class="p-2.5 rounded-lg bg-surface border-l-4 border-skyToken border-y border-r border-borderDark space-y-1">
+<div class="flex justify-between font-mono text-[10px]">
+<span class="text-skyToken font-semibold">09:00 - 10:30</span>
+<span class="text-slate-400">Hall 301</span>
+</div>
+<div class="font-bold text-slate-200">Database Systems</div>
+<div class="text-[10px] text-slate-400">Prof. Vance</div>
+</div>
+<!-- Block 2 -->
+<div class="p-2.5 rounded-lg bg-surface border-l-4 border-crimsonToken border-y border-r border-borderDark space-y-1">
+<div class="flex justify-between font-mono text-[10px]">
+<span class="text-crimsonToken font-semibold">11:30 - 13:00</span>
+<span class="text-slate-400">Room 402</span>
+</div>
+<div class="font-bold text-slate-200">Algorithms Theory</div>
+<div class="text-[10px] text-slate-400">Prof. Mercer</div>
+</div>
+</div>
+<!-- Tuesday Column -->
+<div class="rounded-xl border border-borderDark bg-obsidian/70 p-3 space-y-2.5">
+<div class="font-mono text-xs font-bold text-slate-300 pb-1.5 border-b border-borderDark flex justify-between items-center">
+<span>TUESDAY</span>
+<span class="text-[10px] text-slate-500 font-normal">2 Labs</span>
+</div>
+<!-- Block 1 -->
+<div class="p-2.5 rounded-lg bg-surface border-l-4 border-emeraldToken border-y border-r border-borderDark space-y-1">
+<div class="flex justify-between font-mono text-[10px]">
+<span class="text-emeraldToken font-semibold">10:00 - 12:00</span>
+<span class="text-slate-400">Lab 2</span>
+</div>
+<div class="font-bold text-slate-200">Data Structure Lab</div>
+<div class="text-[10px] text-slate-400">Dr. Kowalski</div>
+</div>
+<!-- Block 2 -->
+<div class="p-2.5 rounded-lg bg-surface border-l-4 border-skyToken border-y border-r border-borderDark space-y-1">
+<div class="flex justify-between font-mono text-[10px]">
+<span class="text-skyToken font-semibold">13:00 - 14:30</span>
+<span class="text-slate-400">Lab 3</span>
+</div>
+<div class="font-bold text-slate-200">Software Eng CI/CD</div>
+<div class="text-[10px] text-slate-400">Prof. Lindqvist</div>
+</div>
+</div>
+<!-- Wednesday Column -->
+<div class="rounded-xl border border-borderDark bg-obsidian/70 p-3 space-y-2.5">
+<div class="font-mono text-xs font-bold text-slate-300 pb-1.5 border-b border-borderDark flex justify-between items-center">
+<span>WEDNESDAY</span>
+<span class="text-[10px] text-slate-500 font-normal">2 Sessions</span>
+</div>
+<!-- Block 1 -->
+<div class="p-2.5 rounded-lg bg-surface border-l-4 border-skyToken border-y border-r border-borderDark space-y-1">
+<div class="flex justify-between font-mono text-[10px]">
+<span class="text-skyToken font-semibold">09:00 - 10:30</span>
+<span class="text-slate-400">Hall 301</span>
+</div>
+<div class="font-bold text-slate-200">Database Systems</div>
+<div class="text-[10px] text-slate-400">Prof. Vance</div>
+</div>
+<!-- Block 2 -->
+<div class="p-2.5 rounded-lg bg-surface border-l-4 border-amberToken border-y border-r border-borderDark space-y-1">
+<div class="flex justify-between font-mono text-[10px]">
+<span class="text-amberToken font-semibold">14:00 - 15:30</span>
+<span class="text-slate-400">Room 205</span>
+</div>
+<div class="font-bold text-slate-200">Discrete Math</div>
+<div class="text-[10px] text-slate-400">Dr. Aris</div>
+</div>
+</div>
+<!-- Thursday Column -->
+<div class="rounded-xl border border-borderDark bg-obsidian/70 p-3 space-y-2.5">
+<div class="font-mono text-xs font-bold text-slate-300 pb-1.5 border-b border-borderDark flex justify-between items-center">
+<span>THURSDAY</span>
+<span class="text-[10px] text-slate-500 font-normal">2 Sessions</span>
+</div>
+<!-- Block 1 -->
+<div class="p-2.5 rounded-lg bg-surface border-l-4 border-skyToken border-y border-r border-borderDark space-y-1">
+<div class="flex justify-between font-mono text-[10px]">
+<span class="text-skyToken font-semibold">10:00 - 11:30</span>
+<span class="text-slate-400">Hall 1</span>
+</div>
+<div class="font-bold text-slate-200">OOP &amp; C++ Design</div>
+<div class="text-[10px] text-slate-400">Dr. Thorne</div>
+</div>
+<!-- Block 2 -->
+<div class="p-2.5 rounded-lg bg-surface border-l-4 border-crimsonToken border-y border-r border-borderDark space-y-1">
+<div class="flex justify-between font-mono text-[10px]">
+<span class="text-crimsonToken font-semibold">13:30 - 15:00</span>
+<span class="text-slate-400">Room 402</span>
+</div>
+<div class="font-bold text-slate-200">Algorithm Seminar</div>
+<div class="text-[10px] text-slate-400">Prof. Mercer</div>
+</div>
+</div>
+<!-- Friday Column -->
+<div class="rounded-xl border border-borderDark bg-obsidian/70 p-3 space-y-2.5">
+<div class="font-mono text-xs font-bold text-slate-300 pb-1.5 border-b border-borderDark flex justify-between items-center">
+<span>FRIDAY</span>
+<span class="text-[10px] text-emeraldToken font-semibold">Seminars</span>
+</div>
+<!-- Block 1 -->
+<div class="p-2.5 rounded-lg bg-surface border-l-4 border-emeraldToken border-y border-r border-borderDark space-y-1">
+<div class="flex justify-between font-mono text-[10px]">
+<span class="text-emeraldToken font-semibold">08:30 - 10:30</span>
+<span class="text-slate-400">Code Lab</span>
+</div>
+<div class="font-bold text-slate-200">CP Workshop</div>
+<div class="text-[10px] text-slate-400">Competitive Club</div>
+</div>
+<!-- Block 2 -->
+<div class="p-2.5 rounded-lg bg-surface border-l-4 border-amberToken border-y border-r border-borderDark space-y-1">
+<div class="flex justify-between font-mono text-[10px]">
+<span class="text-amberToken font-semibold">11:00 - 12:30</span>
+<span class="text-slate-400">Auditorium</span>
+</div>
+<div class="font-bold text-slate-200">Research Colloquium</div>
+<div class="text-[10px] text-slate-400">Invited Speakers</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 6: Academic Calendar & Assignment Stream -->
+<section class="rounded-2xl border border-borderDark bg-surface p-5 shadow-lg space-y-4" data-purpose="academic-calendar-stream">
+<div class="flex items-center justify-between border-b border-borderDark pb-3">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-emeraldToken"></span>
+<h2 class="text-sm font-bold text-white tracking-wide">Upcoming Milestone Cadence</h2>
+</div>
+<div class="flex items-center gap-3">
+<div class="inline-flex rounded-lg border border-borderDark bg-obsidian p-0.5 text-xs font-mono">
+<button class="px-2.5 py-1 rounded bg-surface text-white">Month</button>
+<button class="px-2.5 py-1 text-slate-400 hover:text-white">Week</button>
+</div>
+<button class="text-xs font-mono px-3 py-1.5 rounded-lg bg-obsidian hover:bg-borderDark/40 border border-borderDark text-slate-300 hover:text-white flex items-center gap-1.5 transition">
+<svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span>Open in Calendar</span>
+</button>
+</div>
+</div>
+<!-- Horizontal Milestone Stream Cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+<div class="rounded-xl border border-crimsonToken/40 bg-obsidian p-3.5 flex items-start gap-3">
+<div class="flex-shrink-0 w-11 h-11 rounded-lg bg-crimsonToken/10 border border-crimsonToken/20 flex flex-col items-center justify-center font-mono">
+<span class="text-[10px] text-crimsonToken uppercase">MAY</span>
+<span class="text-sm font-bold text-white">05</span>
+</div>
+<div class="space-y-0.5">
+<div class="text-xs font-bold text-slate-100">Discrete Math Quiz II</div>
+<div class="text-[11px] text-slate-400">Chapters 7 &amp; 8 • In-Class 45 min</div>
+<div class="text-[10px] font-mono text-crimsonToken mt-1">2 days remaining</div>
+</div>
+</div>
+<div class="rounded-xl border border-skyToken/30 bg-obsidian p-3.5 flex items-start gap-3">
+<div class="flex-shrink-0 w-11 h-11 rounded-lg bg-skyToken/10 border border-skyToken/20 flex flex-col items-center justify-center font-mono">
+<span class="text-[10px] text-skyToken uppercase">MAY</span>
+<span class="text-sm font-bold text-white">07</span>
+</div>
+<div class="space-y-0.5">
+<div class="text-xs font-bold text-slate-100">SE Architecture Paper Due</div>
+<div class="text-[11px] text-slate-400">Microservice orchestration report</div>
+<div class="text-[10px] font-mono text-skyToken mt-1">4 days remaining</div>
+</div>
+</div>
+<div class="rounded-xl border border-emeraldToken/30 bg-obsidian p-3.5 flex items-start gap-3">
+<div class="flex-shrink-0 w-11 h-11 rounded-lg bg-emeraldToken/10 border border-emeraldToken/20 flex flex-col items-center justify-center font-mono">
+<span class="text-[10px] text-emeraldToken uppercase">MAY</span>
+<span class="text-sm font-bold text-white">12</span>
+</div>
+<div class="space-y-0.5">
+<div class="text-xs font-bold text-slate-100">Algo Midterm Examination</div>
+<div class="text-[11px] text-slate-400">Hall 402 • Weight: 30% Total</div>
+<div class="text-[10px] font-mono text-emeraldToken mt-1">9 days remaining</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- END: MainContentCanvas -->
+</div>
+<!-- END: TwoColumnWorkspaceLayout -->
+<!-- BEGIN: SystemFooter -->
+<footer class="pt-6 border-t border-borderDark flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-500">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-emeraldToken"></span>
+<span>Student Life OS 2026 • Cybernetic Campus Routine</span>
+</div>
+<div>
+<span>Botanical Terrarium Environment: 22.4°C • 68% Humidity</span>
+</div>
+</footer>
+<!-- END: SystemFooter -->
+</div>
+<!-- END: MainContainer -->
+<!-- BEGIN: InteractiveScripts -->
+<!-- Script for Real-Time Analog and Digital Clock -->
+<script data-purpose="chronometer-sync">
+    function updateClock() {
+      const now = new Date();
+      
+      const seconds = now.getSeconds();
+      const minutes = now.getMinutes();
+      const hours = now.getHours();
+
+      // Digital Clock formatting
+      const hStr = String(hours).padStart(2, '0');
+      const mStr = String(minutes).padStart(2, '0');
+      const sStr = String(seconds).padStart(2, '0');
+      const clockElement = document.getElementById('live-digital-clock');
+      if (clockElement) {
+        clockElement.textContent = `${hStr}:${mStr}:${sStr}`;
+      }
+
+      // Analog Clock Hand Rotations
+      // Center (50,50), Radius ~35-40
+      const secAngle = ((seconds / 60) * 360) * (Math.PI / 180);
+      const minAngle = (((minutes + seconds / 60) / 60) * 360) * (Math.PI / 180);
+      const hourAngle = ((((hours % 12) + minutes / 60) / 12) * 360) * (Math.PI / 180);
+
+      const secHand = document.getElementById('analog-second');
+      const minHand = document.getElementById('analog-minute');
+      const hourHand = document.getElementById('analog-hour');
+
+      if (secHand) {
+        secHand.setAttribute('x2', 50 + 36 * Math.cos(secAngle));
+        secHand.setAttribute('y2', 50 + 36 * Math.sin(secAngle));
+      }
+      if (minHand) {
+        minHand.setAttribute('x2', 50 + 30 * Math.cos(minAngle));
+        minHand.setAttribute('y2', 50 + 30 * Math.sin(minAngle));
+      }
+      if (hourHand) {
+        hourHand.setAttribute('x2', 50 + 19 * Math.cos(hourAngle));
+        hourHand.setAttribute('y2', 50 + 19 * Math.sin(hourAngle));
+      }
+    }
+
+    setInterval(updateClock, 1000);
+    updateClock();
+  </script>
+<!-- Script for Functional Pomodoro Focus Countdown -->
+<script data-purpose="pomodoro-engine">
+    let timerDuration = 25 * 60; // 25 minutes default
+    let timeRemaining = timerDuration;
+    let timerInterval = null;
+    let isRunning = false;
+
+    const pomoDisplay = document.getElementById('pomo-display');
+    const toggleBtn = document.getElementById('pomo-toggle-btn');
+    const resetBtn = document.getElementById('pomo-reset-btn');
+    const modePomo = document.getElementById('mode-pomo');
+    const modeShort = document.getElementById('mode-short');
+    const modeLong = document.getElementById('mode-long');
+
+    function formatTime(secs) {
+      const m = Math.floor(secs / 60);
+      const s = secs % 60;
+      return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+    }
+
+    function renderDisplay() {
+      if (pomoDisplay) {
+        pomoDisplay.textContent = formatTime(timeRemaining);
+      }
+    }
+
+    function setActiveModeButton(activeBtn) {
+      [modePomo, modeShort, modeLong].forEach(btn => {
+        if (!btn) return;
+        btn.classList.remove('bg-emeraldToken', 'text-black', 'font-semibold');
+        btn.classList.add('text-slate-400');
+      });
+      activeBtn.classList.remove('text-slate-400');
+      activeBtn.classList.add('bg-emeraldToken', 'text-black', 'font-semibold');
+    }
+
+    function setMode(minutes, btn) {
+      clearInterval(timerInterval);
+      isRunning = false;
+      timerDuration = minutes * 60;
+      timeRemaining = timerDuration;
+      toggleBtn.textContent = 'Start Focus';
+      toggleBtn.classList.remove('bg-amberToken');
+      toggleBtn.classList.add('bg-emeraldToken');
+      setActiveModeButton(btn);
+      renderDisplay();
+    }
+
+    if (modePomo) modePomo.addEventListener('click', () => setMode(25, modePomo));
+    if (modeShort) modeShort.addEventListener('click', () => setMode(5, modeShort));
+    if (modeLong) modeLong.addEventListener('click', () => setMode(15, modeLong));
+
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', () => {
+        if (!isRunning) {
+          isRunning = true;
+          toggleBtn.textContent = 'Pause Interval';
+          toggleBtn.classList.remove('bg-emeraldToken');
+          toggleBtn.classList.add('bg-amberToken');
+
+          timerInterval = setInterval(() => {
+            if (timeRemaining > 0) {
+              timeRemaining--;
+              renderDisplay();
+            } else {
+              clearInterval(timerInterval);
+              isRunning = false;
+              toggleBtn.textContent = 'Session Complete!';
+              toggleBtn.classList.remove('bg-amberToken');
+              toggleBtn.classList.add('bg-emeraldToken');
+            }
+          }, 1000);
+        } else {
+          clearInterval(timerInterval);
+          isRunning = false;
+          toggleBtn.textContent = 'Resume Focus';
+          toggleBtn.classList.remove('bg-amberToken');
+          toggleBtn.classList.add('bg-emeraldToken');
+        }
+      });
+    }
+
+    if (resetBtn) {
+      resetBtn.addEventListener('click', () => {
+        clearInterval(timerInterval);
+        isRunning = false;
+        timeRemaining = timerDuration;
+        toggleBtn.textContent = 'Start Focus';
+        toggleBtn.classList.remove('bg-amberToken');
+        toggleBtn.classList.add('bg-emeraldToken');
+        renderDisplay();
+      });
+    }
+
+    renderDisplay();
+  </script>
+<!-- END: InteractiveScripts -->
+</body></html>

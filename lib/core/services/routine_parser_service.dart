@@ -1,9 +1,9 @@
 import 'dart:convert';
-import 'dart:typed_data';
 import 'dart:ui' as ui;
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
+import '../constants/gemini_constants.dart';
 import '../models/routine_models.dart';
 import 'api_key_service.dart';
 
@@ -71,7 +71,7 @@ Example:
     }
 
     return GenerativeModel(
-      model: 'gemini-1.5-flash',
+      model: GeminiConstants.primaryModel,
       apiKey: apiKey.trim(),
       generationConfig: GenerationConfig(
         temperature: 0.1,

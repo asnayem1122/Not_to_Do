@@ -192,7 +192,7 @@ class _FixMyDaySheetState extends ConsumerState<FixMyDaySheet> {
                 Container(
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
-                    color: customColors.antiHabit.withOpacity(0.12),
+                    color: customColors.antiHabit.withValues(alpha: 0.12),
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Icon(
@@ -220,7 +220,7 @@ class _FixMyDaySheetState extends ConsumerState<FixMyDaySheet> {
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 7, vertical: 2),
                             decoration: BoxDecoration(
-                              color: customColors.antiHabit.withOpacity(0.15),
+                              color: customColors.antiHabit.withValues(alpha: 0.15),
                               borderRadius: BorderRadius.circular(6),
                             ),
                             child: Text(
@@ -392,11 +392,11 @@ class _FixMyDaySheetState extends ConsumerState<FixMyDaySheet> {
                           Container(
                             padding: const EdgeInsets.all(14),
                             decoration: BoxDecoration(
-                              color: customColors.primaryFixed.withOpacity(0.4),
+                              color: customColors.primaryFixed.withValues(alpha: 0.4),
                               borderRadius: BorderRadius.circular(14),
                               border: Border.all(
                                 color:
-                                    customColors.primaryAccent.withOpacity(0.3),
+                                    customColors.primaryAccent.withValues(alpha: 0.3),
                               ),
                             ),
                             child: Row(
@@ -431,7 +431,7 @@ class _FixMyDaySheetState extends ConsumerState<FixMyDaySheet> {
                                                 horizontal: 6, vertical: 1),
                                             decoration: BoxDecoration(
                                               color: customColors.primaryAccent
-                                                  .withOpacity(0.15),
+                                                  .withValues(alpha: 0.15),
                                               borderRadius:
                                                   BorderRadius.circular(4),
                                             ),
@@ -584,7 +584,7 @@ class _FixMyDaySheetState extends ConsumerState<FixMyDaySheet> {
         color: customColors.cardBackground,
         borderRadius: BorderRadius.circular(12),
         border: Border.all(
-          color: domainColor.withOpacity(0.4),
+          color: domainColor.withValues(alpha: 0.4),
           width: 1.2,
         ),
       ),
@@ -595,7 +595,7 @@ class _FixMyDaySheetState extends ConsumerState<FixMyDaySheet> {
             padding: const EdgeInsets.all(6),
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: domainColor.withOpacity(0.12),
+              color: domainColor.withValues(alpha: 0.12),
             ),
             child: Icon(icon, size: 16, color: domainColor),
           ),
@@ -611,7 +611,7 @@ class _FixMyDaySheetState extends ConsumerState<FixMyDaySheet> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 6, vertical: 1.5),
                       decoration: BoxDecoration(
-                        color: domainColor.withOpacity(0.12),
+                        color: domainColor.withValues(alpha: 0.12),
                         borderRadius: BorderRadius.circular(4),
                       ),
                       child: Text(
